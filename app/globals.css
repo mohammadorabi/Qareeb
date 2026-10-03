@@ -1,0 +1,184 @@
+@import "tailwindcss";
+
+/* Brand tokens — exact values from the app design file. */
+:root {
+  /* Brand */
+  --orange: #f2641a;
+  --orange-dark: #d8500b;
+  --orange-soft: #fdebdd;
+  --green: #3f9a6a;
+  --green-soft: #dcefe2;
+
+  /* Text & surfaces */
+  --text: #1f1d1b;
+  --text-2: #5c5852;
+  --text-muted: #8a857e;
+  --bg: #faf6f1;
+  --card: #ffffff;
+  --border: #ece6dd;
+
+  /* Service category tints */
+  --tint-rose: #f4d2c3;
+  --tint-sand: #f1e3b6;
+  --tint-olive: #d5ddc8;
+  --tint-water: #bfd3d9;
+  --tint-lilac: #d6cde2;
+  --tint-sky: #cbdcec;
+  --mustard: #e0b83a;
+
+  /* Radius */
+  --r-card: 20px;
+  --r-btn: 14px;
+  --r-pill: 999px;
+
+  /* Accessible text variants (derived, not brand colors). Brand orange (2.95:1)
+     and muted (3.40:1) fail WCAG AA on --bg for small text; use these instead. */
+  --orange-ink: #b4430a; /* 5.21:1 on --bg */
+  --muted-ink: #6e6a63; /* 5.00:1 on --bg */
+
+  /* Layout */
+  --gutter: 22px;
+  --nav-h: 68px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --gutter: 40px;
+  }
+}
+
+/* Only brand colors exist in the utility palette. */
+@theme inline {
+  --color-*: initial;
+  --color-white: #ffffff;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+
+  --color-orange: var(--orange);
+  --color-orange-dark: var(--orange-dark);
+  --color-orange-soft: var(--orange-soft);
+  --color-green: var(--green);
+  --color-green-soft: var(--green-soft);
+  --color-text: var(--text);
+  --color-text-2: var(--text-2);
+  --color-muted: var(--muted-ink);
+  --color-muted-deco: var(--text-muted);
+  --color-orange-ink: var(--orange-ink);
+  --color-bg: var(--bg);
+  --color-card: var(--card);
+  --color-border: var(--border);
+  --color-rose: var(--tint-rose);
+  --color-sand: var(--tint-sand);
+  --color-olive: var(--tint-olive);
+  --color-water: var(--tint-water);
+  --color-lilac: var(--tint-lilac);
+  --color-sky: var(--tint-sky);
+  --color-mustard: var(--mustard);
+
+  --radius-card: var(--r-card);
+  --radius-btn: var(--r-btn);
+  --radius-pill: var(--r-pill);
+
+  --font-ar: var(--font-cairo), var(--font-outfit), system-ui, sans-serif;
+  --font-en: var(--font-outfit), var(--font-cairo), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, "SFMono-Regular", monospace;
+
+  --text-h1: clamp(40px, 6vw, 72px);
+  --text-h1--line-height: 1.08;
+  --text-h2: clamp(30px, 4vw, 48px);
+  --text-h2--line-height: 1.15;
+  --text-eyebrow: 11.5px;
+  --text-eyebrow--letter-spacing: 0.12em;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: calc(var(--nav-h) + 16px);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font-en);
+    font-size: 15px;
+    line-height: 1.6;
+    overflow-x: clip;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  @media (min-width: 768px) {
+    body {
+      font-size: 17px;
+    }
+  }
+
+  html[lang="ar"] body {
+    font-family: var(--font-ar);
+  }
+
+  /* Subtle paper grain on the warm background (static, GPU-cheap). */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .12 0 0 0 0 .11 0 0 0 0 .1 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  ::selection {
+    background: var(--orange-soft);
+    color: var(--text);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--orange-dark);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+}
+
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--text-eyebrow);
+  letter-spacing: var(--text-eyebrow--letter-spacing);
+  text-transform: uppercase;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+@utility container-site {
+  width: 100%;
+  /* 1200px of content, plus the side gutters. */
+  max-width: calc(1200px + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* Hero: the orange "full stop" pops in after the headline settles. */
+@keyframes dot-pop {
+  0% {
+    transform: scale(0);
+  }
+  70% {
+    transform: scale(1.35);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-dot {
+    animation: dot-pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s both;
+  }
+}

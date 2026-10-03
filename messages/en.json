@@ -1,0 +1,132 @@
+{
+  "meta": {
+    "title": "qareeb — Far from them, still close",
+    "description": "Pay your family's bills in Syria and top up their balance from Europe, in one tap. Join the waitlist.",
+    "siteName": "qareeb · قريب"
+  },
+  "common": {
+    "skipToContent": "Skip to content",
+    "brand": "qareeb",
+    "homeLabel": "qareeb — home",
+    "comingSoon": "Coming soon"
+  },
+  "nav": {
+    "label": "Main navigation",
+    "how": "How it works",
+    "services": "Services",
+    "trust": "Security",
+    "faq": "FAQ",
+    "cta": "Join the waitlist",
+    "ctaShort": "Join",
+    "menuOpen": "Open menu",
+    "menuClose": "Close menu"
+  },
+  "locale": {
+    "switchTo": "العربية",
+    "switchLabel": "التبديل إلى العربية"
+  },
+  "footer": {
+    "tagline": "Far from them, still close.",
+    "rights": "© {year} qareeb. All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms",
+    "contact": "Contact",
+    "legalNav": "Legal"
+  },
+  "legal": {
+    "placeholderNotice": "Placeholder text — to be replaced with final legal wording after review by our lawyer.",
+    "back": "Back to home",
+    "privacy": {
+      "title": "Privacy Policy",
+      "sections": [
+        {
+          "h": "Who we are",
+          "p": "[To complete: company legal name, registered address, and data protection contact.]"
+        },
+        {
+          "h": "What we collect",
+          "p": "[To complete: email, country of residence (optional), preferred language, consent timestamp, a hashed IP fingerprint for abuse prevention, and visit source.]"
+        },
+        {
+          "h": "Why we collect it",
+          "p": "[To complete: to tell you about the launch, based on your explicit consent (GDPR Art. 6(1)(a)).]"
+        },
+        {
+          "h": "How long we keep it",
+          "p": "[To complete: retention period and deletion process.]"
+        },
+        {
+          "h": "Your rights",
+          "p": "[To complete: access, rectification, erasure, withdrawing consent, and lodging a complaint with a supervisory authority.]"
+        },
+        {
+          "h": "Service providers",
+          "p": "[To complete: list of processors (hosting, database, email) and processing locations.]"
+        }
+      ]
+    },
+    "terms": {
+      "title": "Terms",
+      "sections": [
+        {
+          "h": "The waitlist",
+          "p": "[To complete: joining the waitlist does not create an account or commit you to anything.]"
+        },
+        {
+          "h": "Eligibility",
+          "p": "[To complete: the service is for people aged 18+ living in Europe.]"
+        },
+        {
+          "h": "Communication",
+          "p": "[To complete: how we contact you and how to unsubscribe.]"
+        },
+        {
+          "h": "Governing law",
+          "p": "[To complete: governing law and jurisdiction.]"
+        }
+      ]
+    }
+  },
+  "hero": {
+    "eyebrow": "COMING SOON · iOS & ANDROID",
+    "titleLead": "Far from them… still",
+    "titleAccent": "close",
+    "subtitle": "Pay your family’s bills in Syria and top up their balance from Europe in one tap — so it arrives as a gift from you, not a transaction.",
+    "chipsLabel": "Why qareeb",
+    "chips": {
+      "noPassword": "No passwords",
+      "wallets": "Apple Pay & Google Pay",
+      "arabicFirst": "Arabic-first"
+    }
+  },
+  "map": {
+    "label": "Illustration: an orange arc travels from a European city to a Syrian city.",
+    "arrived": "Arrived",
+    "services": {
+      "syriatelCash": "Syriatel Cash top-up",
+      "mtnCredit": "MTN credit",
+      "electricity": "Electricity bill",
+      "internet": "Internet bill",
+      "mtnCash": "MTN Cash"
+    }
+  },
+  "waitlist": {
+    "emailLabel": "Your email",
+    "emailPlaceholder": "you@example.com",
+    "submit": "Join the waitlist",
+    "submitting": "Sending…",
+    "consent": "I agree to receive emails from qareeb about the launch, per the <privacy>Privacy Policy</privacy>.",
+    "note": "No spam. Unsubscribe any time.",
+    "success": "Check your inbox to confirm ✉️",
+    "successHint": "We sent a confirmation link to <mail>{email}</mail>.",
+    "retry": "Try again",
+    "errors": {
+      "email_required": "Enter your email.",
+      "email_invalid": "That email doesn’t look right.",
+      "consent_required": "We need your consent to email you about the launch.",
+      "network": "Couldn’t send. Check your connection and try again.",
+      "rate_limited": "Too many attempts. Try again in a little while.",
+      "server": "Something went wrong on our side. Please try again shortly."
+    }
+  }
+}
