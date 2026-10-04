@@ -164,6 +164,99 @@
   padding-inline: var(--gutter);
 }
 
+/* The page body font (Cairo in Arabic, Outfit in English), e.g. inside mono blocks. */
+@utility font-body {
+  font-family: var(--font-en);
+  &:lang(ar) {
+    font-family: var(--font-ar);
+  }
+}
+
+/* Handwritten lines: Ruqʿa in Arabic, Caveat in English. */
+@utility font-hand {
+  font-family: var(--font-caveat), var(--font-aref-ruqaa), cursive;
+  &:lang(ar) {
+    font-family: var(--font-aref-ruqaa), var(--font-caveat), cursive;
+  }
+}
+
+/*
+ * Entrance reveal, CSS-only (scroll-driven animations). Progressive
+ * enhancement: content is fully visible without JS, in browsers without
+ * view timelines, and with reduced motion.
+ */
+@keyframes reveal-in {
+  from {
+    opacity: 0;
+    translate: 0 24px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: reveal-in linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 60%;
+    }
+  }
+}
+
+/* Receipt paper: zigzag "torn" top and bottom edges. */
+@utility paper-torn {
+  --tooth: 9px;
+  mask:
+    conic-gradient(from 135deg at top, #0000, #000 1deg 89deg, #0000 90deg) top /
+      calc(2 * var(--tooth)) 51% repeat-x,
+    conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) bottom /
+      calc(2 * var(--tooth)) 51% repeat-x;
+}
+
+/* Receipt "prints" from the top as it scrolls into view (CSS-only, as .reveal). */
+@keyframes print-in {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    translate: 0 6px;
+  }
+}
+
+@keyframes float-y {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -10px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .print-in {
+      animation: print-in linear both;
+      animation-timeline: view();
+      animation-range: entry 20% cover 45%;
+    }
+  }
+
+  .float-slow {
+    animation: float-y 6s ease-in-out infinite;
+  }
+}
+
 /* Hero: the orange "full stop" pops in after the headline settles. */
 @keyframes dot-pop {
   0% {

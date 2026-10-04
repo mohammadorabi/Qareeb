@@ -39,7 +39,11 @@ export async function generateMetadata({ params }: LayoutProps<"/[locale]">): Pr
       locale: locale === "ar" ? "ar_SY" : "en_GB",
       url: `/${locale}`,
     },
-    twitter: { card: "summary_large_image" },
+    twitter: {
+      card: "summary_large_image",
+      title: t("title"),
+      description: t("description"),
+    },
   };
 }
 

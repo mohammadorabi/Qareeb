@@ -22,9 +22,19 @@ export function Nav() {
   const menuId = useId();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [active, setActive] = useState<string | null>(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 8);
+      // Active link: the linked section crossing a line 35% down the viewport.
+      const probe = window.innerHeight * 0.35;
+      const hit = LINKS.find(({ id }) => {
+        const r = document.getElementById(id)?.getBoundingClientRect();
+        return r && r.top <= probe && r.bottom > probe;
+      });
+      setActive(hit?.id ?? null);
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -56,9 +66,18 @@ export function Nav() {
               <li key={key}>
                 <Link
                   href={`/#${id}`}
-                  className="rounded-pill px-3.5 py-2 text-[15px] font-medium text-text-2 transition-colors hover:text-text"
+                  aria-current={active === id ? "location" : undefined}
+                  className={`relative rounded-pill px-3.5 py-2 text-[15px] font-medium transition-colors hover:text-text ${
+                    active === id ? "text-text" : "text-text-2"
+                  }`}
                 >
                   {t(key)}
+                  <span
+                    aria-hidden="true"
+                    className={`absolute -bottom-0.5 left-1/2 size-1.5 -translate-x-1/2 rounded-pill bg-orange transition-[opacity,scale] duration-300 ${
+                      active === id ? "scale-100 opacity-100" : "scale-0 opacity-0"
+                    }`}
+                  />
                 </Link>
               </li>
             ))}
@@ -111,7 +130,10 @@ export function Nav() {
                 <Link
                   href={`/#${id}`}
                   onClick={() => setOpen(false)}
-                  className="block rounded-lg py-3 text-lg font-medium text-text"
+                  aria-current={active === id ? "location" : undefined}
+                  className={`flex items-center gap-2 rounded-lg py-3 text-lg font-medium ${
+                    active === id ? "text-text" : "text-text-2"
+                  }`}
                 >
                   {t(key)}
                 </Link>

@@ -1,0 +1,34 @@
+{
+  "eyebrow": "FAQ",
+  "title": "Questions you might have.",
+  "items": [
+    {
+      "q": "Who is qareeb for?",
+      "a": "For every Syrian living outside Syria who wants to pay their family’s bills or top up their phones. The app is for people aged 18 and over."
+    },
+    {
+      "q": "Which countries can I use it from?",
+      "a": "qareeb is for Syrians wherever they live outside Syria: Europe, the Gulf, Türkiye, Lebanon, Jordan, Egypt, North America and beyond."
+    },
+    {
+      "q": "Which services are available at launch?",
+      "a": "Phone, internet, electricity and water bills, plus Syriatel and MTN credit — with saved numbers so you can repeat a payment in one tap."
+    },
+    {
+      "q": "How do I pay?",
+      "a": "By card through Stripe, or with Apple Pay and Google Pay. We never store your card number."
+    },
+    {
+      "q": "What if the transfer fails?",
+      "a": "If a transfer doesn’t arrive after you’ve paid, you get a full refund automatically."
+    },
+    {
+      "q": "When does it launch?",
+      "a": "Soon — sign up to be the first to know."
+    },
+    {
+      "q": "Is my data safe?",
+      "a": "No passwords: you sign in with a one-time code by WhatsApp or email. Payments go through Stripe, we don’t store your card details, and we’re GDPR-compliant."
+    }
+  ]
+}

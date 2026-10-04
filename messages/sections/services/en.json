@@ -1,0 +1,43 @@
+{
+  "eyebrow": "Services",
+  "title": "Everything they need, in one place.",
+  "lead": "From wherever you are in the world.",
+  "bills": "Pay bills",
+  "transfer": "Top up",
+  "locked": "Coming soon",
+  "soon": "Soon",
+  "tiles": {
+    "phone": {
+      "name": "Phone",
+      "line": "The landline bill, no errands."
+    },
+    "internet": {
+      "name": "Internet",
+      "line": "Keep them online, and the calls going."
+    },
+    "electricity": {
+      "name": "Electricity",
+      "line": "The electricity bill, paid from afar."
+    },
+    "water": {
+      "name": "Water",
+      "line": "The water bill, without leaving home."
+    },
+    "syriatel": {
+      "name": "Syriatel credit",
+      "line": "Arrives instantly or within minutes."
+    },
+    "mtn": {
+      "name": "MTN credit",
+      "line": "Arrives instantly or within minutes."
+    },
+    "gifts": {
+      "name": "Gifts",
+      "line": "Flowers, sweets and gifts for your family."
+    },
+    "occasions": {
+      "name": "Occasions",
+      "line": "Reminders for Eid and family occasions."
+    }
+  }
+}

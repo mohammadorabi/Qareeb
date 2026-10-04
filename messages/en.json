@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "qareeb — Far from them, still close",
-    "description": "Pay your family's bills in Syria and top up their balance from Europe, in one tap. Join the waitlist.",
+    "title": "qareeb — Far from them, still Qareeb",
+    "description": "Pay your family’s bills in Syria and top up their phones from anywhere in the world, in one tap. Join the waitlist.",
     "siteName": "qareeb · قريب"
   },
   "common": {
@@ -26,7 +26,7 @@
     "switchLabel": "التبديل إلى العربية"
   },
   "footer": {
-    "tagline": "Far from them, still close.",
+    "tagline": "Far from them, still Qareeb.",
     "rights": "© {year} qareeb. All rights reserved.",
     "privacy": "Privacy Policy",
     "terms": "Terms",
@@ -74,7 +74,7 @@
         },
         {
           "h": "Eligibility",
-          "p": "[To complete: the service is for people aged 18+ living in Europe.]"
+          "p": "[To complete: the service is for Syrians aged 18+ living outside Syria.]"
         },
         {
           "h": "Communication",
@@ -91,23 +91,24 @@
     "eyebrow": "COMING SOON · iOS & ANDROID",
     "titleLead": "Far from them… still",
     "titleAccent": "close",
-    "subtitle": "Pay your family’s bills in Syria and top up their balance from Europe in one tap — so it arrives as a gift from you, not a transaction.",
+    "subtitle": "Pay your family’s bills in Syria and top up their phones from anywhere in the world, in one tap — like a gift arriving at their door.",
     "chipsLabel": "Why qareeb",
     "chips": {
       "noPassword": "No passwords",
-      "wallets": "Apple Pay & Google Pay",
+      "applePay": "Apple Pay & Google Pay",
       "arabicFirst": "Arabic-first"
     }
   },
   "map": {
-    "label": "Illustration: an orange arc travels from a European city to a Syrian city.",
+    "label": "Illustration: a globe with Syria at its center; an orange arc travels from a city abroad to a city in Syria.",
     "arrived": "Arrived",
     "services": {
-      "syriatelCash": "Syriatel Cash top-up",
+      "syriatelCredit": "Syriatel credit",
       "mtnCredit": "MTN credit",
       "electricity": "Electricity bill",
       "internet": "Internet bill",
-      "mtnCash": "MTN Cash"
+      "water": "Water bill",
+      "phone": "Phone bill"
     }
   },
   "waitlist": {
@@ -127,6 +128,9 @@
       "network": "Couldn’t send. Check your connection and try again.",
       "rate_limited": "Too many attempts. Try again in a little while.",
       "server": "Something went wrong on our side. Please try again shortly."
-    }
+    },
+    "countryLabel": "Country of residence (optional)",
+    "countryTop": "Most common",
+    "countryAll": "All countries"
   }
 }

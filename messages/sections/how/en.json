@@ -1,0 +1,61 @@
+{
+  "eyebrow": "How it works",
+  "title": "Three steps, and it’s there.",
+  "steps": [
+    {
+      "title": "Choose the service",
+      "body": "A bill or a top-up — all in one place, wherever you are in the world."
+    },
+    {
+      "title": "Choose who you love",
+      "body": "Your family’s numbers are saved, so next time it’s one tap."
+    },
+    {
+      "title": "Pay, and watch it arrive",
+      "body": "See every detail before you pay, and know the moment it lands."
+    }
+  ],
+  "phone": {
+    "time": "9:41",
+    "hello": "Hi Samer 👋",
+    "services": "Services",
+    "bills": "Pay bills",
+    "billsSub": "Phone, internet, electricity, water",
+    "transfer": "Top up",
+    "transferSub": "Syriatel & MTN",
+    "gifts": "Gifts",
+    "occasions": "Occasions",
+    "soon": "Soon",
+    "back": "Back",
+    "chooseType": "Choose the credit type",
+    "syriatel": "Syriatel credit",
+    "mtn": "MTN credit",
+    "saved": "Saved numbers",
+    "chipDad": "Dad – Syriatel",
+    "chipMom": "Mum",
+    "chipNumber": "+963 *** *** 789",
+    "continue": "Continue",
+    "confirmTitle": "Confirm payment",
+    "example": "Example",
+    "to": "To",
+    "rows": [
+      "Amount in Syrian pounds",
+      "Amount in your currency",
+      "Exchange rate & time",
+      "Service fee",
+      "Total"
+    ],
+    "refund": "If the transfer doesn’t arrive, you get a full refund automatically.",
+    "pay": "Confirm & pay",
+    "arrived": "Arrived 💚",
+    "arrivedSub": "Syriatel credit delivered to Dad.",
+    "track": ["Paid", "On its way", "Arrived"],
+    "done": "Done",
+    "tabs": ["Home", "Activity", "Saved", "Account"],
+    "quick": "Quick pay",
+    "quickDad": "Dad – Syriatel",
+    "quickDadSub": "Syriatel credit",
+    "quickHome": "Home electricity",
+    "quickHomeSub": "Electricity bill"
+  }
+}

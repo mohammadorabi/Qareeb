@@ -3,7 +3,7 @@ import { DistanceMap } from "@/components/hero/DistanceMap";
 import { HeroGlow } from "@/components/hero/HeroGlow";
 import { WaitlistForm } from "@/components/waitlist/WaitlistForm";
 
-const CHIPS = ["noPassword", "wallets", "arabicFirst"] as const;
+const CHIPS = ["noPassword", "applePay", "arabicFirst"] as const;
 
 export async function Hero() {
   const t = await getTranslations("hero");

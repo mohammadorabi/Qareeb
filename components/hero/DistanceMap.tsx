@@ -14,8 +14,9 @@ import {
   CITY_PAIRS,
   DOT_PATHS,
   DOT_SIZE,
-  MAP_HEIGHT,
-  MAP_WIDTH,
+  MAP_CENTER,
+  MAP_RADIUS,
+  MAP_SIZE,
   arcPath,
   type City,
 } from "@/lib/map-dots";
@@ -26,16 +27,25 @@ const DRAW_S = 1.6;
 const DRAW_DELAY_S = 0.35;
 const EASE_DRAW = [0.65, 0, 0.35, 1] as const;
 
-// One illustrative service per pair (no amounts).
-const SERVICES = ["syriatelCash", "mtnCredit", "electricity", "internet", "mtnCash"] as const;
+// Illustrative v1.0 services shown on arrival (no amounts). 6 services over 7 pairs,
+// so the combinations keep changing.
+const SERVICES = [
+  "syriatelCredit",
+  "mtnCredit",
+  "electricity",
+  "internet",
+  "water",
+  "phone",
+] as const;
 
 const pct = (v: number, of: number) => `${(v / of) * 100}%`;
 
 export function DistanceMap() {
   const t = useTranslations("map");
   const reduced = usePrefersReducedMotion();
-  const [index, setIndex] = useState(0);
-  const [arrivedIndex, setArrivedIndex] = useState<number | null>(null);
+  // Ever-increasing arrival count; pair and service are derived from it.
+  const [cycle, setCycle] = useState(0);
+  const [arrivedCycle, setArrivedCycle] = useState<number | null>(null);
 
   const pathRef = useRef<SVGPathElement>(null);
   const progress = useMotionValue(0);
@@ -44,9 +54,9 @@ export function DistanceMap() {
   const giftY = useMotionValue(0);
   const giftOpacity = useTransform(progress, [0, 0.05, 0.92, 1], [0, 1, 1, 0]);
 
-  const pair = CITY_PAIRS[index];
+  const pair = CITY_PAIRS[cycle % CITY_PAIRS.length];
   const d = arcPath(pair.from.at, pair.to.at);
-  const arrived = reduced || arrivedIndex === index;
+  const arrived = reduced || arrivedCycle === cycle;
 
   useMotionValueEvent(progress, "change", (p) => {
     const path = pathRef.current;
@@ -67,26 +77,26 @@ export function DistanceMap() {
       delay: DRAW_DELAY_S,
       ease: EASE_DRAW,
     });
-    draw.then(() => setArrivedIndex(index));
-    const next = setTimeout(() => setIndex((i) => (i + 1) % CITY_PAIRS.length), CYCLE_MS);
+    draw.then(() => setArrivedCycle(cycle));
+    const next = setTimeout(() => setCycle((c) => c + 1), CYCLE_MS);
     return () => {
       draw.stop();
       clearTimeout(next);
     };
-  }, [index, reduced, progress]);
+  }, [cycle, reduced, progress]);
 
-  const service = SERVICES[index % SERVICES.length];
+  const service = SERVICES[cycle % SERVICES.length];
 
   return (
-    // Geography never mirrors: keep Europe top-left / Syria bottom-right in RTL too.
-    <figure dir="ltr" className="relative mx-auto w-full max-w-[620px]">
+    // Geography never mirrors: the globe reads the same in RTL and LTR.
+    <figure dir="ltr" className="relative mx-auto w-full max-w-[580px]">
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-[-10%] rounded-full bg-[radial-gradient(closest-side,var(--orange-soft),transparent)] opacity-70"
+        className="pointer-events-none absolute inset-[4%] rounded-full bg-[radial-gradient(closest-side,var(--orange-soft),transparent)] opacity-80"
       />
 
       <svg
-        viewBox={`0 0 ${MAP_WIDTH} ${MAP_HEIGHT}`}
+        viewBox={`0 0 ${MAP_SIZE} ${MAP_SIZE}`}
         className="relative block h-auto w-full"
         role="img"
         aria-label={t("label")}
@@ -96,12 +106,28 @@ export function DistanceMap() {
             <stop offset="0%" stopColor="var(--orange)" stopOpacity="0.55" />
             <stop offset="100%" stopColor="var(--orange)" stopOpacity="0" />
           </radialGradient>
+          <radialGradient id="globe-shade">
+            <stop offset="72%" stopColor="var(--text)" stopOpacity="0" />
+            <stop offset="100%" stopColor="var(--text)" stopOpacity="0.06" />
+          </radialGradient>
         </defs>
+
+        {/* Globe body: a soft sphere with a faint ring, echoing the logo. */}
+        <circle
+          cx={MAP_CENTER}
+          cy={MAP_CENTER}
+          r={MAP_RADIUS + 6}
+          fill="var(--card)"
+          fillOpacity="0.55"
+          stroke="var(--border)"
+          strokeWidth="1.5"
+        />
+        <circle cx={MAP_CENTER} cy={MAP_CENTER} r={MAP_RADIUS + 6} fill="url(#globe-shade)" />
 
         <path
           d={DOT_PATHS.land}
           stroke="var(--text-muted)"
-          strokeOpacity="0.32"
+          strokeOpacity="0.34"
           strokeWidth={DOT_SIZE}
           strokeLinecap="round"
         />
@@ -142,13 +168,19 @@ export function DistanceMap() {
           </motion.g>
         )}
 
-        <CityMarker city={pair.from} keyId={`from-${index}`} side="from" />
-        <CityMarker city={pair.to} keyId={`to-${index}`} side="to" />
+        {/* Arcs leave southern (Gulf) cities upward, so their label moves to the right. */}
+        <CityMarker
+          city={pair.from}
+          keyId={`from-${cycle}`}
+          label={pair.from.at.y > pair.to.at.y ? "right" : "above"}
+        />
+        {/* Arcs reach Syria from above or the east: label to the left is always clear. */}
+        <CityMarker city={pair.to} keyId={`to-${cycle}`} label="left" />
 
         {/* Arrival pulse on the Syrian dot */}
         {arrived && !reduced && (
           <motion.circle
-            key={`pulse-${index}`}
+            key={`pulse-${cycle}`}
             cx={pair.to.at.x}
             cy={pair.to.at.y}
             r="7"
@@ -163,20 +195,19 @@ export function DistanceMap() {
         )}
       </svg>
 
-      {/* Arrival card, anchored to the Syrian dot (to its west, over the sea) */}
+      {/* Arrival card, below-left of the Syrian dot (arcs arrive from above or the east). */}
       <AnimatePresence>
         {arrived && (
           <motion.div
-            key={`card-${index}`}
+            key={`card-${cycle}`}
             initial={reduced ? false : { opacity: 0, y: 8, scale: 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -4, transition: { duration: 0.25 } }}
             transition={{ type: "spring", stiffness: 320, damping: 26 }}
             className="absolute"
             style={{
-              // Card's right edge sits just past the dot, so it extends west over the sea.
-              right: `calc(${pct(MAP_WIDTH - pair.to.at.x, MAP_WIDTH)} - 18px)`,
-              top: pct(pair.to.at.y, MAP_HEIGHT),
+              right: `calc(${pct(MAP_SIZE - pair.to.at.x, MAP_SIZE)} - 18px)`,
+              top: pct(pair.to.at.y, MAP_SIZE),
             }}
           >
             <ArrivalCard arrived={t("arrived")} service={t(`services.${service}`)} />
@@ -187,8 +218,17 @@ export function DistanceMap() {
   );
 }
 
-function CityMarker({ city, keyId, side }: { city: City; keyId: string; side: "from" | "to" }) {
+const LABEL_POS = {
+  above: { dx: 0, dy: -20, anchor: "middle" },
+  right: { dx: 16, dy: 7, anchor: "start" },
+  left: { dx: -16, dy: 7, anchor: "end" },
+} as const;
+
+type CityMarkerProps = { city: City; keyId: string; label: keyof typeof LABEL_POS };
+
+function CityMarker({ city, keyId, label }: CityMarkerProps) {
   const { x, y } = city.at;
+  const pos = LABEL_POS[label];
   return (
     <AnimatePresence mode="wait">
       <motion.g
@@ -201,9 +241,9 @@ function CityMarker({ city, keyId, side }: { city: City; keyId: string; side: "f
         <circle cx={x} cy={y} r="11" fill="var(--orange)" fillOpacity="0.16" />
         <circle cx={x} cy={y} r="5.5" fill="var(--orange)" stroke="var(--card)" strokeWidth="2" />
         <text
-          x={side === "from" ? x : x - 16}
-          y={side === "from" ? y - 20 : y - 18}
-          textAnchor={side === "from" ? "middle" : "end"}
+          x={x + pos.dx}
+          y={y + pos.dy}
+          textAnchor={pos.anchor}
           className="fill-text font-mono text-[21px] font-medium tracking-[0.12em]"
         >
           {city.label}

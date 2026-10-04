@@ -41,3 +41,19 @@ yarn-error.log*
 next-env.d.ts
 
 !.env.example
+
+# documents (SRS, briefs, exports) — never commit
+*.docx
+*.pdf
+
+# product prompts, briefs and SRS — local only (this repo is public)
+/qareeb-launch-site-prompt.md
+/qareeb-phase-prompts.md
+*prompt*.md
+*brief*.md
+*[Ss][Rr][Ss]*.md
+
+# local QA artifacts
+/scratchpad/
+/screenshots/
+/qa/

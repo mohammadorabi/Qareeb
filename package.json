@@ -9,10 +9,13 @@
     "lint": "eslint",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "typecheck": "next typegen && tsc --noEmit"
+    "typecheck": "next typegen && tsc --noEmit",
+    "generate:map": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/generate-map-dots.mts",
+    "check:i18n": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/check-messages.mts"
   },
   "dependencies": {
     "framer-motion": "^14.0.0",
+    "lucide-react": "^1.51.0",
     "next": "16.3.8",
     "next-intl": "^4.14.9",
     "react": "19.2.8",

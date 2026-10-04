@@ -1,0 +1,34 @@
+{
+  "eyebrow": "Transparency",
+  "title": "Know everything before you pay.",
+  "paper": {
+    "brand": "qareeb",
+    "heading": "Payment details",
+    "example": "Example",
+    "rows": [
+      "Amount in Syrian pounds",
+      "Amount in your currency",
+      "Exchange rate + update time",
+      "Service fee (separate)",
+      "Total"
+    ],
+    "note": "Real values appear in the app before you pay."
+  },
+  "love": "With love — from {city}",
+  "cities": ["Berlin", "Dubai", "Istanbul", "Toronto", "Riyadh"],
+  "points": [
+    {
+      "title": "Every detail before you pay",
+      "body": "The amount in pounds and in your currency, with the fee shown separately — before you confirm."
+    },
+    {
+      "title": "The rate, with its timestamp",
+      "body": "See the rate and when it was updated, so you know exactly what you’re paying."
+    },
+    {
+      "title": "Automatic full refund if it doesn’t arrive",
+      "body": "If something goes wrong after you pay, you get all of it back — no need to ask."
+    }
+  ],
+  "join": "Join the waitlist"
+}

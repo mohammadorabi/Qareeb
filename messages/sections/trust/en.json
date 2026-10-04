@@ -1,0 +1,22 @@
+{
+  "eyebrow": "Security",
+  "title": "Peace of mind from the first tap.",
+  "cards": [
+    {
+      "title": "No passwords",
+      "body": "Sign in with a one-time code sent by WhatsApp or email."
+    },
+    {
+      "title": "Secure payments via Stripe",
+      "body": "Pay by card, or with Apple Pay and Google Pay."
+    },
+    {
+      "title": "We don’t store your card",
+      "body": "Payments go through Stripe; your card number is never saved with us."
+    },
+    {
+      "title": "Your privacy, protected",
+      "body": "GDPR-compliant — the EU’s data protection standard."
+    }
+  ]
+}

@@ -5,6 +5,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { buttonClass } from "@/components/ui/Button";
 import { MagneticButton } from "@/components/ui/MagneticButton";
+import type { CountryOptions } from "@/lib/countries";
 import { submitWaitlist } from "@/lib/waitlist-client";
 import {
   waitlistSchema,
@@ -35,11 +36,14 @@ function readAttribution() {
 }
 
 type Props = {
-  /** "inline": email + button on one row (hero). "stacked": roomier layout (final CTA). */
+  /** "inline": email + button on one row (hero). "stacked": larger layout (final CTA). */
   variant?: "inline" | "stacked";
+  /** Optional country-of-residence select (stacked variant). Built on the server. */
+  countries?: CountryOptions;
 };
 
-export function WaitlistForm({ variant = "inline" }: Props) {
+export function WaitlistForm({ variant = "inline", countries }: Props) {
+  const stacked = variant === "stacked";
   const t = useTranslations("waitlist");
   const locale = useLocale();
   const uid = useId();
@@ -48,6 +52,7 @@ export function WaitlistForm({ variant = "inline" }: Props) {
     emailError: `${uid}-email-error`,
     consent: `${uid}-consent`,
     consentError: `${uid}-consent-error`,
+    country: `${uid}-country`,
     note: `${uid}-note`,
   };
 
@@ -76,6 +81,7 @@ export function WaitlistForm({ variant = "inline" }: Props) {
       consent: data.get("consent") === "on",
       locale,
       company: String(data.get("company") ?? ""),
+      country: String(data.get("country") ?? "") || undefined,
       startedAt: startedAt.current || Date.now(),
       ...readAttribution(),
     });
@@ -141,7 +147,23 @@ export function WaitlistForm({ variant = "inline" }: Props) {
 
   const loading = status.kind === "loading";
   const inputBase =
-    "h-14 w-full min-w-0 rounded-btn border bg-card px-4 text-[16px] text-text shadow-[0_1px_0_rgb(31_29_27/0.03)] transition-colors placeholder:text-muted-deco focus:border-orange-dark focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2";
+    "w-full min-w-0 rounded-btn border bg-card px-4 text-[16px] text-text shadow-[0_1px_0_rgb(31_29_27/0.03)] transition-colors placeholder:text-muted-deco focus:border-orange-dark focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2";
+  const fieldHeight = stacked ? "h-16 text-[17px]" : "h-14";
+
+  const submit = (
+    <MagneticButton
+      type="submit"
+      disabled={loading}
+      className={buttonClass(
+        "primary",
+        "lg",
+        stacked ? "h-16 w-full text-[20px]" : "shrink-0 sm:self-start",
+      )}
+    >
+      {loading && <Spinner />}
+      {loading ? t("submitting") : t("submit")}
+    </MagneticButton>
+  );
 
   return (
     <form
@@ -154,7 +176,9 @@ export function WaitlistForm({ variant = "inline" }: Props) {
     >
       <div
         className={
-          variant === "inline" ? "flex flex-col gap-2.5 sm:flex-row" : "flex flex-col gap-3"
+          stacked
+            ? `grid gap-3 ${countries ? "sm:grid-cols-2" : ""}`
+            : "flex flex-col gap-2.5 sm:flex-row"
         }
       >
         <div className="flex min-w-0 flex-1 flex-col">
@@ -176,7 +200,7 @@ export function WaitlistForm({ variant = "inline" }: Props) {
             aria-invalid={errors.email ? true : undefined}
             aria-describedby={errors.email ? ids.emailError : ids.note}
             onInput={() => clearError("email")}
-            className={`${inputBase} ${errors.email ? "border-orange-ink" : "border-border"} rtl:text-right rtl:placeholder:text-right`}
+            className={`${inputBase} ${fieldHeight} ${errors.email ? "border-orange-ink" : "border-border"} rtl:text-right rtl:placeholder:text-right`}
           />
           {errors.email && (
             <p id={ids.emailError} className="mt-1.5 text-[14px] font-medium text-orange-ink">
@@ -185,14 +209,37 @@ export function WaitlistForm({ variant = "inline" }: Props) {
           )}
         </div>
 
-        <MagneticButton
-          type="submit"
-          disabled={loading}
-          className={buttonClass("primary", "lg", "shrink-0 sm:self-start")}
-        >
-          {loading && <Spinner />}
-          {loading ? t("submitting") : t("submit")}
-        </MagneticButton>
+        {stacked && countries && (
+          <div className="flex min-w-0 flex-col">
+            <label htmlFor={ids.country} className="sr-only">
+              {t("countryLabel")}
+            </label>
+            <select
+              id={ids.country}
+              name="country"
+              defaultValue=""
+              className={`${inputBase} ${fieldHeight} cursor-pointer border-border`}
+            >
+              <option value="">{t("countryLabel")}</option>
+              <optgroup label={t("countryTop")}>
+                {countries.top.map((c) => (
+                  <option key={c.code} value={c.code}>
+                    {c.name}
+                  </option>
+                ))}
+              </optgroup>
+              <optgroup label={t("countryAll")}>
+                {countries.rest.map((c) => (
+                  <option key={c.code} value={c.code}>
+                    {c.name}
+                  </option>
+                ))}
+              </optgroup>
+            </select>
+          </div>
+        )}
+
+        {!stacked && submit}
       </div>
 
       {/* Honeypot: invisible to people, tempting to bots. */}
@@ -236,7 +283,9 @@ export function WaitlistForm({ variant = "inline" }: Props) {
         )}
       </div>
 
-      <p id={ids.note} className="text-[13px] text-muted">
+      {stacked && submit}
+
+      <p id={ids.note} className={`text-[13px] text-muted ${stacked ? "text-center" : ""}`}>
         {t("note")}
       </p>
 
