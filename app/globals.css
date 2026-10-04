@@ -87,8 +87,6 @@
   --text-h1--line-height: 1.08;
   --text-h2: clamp(30px, 4vw, 48px);
   --text-h2--line-height: 1.15;
-  --text-eyebrow: 11.5px;
-  --text-eyebrow--letter-spacing: 0.12em;
 }
 
 @layer base {
@@ -147,13 +145,40 @@
   }
 }
 
+/*
+ * Section label above a heading, with the brand dot. English: JetBrains Mono,
+ * uppercase. Arabic: Cairo — JetBrains Mono has no Arabic glyphs.
+ */
 @utility eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   font-family: var(--font-mono);
-  font-size: var(--text-eyebrow);
-  letter-spacing: var(--text-eyebrow--letter-spacing);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  font-weight: 500;
   line-height: 1.4;
+  color: var(--orange-ink);
+  &::before {
+    content: "";
+    flex-shrink: 0;
+    width: 6px;
+    height: 6px;
+    border-radius: var(--r-pill);
+    background: var(--orange);
+  }
+  &:lang(ar) {
+    font-family: var(--font-ar);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: normal;
+    text-transform: none;
+  }
+  &:lang(ar)::before {
+    width: 8px;
+    height: 8px;
+  }
 }
 
 @utility container-site {

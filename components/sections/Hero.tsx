@@ -3,7 +3,7 @@ import { DistanceMap } from "@/components/hero/DistanceMap";
 import { HeroGlow } from "@/components/hero/HeroGlow";
 import { WaitlistForm } from "@/components/waitlist/WaitlistForm";
 
-const CHIPS = ["noPassword", "applePay", "arabicFirst"] as const;
+const CHIPS = ["superSecure", "applePay", "arabicFirst"] as const;
 
 export async function Hero() {
   const t = await getTranslations("hero");
@@ -15,10 +15,7 @@ export async function Hero() {
         className="container-site grid items-center gap-x-12 gap-y-10 pt-8 pb-16 lg:min-h-[calc(100svh-var(--nav-h))] lg:grid-cols-[1.1fr_1fr] lg:py-10"
       >
         <div className="flex max-w-[620px] flex-col">
-          <p className="flex items-center gap-2 eyebrow text-orange-ink">
-            <span aria-hidden="true" className="size-1.5 rounded-pill bg-orange" />
-            {t("eyebrow")}
-          </p>
+          <p className="eyebrow">{t("eyebrow")}</p>
 
           <h1
             id="hero-title"

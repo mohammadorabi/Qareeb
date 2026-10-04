@@ -7,10 +7,7 @@ export async function Problem() {
 
   return (
     <div className="container-site">
-      <p className="flex items-center gap-2 eyebrow text-orange-ink">
-        <span aria-hidden="true" className="size-1.5 rounded-pill bg-orange" />
-        {t("eyebrow")}
-      </p>
+      <p className="eyebrow">{t("eyebrow")}</p>
       <h2 className="mt-4 text-h2 font-extrabold tracking-[-0.01em] text-text">{t("title")}</h2>
       <ProblemLines lines={t.raw("lines") as string[]} />
     </div>
