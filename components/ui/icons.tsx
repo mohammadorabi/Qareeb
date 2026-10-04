@@ -96,14 +96,6 @@ export const CalendarIcon = (p: IconProps) => (
   </Icon>
 );
 
-/** One-time code by message (passwordless sign-in). */
-export const MessageCodeIcon = (p: IconProps) => (
-  <Icon {...p}>
-    <path d="M5 5h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-7l-4.5 3.5V17H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z" />
-    <path d="M7.5 11h.01M10.5 11h.01M13.5 11h.01M16.5 11h.01" strokeWidth={2.5} />
-  </Icon>
-);
-
 export const CardIcon = (p: IconProps) => (
   <Icon {...p}>
     <rect x="3" y="5.5" width="18" height="13" rx="2.5" />
@@ -111,6 +103,15 @@ export const CardIcon = (p: IconProps) => (
   </Icon>
 );
 
+/** Card details not stored. */
+export const CardOffIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M9 5.5h9.5A2.5 2.5 0 0 1 21 8v8.5M18.5 18.5h-13A2.5 2.5 0 0 1 3 16V8a2.5 2.5 0 0 1 2.5-2.5" />
+    <path d="M3 10h4M14 10h7M3.5 3.5l17 17" />
+  </Icon>
+);
+
+/** Account security (Trust: "super secure"). */
 export const ShieldCheckIcon = (p: IconProps) => (
   <Icon {...p}>
     <path d="M12 3.5 19 6v5.5c0 4.4-3 7.8-7 9-4-1.2-7-4.6-7-9V6l7-2.5Z" />

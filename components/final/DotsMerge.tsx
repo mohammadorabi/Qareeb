@@ -91,7 +91,9 @@ export function DotsMerge({ world, syria }: { world: string; syria: string }) {
                 y={-DOT_R - 20}
                 textAnchor="middle"
                 style={{ opacity: labelOpacity }}
-                className="fill-text-2 font-mono text-[30px] font-medium tracking-[0.12em]"
+                className={`fill-text-2 text-[30px] ${
+                  rtl ? "font-bold" : "font-mono font-medium tracking-[0.12em]"
+                }`}
               >
                 {d.label}
               </motion.text>

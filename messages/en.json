@@ -1,6 +1,6 @@
 {
   "meta": {
-    "title": "qareeb — Far from them, still Qareeb",
+    "title": "qareeb — Far from them… still Qareeb",
     "description": "Pay your family’s bills in Syria and top up their phones from anywhere in the world, in one tap. Join the waitlist.",
     "siteName": "qareeb · قريب"
   },
@@ -26,7 +26,7 @@
     "switchLabel": "التبديل إلى العربية"
   },
   "footer": {
-    "tagline": "Far from them, still Qareeb.",
+    "tagline": "Far from them… still Qareeb.",
     "rights": "© {year} qareeb. All rights reserved.",
     "privacy": "Privacy Policy",
     "terms": "Terms",
@@ -90,11 +90,11 @@
   "hero": {
     "eyebrow": "COMING SOON · iOS & ANDROID",
     "titleLead": "Far from them… still",
-    "titleAccent": "close",
-    "subtitle": "Pay your family’s bills in Syria and top up their phones from anywhere in the world, in one tap — like a gift arriving at their door.",
+    "titleAccent": "Qareeb",
+    "subtitle": "Pay your family’s bills in Syria and top up their phones from anywhere in the world, in one tap — a gift from the heart, not just a transaction.",
     "chipsLabel": "Why qareeb",
     "chips": {
-      "noPassword": "No passwords",
+      "superSecure": "Super secure",
       "applePay": "Apple Pay & Google Pay",
       "arabicFirst": "Arabic-first"
     }

@@ -1,10 +1,10 @@
 import { getTranslations } from "next-intl/server";
-import { CardIcon, LockIcon, MessageCodeIcon, ShieldCheckIcon } from "@/components/ui/icons";
+import { CardIcon, CardOffIcon, LockIcon, ShieldCheckIcon } from "@/components/ui/icons";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { SECTION_IDS } from "@/lib/site";
 
-// Order matches messages: no passwords · Stripe · card not stored · GDPR.
-const ICONS = [MessageCodeIcon, CardIcon, ShieldCheckIcon, LockIcon];
+// Order matches messages: super secure · Stripe · card not stored · GDPR.
+const ICONS = [ShieldCheckIcon, CardIcon, CardOffIcon, LockIcon];
 
 /** #trust: four plain-language trust points. Text only — no company logos. */
 export async function Trust() {

@@ -28,7 +28,7 @@
     },
     {
       "q": "Is my data safe?",
-      "a": "No passwords: you sign in with a one-time code by WhatsApp or email. Payments go through Stripe, we don’t store your card details, and we’re GDPR-compliant."
+      "a": "You sign in with a one-time code by WhatsApp or email, and your data is always encrypted. Payments go through Stripe, we don’t store your card details, and we’re GDPR-compliant."
     }
   ]
 }

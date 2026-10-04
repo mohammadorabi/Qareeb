@@ -15,7 +15,9 @@ export async function Footer() {
         <div className="flex flex-col gap-3">
           <Logo locale={locale} />
           <p className="text-text-2">{t("tagline")}</p>
-          <p className="font-mono text-xs text-muted">{t("rights", { year })}</p>
+          <p className={`text-xs text-muted ${locale === "ar" ? "" : "font-mono"}`}>
+            {t("rights", { year })}
+          </p>
         </div>
 
         <div className="flex flex-col gap-4 md:items-end">
