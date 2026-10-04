@@ -97,7 +97,8 @@
       "superSecure": "آمن جداً",
       "applePay": "Apple Pay و Google Pay",
       "arabicFirst": "عربي أولاً"
-    }
+    },
+    "scrollCue": "اكتشف القصة"
   },
   "map": {
     "label": "رسم توضيحي: كرة أرضية تتوسطها سوريا، وقوس برتقالي ينطلق من مدينة حول العالم ويصل إلى مدينة سورية.",
@@ -141,7 +142,6 @@
     "nameLabel": "الاسم الكامل",
     "namePlaceholder": "الاسم الكامل",
     "phoneLabel": "رقم الهاتف",
-    "phonePlaceholder": "رقم الهاتف",
-    "detailsHint": "خطوة أخيرة — بعض التفاصيل لنتواصل معك عند الإطلاق."
+    "phonePlaceholder": "رقم الهاتف"
   }
 }

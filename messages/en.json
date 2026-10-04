@@ -97,7 +97,8 @@
       "superSecure": "Super secure",
       "applePay": "Apple Pay & Google Pay",
       "arabicFirst": "Arabic-first"
-    }
+    },
+    "scrollCue": "Discover the story"
   },
   "map": {
     "label": "Illustration: a globe with Syria at its center; an orange arc travels from a city abroad to a city in Syria.",
@@ -141,7 +142,6 @@
     "nameLabel": "Full name",
     "namePlaceholder": "Full name",
     "phoneLabel": "Phone number",
-    "phonePlaceholder": "Phone number",
-    "detailsHint": "Almost there — a few details so we can reach you at launch."
+    "phonePlaceholder": "Phone number"
   }
 }
