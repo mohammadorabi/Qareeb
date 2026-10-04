@@ -31,6 +31,16 @@ const ALL = [
   "ZM", "ZW",
 ] as const;
 
+const RESIDENCE = new Set<string>(ALL);
+
+/** True for a valid country-of-residence ISO code (Syria excluded). */
+export const isResidenceCountry = (code: string) => RESIDENCE.has(code);
+
+const englishNames = new Intl.DisplayNames(["en"], { type: "region" });
+
+/** English country name for an ISO code, e.g. "DE" → "Germany" (sent to Workiom). */
+export const countryNameEn = (code: string) => englishNames.of(code) ?? code;
+
 /** Shorter everyday names where the standard ones are long. */
 const OVERRIDES: Partial<Record<Locale, Record<string, string>>> = {
   ar: { AE: "الإمارات", SA: "السعودية" },

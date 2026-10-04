@@ -118,19 +118,30 @@
     "submitting": "Sending…",
     "consent": "I agree to receive emails from qareeb about the launch, per the <privacy>Privacy Policy</privacy>.",
     "note": "No spam. Unsubscribe any time.",
-    "success": "Check your inbox to confirm ✉️",
-    "successHint": "We sent a confirmation link to <mail>{email}</mail>.",
+    "success": "You're on the list! We'll tell you the moment Qareeb launches.",
     "retry": "Try again",
     "errors": {
       "email_required": "Enter your email.",
       "email_invalid": "That email doesn’t look right.",
       "consent_required": "We need your consent to email you about the launch.",
-      "network": "Couldn’t send. Check your connection and try again.",
+      "network": "Something went wrong. Please try again.",
       "rate_limited": "Too many attempts. Try again in a little while.",
-      "server": "Something went wrong on our side. Please try again shortly."
+      "server": "Something went wrong. Please try again.",
+      "name_required": "Enter your full name.",
+      "name_full": "Enter your first and last name.",
+      "name_invalid": "Use Arabic or English letters only.",
+      "name_too_long": "Keep your name under 80 characters.",
+      "country_required": "Choose your country of residence.",
+      "phone_required": "Enter your phone number.",
+      "phone_invalid": "Enter a valid phone number"
     },
-    "countryLabel": "Country of residence (optional)",
+    "countryLabel": "Country of residence",
     "countryTop": "Most common",
-    "countryAll": "All countries"
+    "countryAll": "All countries",
+    "nameLabel": "Full name",
+    "namePlaceholder": "Full name",
+    "phoneLabel": "Phone number",
+    "phonePlaceholder": "Phone number",
+    "detailsHint": "Almost there — a few details so we can reach you at launch."
   }
 }

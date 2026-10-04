@@ -1,18 +1,21 @@
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { DistanceMap } from "@/components/hero/DistanceMap";
 import { HeroGlow } from "@/components/hero/HeroGlow";
 import { WaitlistForm } from "@/components/waitlist/WaitlistForm";
+import { countryOptions } from "@/lib/countries";
 
 const CHIPS = ["superSecure", "applePay", "arabicFirst"] as const;
 
 export async function Hero() {
   const t = await getTranslations("hero");
+  const locale = await getLocale();
 
   return (
     <HeroGlow className="relative isolate overflow-x-clip">
+      {/* Top-aligned (not centered) so the waitlist form can expand downward without moving the title. */}
       <section
         aria-labelledby="hero-title"
-        className="container-site grid items-center gap-x-12 gap-y-10 pt-8 pb-16 lg:min-h-[calc(100svh-var(--nav-h))] lg:grid-cols-[1.1fr_1fr] lg:py-10"
+        className="container-site grid items-start gap-x-12 gap-y-10 pt-8 pb-16 lg:min-h-[calc(100svh-var(--nav-h))] lg:grid-cols-[1.1fr_1fr] lg:pt-[clamp(40px,15svh,160px)] lg:pb-10"
       >
         <div className="flex max-w-[620px] flex-col">
           <p className="eyebrow">{t("eyebrow")}</p>
@@ -38,7 +41,7 @@ export async function Hero() {
           </p>
 
           <div className="mt-8">
-            <WaitlistForm variant="inline" />
+            <WaitlistForm variant="inline" countries={countryOptions(locale)} />
           </div>
 
           <ul aria-label={t("chipsLabel")} className="mt-7 flex flex-wrap gap-2">

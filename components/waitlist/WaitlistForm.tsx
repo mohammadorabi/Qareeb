@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useId, useRef, useState, type FormEvent } from "react";
+import dynamic from "next/dynamic";
+import { useEffect, useId, useRef, useState, type FormEvent, type ReactNode } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { buttonClass } from "@/components/ui/Button";
@@ -8,59 +9,55 @@ import { MagneticButton } from "@/components/ui/MagneticButton";
 import type { CountryOptions } from "@/lib/countries";
 import { submitWaitlist } from "@/lib/waitlist-client";
 import {
+  WAITLIST_FIELDS,
   waitlistSchema,
+  type WaitlistField,
   type WaitlistFieldError,
+  type WaitlistInput,
   type WaitlistSubmitError,
 } from "@/lib/waitlist/schema";
+
+// The phone input ships every flag (~250 KB gz), so it loads on its own after
+// the page. Its bordered box is rendered here, so nothing shifts when it lands.
+const PhoneField = dynamic(() => import("./PhoneField").then((m) => m.PhoneField), {
+  ssr: false,
+});
 
 type Status =
   | { kind: "idle" }
   | { kind: "loading" }
-  | { kind: "success"; email: string }
+  | { kind: "success" }
   | { kind: "error"; error: WaitlistSubmitError };
 
-type FieldErrors = Partial<Record<"email" | "consent", WaitlistFieldError>>;
-
-const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign"] as const;
-
-function readAttribution() {
-  const params = new URLSearchParams(window.location.search);
-  const utm = Object.fromEntries(
-    UTM_KEYS.flatMap((k) => {
-      const v = params.get(k)?.slice(0, 100);
-      return v ? [[k, v]] : [];
-    }),
-  );
-  const referrer = document.referrer ? document.referrer.slice(0, 500) : undefined;
-  return { ...utm, referrer };
-}
+type FieldErrors = Partial<Record<WaitlistField, WaitlistFieldError>>;
 
 type Props = {
-  /** "inline": email + button on one row (hero). "stacked": larger layout (final CTA). */
+  /**
+   * "inline" (hero): email + button first; after a valid email the rest of
+   * the fields expand below. "stacked" (#join): every field at once.
+   */
   variant?: "inline" | "stacked";
-  /** Optional country-of-residence select (stacked variant). Built on the server. */
-  countries?: CountryOptions;
+  /** Country-of-residence options, built on the server. */
+  countries: CountryOptions;
 };
 
 export function WaitlistForm({ variant = "inline", countries }: Props) {
   const stacked = variant === "stacked";
   const t = useTranslations("waitlist");
-  const locale = useLocale();
+  const locale = useLocale() as "ar" | "en";
   const uid = useId();
-  const ids = {
-    email: `${uid}-email`,
-    emailError: `${uid}-email-error`,
-    consent: `${uid}-consent`,
-    consentError: `${uid}-consent-error`,
-    country: `${uid}-country`,
-    note: `${uid}-note`,
-  };
+  const id = (field: string) => `${uid}-${field}`;
+  const errorId = (field: WaitlistField) => `${uid}-${field}-error`;
 
   const [status, setStatus] = useState<Status>({ kind: "idle" });
   const [errors, setErrors] = useState<FieldErrors>({});
+  const [expanded, setExpanded] = useState(stacked);
+  const [country, setCountry] = useState("");
+  const [phone, setPhone] = useState("");
   const startedAt = useRef(0);
-  const emailRef = useRef<HTMLInputElement>(null);
-  const consentRef = useRef<HTMLInputElement>(null);
+  // Last valid submission, re-sent by the retry button.
+  const lastPayload = useRef<WaitlistInput | null>(null);
+  const focusNameOnExpand = useRef(false);
   const successRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -71,50 +68,78 @@ export function WaitlistForm({ variant = "inline", countries }: Props) {
     if (status.kind === "success") successRef.current?.focus();
   }, [status.kind]);
 
+  useEffect(() => {
+    if (expanded && focusNameOnExpand.current) {
+      focusNameOnExpand.current = false;
+      document.getElementById(id("name"))?.focus({ preventScroll: true });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [expanded]);
+
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (status.kind === "loading") return;
     const data = new FormData(e.currentTarget);
+    const email = String(data.get("email") ?? "");
 
-    const parsed = waitlistSchema.safeParse({
-      email: String(data.get("email") ?? ""),
+    // Hero, step 1: check the email only, then reveal the other fields.
+    if (!expanded) {
+      const check = waitlistSchema.shape.email.safeParse(email);
+      if (!check.success) {
+        setErrors({ email: check.error.issues[0].message as WaitlistFieldError });
+        document.getElementById(id("email"))?.focus();
+        return;
+      }
+      setErrors({});
+      focusNameOnExpand.current = true;
+      setExpanded(true);
+      return;
+    }
+
+    const payload = {
+      name: String(data.get("name") ?? ""),
+      email,
+      country,
+      phone,
       consent: data.get("consent") === "on",
       locale,
       company: String(data.get("company") ?? ""),
-      country: String(data.get("country") ?? "") || undefined,
-      startedAt: startedAt.current || Date.now(),
-      ...readAttribution(),
-    });
+      elapsedMs: startedAt.current ? Date.now() - startedAt.current : 0,
+    };
+    const parsed = waitlistSchema.safeParse(payload);
 
     if (!parsed.success) {
       const next: FieldErrors = {};
       for (const issue of parsed.error.issues) {
-        const field = issue.path[0];
-        if ((field === "email" || field === "consent") && !next[field]) {
+        const field = issue.path[0] as WaitlistField;
+        if (WAITLIST_FIELDS.includes(field) && !next[field]) {
           next[field] = issue.message as WaitlistFieldError;
         }
       }
       setErrors(next);
+      const first = WAITLIST_FIELDS.find((f) => next[f]);
       // Honeypot or other hidden-field failures: pretend success, reveal nothing.
-      if (!next.email && !next.consent) {
-        setStatus({ kind: "success", email: String(data.get("email") ?? "") });
+      if (!first) {
+        setStatus({ kind: "success" });
         return;
       }
-      (next.email ? emailRef : consentRef).current?.focus();
+      document.getElementById(id(first))?.focus();
       return;
     }
 
     setErrors({});
-    setStatus({ kind: "loading" });
-    const result = await submitWaitlist(parsed.data);
-    setStatus(
-      result.ok
-        ? { kind: "success", email: parsed.data.email }
-        : { kind: "error", error: result.error },
-    );
+    // Send the raw input: the server validates and normalizes it again.
+    lastPayload.current = payload as WaitlistInput;
+    await send(lastPayload.current);
   }
 
-  const clearError = (field: keyof FieldErrors) =>
+  async function send(payload: WaitlistInput) {
+    setStatus({ kind: "loading" });
+    const result = await submitWaitlist(payload);
+    setStatus(result.ok ? { kind: "success" } : { kind: "error", error: result.error });
+  }
+
+  const clearError = (field: WaitlistField) =>
     errors[field] && setErrors((prev) => ({ ...prev, [field]: undefined }));
 
   if (status.kind === "success") {
@@ -128,27 +153,24 @@ export function WaitlistForm({ variant = "inline", countries }: Props) {
         <span className="mt-0.5 grid size-7 shrink-0 place-items-center rounded-pill bg-green text-white">
           <CheckIcon />
         </span>
-        <div>
-          <p className="text-lg font-bold text-text">{t("success")}</p>
-          <p className="mt-0.5 text-[15px] text-text-2">
-            {t.rich("successHint", {
-              email: status.email,
-              mail: (chunks) => (
-                <bdi dir="ltr" className="font-mono text-[14px] text-text">
-                  {chunks}
-                </bdi>
-              ),
-            })}
-          </p>
-        </div>
+        <p className="text-lg leading-snug font-bold text-text">{t("success")}</p>
       </div>
     );
   }
 
   const loading = status.kind === "loading";
-  const inputBase =
-    "w-full min-w-0 rounded-btn border bg-card px-4 text-[16px] text-text shadow-[0_1px_0_rgb(31_29_27/0.03)] transition-colors placeholder:text-muted-deco focus:border-orange-dark focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2";
-  const fieldHeight = stacked ? "h-16 text-[17px]" : "h-14";
+  const fieldHeight = stacked ? "h-16 text-[17px]" : "h-14 text-[16px]";
+  const box = (field: WaitlistField) =>
+    `w-full min-w-0 rounded-btn border bg-card px-4 text-text shadow-[0_1px_0_rgb(31_29_27/0.03)] transition-colors ${fieldHeight} ${
+      errors[field] ? "border-orange-ink" : "border-border"
+    }`;
+  // Native inputs: border turns orange on focus, plus the global focus ring.
+  const input = (field: WaitlistField) =>
+    `${box(field)} placeholder:text-muted-deco focus:border-orange-dark focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2`;
+  const a11y = (field: WaitlistField, describedBy?: string) => ({
+    "aria-invalid": errors[field] ? true : undefined,
+    "aria-describedby": errors[field] ? errorId(field) : describedBy,
+  });
 
   const submit = (
     <MagneticButton
@@ -165,6 +187,115 @@ export function WaitlistForm({ variant = "inline", countries }: Props) {
     </MagneticButton>
   );
 
+  const emailField = (
+    <Field error={errors.email && t(`errors.${errors.email}`)} errorId={errorId("email")}>
+      <label htmlFor={id("email")} className="sr-only">
+        {t("emailLabel")}
+      </label>
+      <input
+        id={id("email")}
+        name="email"
+        type="email"
+        inputMode="email"
+        autoComplete="email"
+        autoCapitalize="none"
+        spellCheck={false}
+        dir="ltr"
+        required
+        placeholder={t("emailPlaceholder")}
+        {...a11y("email", id("note"))}
+        onInput={() => clearError("email")}
+        className={`${input("email")} rtl:text-right rtl:placeholder:text-right`}
+      />
+    </Field>
+  );
+
+  const nameField = (
+    <Field error={errors.name && t(`errors.${errors.name}`)} errorId={errorId("name")}>
+      <label htmlFor={id("name")} className="sr-only">
+        {t("nameLabel")}
+      </label>
+      <input
+        id={id("name")}
+        name="name"
+        type="text"
+        autoComplete="name"
+        autoCapitalize="words"
+        maxLength={80}
+        required
+        placeholder={t("namePlaceholder")}
+        {...a11y("name")}
+        onInput={() => clearError("name")}
+        className={input("name")}
+      />
+    </Field>
+  );
+
+  const countryField = (
+    <Field error={errors.country && t(`errors.${errors.country}`)} errorId={errorId("country")}>
+      <label htmlFor={id("country")} className="sr-only">
+        {t("countryLabel")}
+      </label>
+      <select
+        id={id("country")}
+        name="country"
+        required
+        value={country}
+        autoComplete="country"
+        {...a11y("country")}
+        onChange={(e) => {
+          setCountry(e.target.value);
+          clearError("country");
+        }}
+        className={`${input("country")} cursor-pointer ${country ? "" : "text-muted-deco"}`}
+      >
+        <option value="" disabled>
+          {t("countryLabel")}
+        </option>
+        <optgroup label={t("countryTop")} className="text-text">
+          {countries.top.map((c) => (
+            <option key={c.code} value={c.code}>
+              {c.name}
+            </option>
+          ))}
+        </optgroup>
+        <optgroup label={t("countryAll")} className="text-text">
+          {countries.rest.map((c) => (
+            <option key={c.code} value={c.code}>
+              {c.name}
+            </option>
+          ))}
+        </optgroup>
+      </select>
+    </Field>
+  );
+
+  const phoneField = (
+    <Field error={errors.phone && t(`errors.${errors.phone}`)} errorId={errorId("phone")}>
+      <label htmlFor={id("phone")} className="sr-only">
+        {t("phoneLabel")}
+      </label>
+      <div
+        dir="ltr"
+        className={`${box("phone")} pe-0 focus-within:border-orange-dark has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-orange-dark`}
+      >
+        <PhoneField
+          id={id("phone")}
+          value={phone}
+          onChange={(v) => {
+            setPhone(v);
+            clearError("phone");
+          }}
+          defaultCountry={country || undefined}
+          locale={locale}
+          placeholder={t("phonePlaceholder")}
+          invalid={!!errors.phone}
+          describedBy={errors.phone ? errorId("phone") : undefined}
+        />
+      </div>
+    </Field>
+  );
+
   return (
     <form
       noValidate
@@ -174,73 +305,38 @@ export function WaitlistForm({ variant = "inline", countries }: Props) {
       aria-busy={loading}
       className="flex w-full flex-col gap-3"
     >
-      <div
-        className={
-          stacked
-            ? `grid gap-3 ${countries ? "sm:grid-cols-2" : ""}`
-            : "flex flex-col gap-2.5 sm:flex-row"
-        }
-      >
-        <div className="flex min-w-0 flex-1 flex-col">
-          <label htmlFor={ids.email} className="sr-only">
-            {t("emailLabel")}
-          </label>
-          <input
-            ref={emailRef}
-            id={ids.email}
-            name="email"
-            type="email"
-            inputMode="email"
-            autoComplete="email"
-            autoCapitalize="none"
-            spellCheck={false}
-            dir="ltr"
-            required
-            placeholder={t("emailPlaceholder")}
-            aria-invalid={errors.email ? true : undefined}
-            aria-describedby={errors.email ? ids.emailError : ids.note}
-            onInput={() => clearError("email")}
-            className={`${inputBase} ${fieldHeight} ${errors.email ? "border-orange-ink" : "border-border"} rtl:text-right rtl:placeholder:text-right`}
-          />
-          {errors.email && (
-            <p id={ids.emailError} className="mt-1.5 text-[14px] font-medium text-orange-ink">
-              {t(`errors.${errors.email}`)}
-            </p>
-          )}
+      {stacked ? (
+        <div className="grid gap-3 sm:grid-cols-2">
+          {nameField}
+          {emailField}
+          {countryField}
+          {phoneField}
         </div>
-
-        {stacked && countries && (
-          <div className="flex min-w-0 flex-col">
-            <label htmlFor={ids.country} className="sr-only">
-              {t("countryLabel")}
-            </label>
-            <select
-              id={ids.country}
-              name="country"
-              defaultValue=""
-              className={`${inputBase} ${fieldHeight} cursor-pointer border-border`}
-            >
-              <option value="">{t("countryLabel")}</option>
-              <optgroup label={t("countryTop")}>
-                {countries.top.map((c) => (
-                  <option key={c.code} value={c.code}>
-                    {c.name}
-                  </option>
-                ))}
-              </optgroup>
-              <optgroup label={t("countryAll")}>
-                {countries.rest.map((c) => (
-                  <option key={c.code} value={c.code}>
-                    {c.name}
-                  </option>
-                ))}
-              </optgroup>
-            </select>
+      ) : (
+        <>
+          <div className="flex flex-col gap-2.5 sm:flex-row">
+            {emailField}
+            {submit}
           </div>
-        )}
-
-        {!stacked && submit}
-      </div>
+          {/* Step 2: grows from 0 to its natural height (grid-rows 0fr → 1fr). */}
+          <div
+            inert={!expanded}
+            className={`grid transition-[grid-template-rows,opacity] duration-300 ease-out motion-reduce:transition-none ${
+              expanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+            }`}
+          >
+            {/* Side padding keeps focus rings from being clipped. */}
+            <div className="-mx-1 min-h-0 overflow-hidden px-1">
+              <p className="pt-1 pb-2.5 text-[14px] text-text-2">{t("detailsHint")}</p>
+              <div className="grid gap-2.5 pb-1 sm:grid-cols-2">
+                <div className="sm:col-span-2">{nameField}</div>
+                {countryField}
+                {phoneField}
+              </div>
+            </div>
+          </div>
+        </>
+      )}
 
       {/* Honeypot: invisible to people, tempting to bots. */}
       <div aria-hidden="true" className="sr-only">
@@ -250,16 +346,14 @@ export function WaitlistForm({ variant = "inline", countries }: Props) {
         </label>
       </div>
 
-      <div>
-        <label htmlFor={ids.consent} className="flex cursor-pointer items-start gap-2.5">
+      <Field error={errors.consent && t(`errors.${errors.consent}`)} errorId={errorId("consent")}>
+        <label htmlFor={id("consent")} className="flex cursor-pointer items-start gap-2.5">
           <input
-            ref={consentRef}
-            id={ids.consent}
+            id={id("consent")}
             name="consent"
             type="checkbox"
             required
-            aria-invalid={errors.consent ? true : undefined}
-            aria-describedby={errors.consent ? ids.consentError : undefined}
+            {...a11y("consent")}
             onChange={() => clearError("consent")}
             className="mt-[3px] size-[18px] shrink-0 cursor-pointer accent-orange-dark"
           />
@@ -276,27 +370,53 @@ export function WaitlistForm({ variant = "inline", countries }: Props) {
             })}
           </span>
         </label>
-        {errors.consent && (
-          <p id={ids.consentError} className="mt-1.5 text-[14px] font-medium text-orange-ink">
-            {t(`errors.${errors.consent}`)}
-          </p>
-        )}
-      </div>
+      </Field>
 
       {stacked && submit}
 
-      <p id={ids.note} className={`text-[13px] text-muted ${stacked ? "text-center" : ""}`}>
+      <p id={id("note")} className={`text-[13px] text-muted ${stacked ? "text-center" : ""}`}>
         {t("note")}
       </p>
 
       <div aria-live="polite" className="empty:hidden">
         {status.kind === "error" && (
-          <p className="rounded-btn bg-orange-soft px-4 py-3 text-[14px] text-text">
-            {t(`errors.${status.error}`)} <span className="font-semibold">{t("retry")}</span>
-          </p>
+          <div className="flex flex-wrap items-center justify-between gap-3 rounded-btn bg-orange-soft px-4 py-3 text-[14px] text-text">
+            <p>{t(`errors.${status.error}`)}</p>
+            {lastPayload.current && (
+              <button
+                type="button"
+                onClick={() => lastPayload.current && send(lastPayload.current)}
+                className="rounded-pill bg-text px-4 py-1.5 font-semibold text-card hover:bg-text-2"
+              >
+                {t("retry")}
+              </button>
+            )}
+          </div>
         )}
       </div>
     </form>
+  );
+}
+
+/** A field plus its inline error (in the page language). */
+function Field({
+  children,
+  error,
+  errorId,
+}: {
+  children: ReactNode;
+  error?: string;
+  errorId: string;
+}) {
+  return (
+    <div className="flex min-w-0 flex-1 flex-col">
+      {children}
+      {error && (
+        <p id={errorId} className="mt-1.5 text-[14px] font-medium text-orange-ink">
+          {error}
+        </p>
+      )}
+    </div>
   );
 }
 
