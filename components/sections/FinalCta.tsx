@@ -24,7 +24,7 @@ export async function FinalCta() {
             <p className="mt-3 text-[17px] text-text-2 md:text-[19px]">{t("lead")}</p>
           </div>
           <div className="reveal mx-auto mt-10 max-w-[620px]">
-            <WaitlistForm variant="stacked" countries={countryOptions(locale)} />
+            <WaitlistForm countries={countryOptions(locale)} />
           </div>
         </div>
       </div>

@@ -1,21 +1,18 @@
-import { getLocale, getTranslations } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 import { DistanceMap } from "@/components/hero/DistanceMap";
 import { HeroGlow } from "@/components/hero/HeroGlow";
-import { WaitlistForm } from "@/components/waitlist/WaitlistForm";
-import { countryOptions } from "@/lib/countries";
+import { SECTION_IDS } from "@/lib/site";
 
 const CHIPS = ["superSecure", "applePay", "arabicFirst"] as const;
 
 export async function Hero() {
   const t = await getTranslations("hero");
-  const locale = await getLocale();
 
   return (
     <HeroGlow className="relative isolate overflow-x-clip">
-      {/* Top-aligned (not centered) so the waitlist form can expand downward without moving the title. */}
       <section
         aria-labelledby="hero-title"
-        className="container-site grid items-start gap-x-12 gap-y-10 pt-8 pb-16 lg:min-h-[calc(100svh-var(--nav-h))] lg:grid-cols-[1.1fr_1fr] lg:pt-[clamp(40px,15svh,160px)] lg:pb-10"
+        className="container-site grid items-center gap-x-12 gap-y-10 pt-8 pb-16 lg:min-h-[calc(100svh-var(--nav-h))] lg:grid-cols-[1.1fr_1fr] lg:py-10"
       >
         <div className="flex max-w-[620px] flex-col">
           <p className="eyebrow">{t("eyebrow")}</p>
@@ -40,11 +37,27 @@ export async function Hero() {
             {t("subtitle")}
           </p>
 
-          <div className="mt-8">
-            <WaitlistForm variant="inline" countries={countryOptions(locale)} />
-          </div>
+          {/* Sign-up lives at the end (#join): first, invite them into the story. */}
+          <a
+            href={`#${SECTION_IDS.how}`}
+            className="group mt-7 inline-flex items-center gap-2 self-start py-1 text-[17px] font-semibold text-orange-ink hover:text-orange-dark"
+          >
+            {t("scrollCue")}
+            <svg
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              className="scroll-cue-arrow size-[18px]"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={2}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M12 5v14M6 13l6 6 6-6" />
+            </svg>
+          </a>
 
-          <ul aria-label={t("chipsLabel")} className="mt-7 flex flex-wrap gap-2">
+          <ul aria-label={t("chipsLabel")} className="mt-8 flex flex-wrap gap-2">
             {CHIPS.map((key) => (
               <li
                 key={key}

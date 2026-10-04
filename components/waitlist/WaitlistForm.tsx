@@ -32,17 +32,12 @@ type Status =
 type FieldErrors = Partial<Record<WaitlistField, WaitlistFieldError>>;
 
 type Props = {
-  /**
-   * "inline" (hero): email + button first; after a valid email the rest of
-   * the fields expand below. "stacked" (#join): every field at once.
-   */
-  variant?: "inline" | "stacked";
   /** Country-of-residence options, built on the server. */
   countries: CountryOptions;
 };
 
-export function WaitlistForm({ variant = "inline", countries }: Props) {
-  const stacked = variant === "stacked";
+/** The waitlist sign-up form (#join): every field at once. */
+export function WaitlistForm({ countries }: Props) {
   const t = useTranslations("waitlist");
   const locale = useLocale() as "ar" | "en";
   const uid = useId();
@@ -51,13 +46,11 @@ export function WaitlistForm({ variant = "inline", countries }: Props) {
 
   const [status, setStatus] = useState<Status>({ kind: "idle" });
   const [errors, setErrors] = useState<FieldErrors>({});
-  const [expanded, setExpanded] = useState(stacked);
   const [country, setCountry] = useState("");
   const [phone, setPhone] = useState("");
   const startedAt = useRef(0);
   // Last valid submission, re-sent by the retry button.
   const lastPayload = useRef<WaitlistInput | null>(null);
-  const focusNameOnExpand = useRef(false);
   const successRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -68,33 +61,11 @@ export function WaitlistForm({ variant = "inline", countries }: Props) {
     if (status.kind === "success") successRef.current?.focus();
   }, [status.kind]);
 
-  useEffect(() => {
-    if (expanded && focusNameOnExpand.current) {
-      focusNameOnExpand.current = false;
-      document.getElementById(id("name"))?.focus({ preventScroll: true });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [expanded]);
-
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (status.kind === "loading") return;
     const data = new FormData(e.currentTarget);
     const email = String(data.get("email") ?? "");
-
-    // Hero, step 1: check the email only, then reveal the other fields.
-    if (!expanded) {
-      const check = waitlistSchema.shape.email.safeParse(email);
-      if (!check.success) {
-        setErrors({ email: check.error.issues[0].message as WaitlistFieldError });
-        document.getElementById(id("email"))?.focus();
-        return;
-      }
-      setErrors({});
-      focusNameOnExpand.current = true;
-      setExpanded(true);
-      return;
-    }
 
     const payload = {
       name: String(data.get("name") ?? ""),
@@ -159,9 +130,8 @@ export function WaitlistForm({ variant = "inline", countries }: Props) {
   }
 
   const loading = status.kind === "loading";
-  const fieldHeight = stacked ? "h-16 text-[17px]" : "h-14 text-[16px]";
   const box = (field: WaitlistField) =>
-    `w-full min-w-0 rounded-btn border bg-card px-4 text-text shadow-[0_1px_0_rgb(31_29_27/0.03)] transition-colors ${fieldHeight} ${
+    `h-16 w-full min-w-0 rounded-btn border bg-card px-4 text-[17px] text-text shadow-[0_1px_0_rgb(31_29_27/0.03)] transition-colors ${
       errors[field] ? "border-orange-ink" : "border-border"
     }`;
   // Native inputs: border turns orange on focus, plus the global focus ring.
@@ -176,11 +146,7 @@ export function WaitlistForm({ variant = "inline", countries }: Props) {
     <MagneticButton
       type="submit"
       disabled={loading}
-      className={buttonClass(
-        "primary",
-        "lg",
-        stacked ? "h-16 w-full text-[20px]" : "shrink-0 sm:self-start",
-      )}
+      className={buttonClass("primary", "lg", "h-16 w-full text-[20px]")}
     >
       {loading && <Spinner />}
       {loading ? t("submitting") : t("submit")}
@@ -305,38 +271,12 @@ export function WaitlistForm({ variant = "inline", countries }: Props) {
       aria-busy={loading}
       className="flex w-full flex-col gap-3"
     >
-      {stacked ? (
-        <div className="grid gap-3 sm:grid-cols-2">
-          {nameField}
-          {emailField}
-          {countryField}
-          {phoneField}
-        </div>
-      ) : (
-        <>
-          <div className="flex flex-col gap-2.5 sm:flex-row">
-            {emailField}
-            {submit}
-          </div>
-          {/* Step 2: grows from 0 to its natural height (grid-rows 0fr → 1fr). */}
-          <div
-            inert={!expanded}
-            className={`grid transition-[grid-template-rows,opacity] duration-300 ease-out motion-reduce:transition-none ${
-              expanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
-            }`}
-          >
-            {/* Side padding keeps focus rings from being clipped. */}
-            <div className="-mx-1 min-h-0 overflow-hidden px-1">
-              <p className="pt-1 pb-2.5 text-[14px] text-text-2">{t("detailsHint")}</p>
-              <div className="grid gap-2.5 pb-1 sm:grid-cols-2">
-                <div className="sm:col-span-2">{nameField}</div>
-                {countryField}
-                {phoneField}
-              </div>
-            </div>
-          </div>
-        </>
-      )}
+      <div className="grid gap-3 sm:grid-cols-2">
+        {nameField}
+        {emailField}
+        {countryField}
+        {phoneField}
+      </div>
 
       {/* Honeypot: invisible to people, tempting to bots. */}
       <div aria-hidden="true" className="sr-only">
@@ -372,9 +312,9 @@ export function WaitlistForm({ variant = "inline", countries }: Props) {
         </label>
       </Field>
 
-      {stacked && submit}
+      {submit}
 
-      <p id={id("note")} className={`text-[13px] text-muted ${stacked ? "text-center" : ""}`}>
+      <p id={id("note")} className="text-center text-[13px] text-muted">
         {t("note")}
       </p>
 

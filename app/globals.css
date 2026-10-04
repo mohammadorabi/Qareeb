@@ -301,6 +301,23 @@
   }
 }
 
+/* Hero "Discover the story" arrow: a gentle bounce (off with reduced motion). */
+@keyframes cue-bounce {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 4px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .scroll-cue-arrow {
+    animation: cue-bounce 1.8s ease-in-out infinite;
+  }
+}
+
 /*
  * react-phone-number-input, styled like our inputs (the library's own CSS is
  * not loaded). The wrapper in PhoneField carries the border, radius and focus
@@ -352,6 +369,15 @@
 
 .PhoneInputCountryIcon--border {
   background: var(--bg);
+}
+
+/* No country yet: a plain phone glyph, not a flag (no frame). */
+.PhoneInputCountryIcon:not(.PhoneInputCountryIcon--border) {
+  width: 20px;
+  height: 20px;
+  border-radius: 0;
+  box-shadow: none;
+  color: var(--muted-ink);
 }
 
 .PhoneInputCountrySelectArrow {
