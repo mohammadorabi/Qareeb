@@ -29,63 +29,147 @@
     "tagline": "Far from them… still Qareeb.",
     "rights": "© {year} qareeb. All rights reserved.",
     "privacy": "Privacy Policy",
-    "terms": "Terms",
+    "terms": "Terms of Use",
     "contact": "Contact",
-    "legalNav": "Legal"
+    "legalNav": "Legal",
+    "instagramLabel": "Qareeb on Instagram"
   },
   "legal": {
-    "placeholderNotice": "Placeholder text — to be replaced with final legal wording after review by our lawyer.",
     "back": "Back to home",
     "privacy": {
       "title": "Privacy Policy",
       "sections": [
         {
           "h": "Who we are",
-          "p": "[To complete: company legal name, registered address, and data protection contact.]"
+          "p": [
+            "Qareeb (قريب) is an upcoming mobile app that will let Syrians abroad pay bills and top up mobile balances for their family in Syria. This website is Qareeb’s pre-launch page and waitlist.",
+            "If you have any question about this policy or your data, contact us at support@qareeb.info."
+          ]
         },
         {
           "h": "What we collect",
-          "p": "[To complete: email, country of residence (optional), preferred language, consent timestamp, a hashed IP fingerprint for abuse prevention, and visit source.]"
+          "p": ["When you join the waitlist, we collect only:"],
+          "items": [
+            "Your full name",
+            "Your email address",
+            "Your phone number",
+            "Your country of residence",
+            "Your consent to receive emails from us about the launch"
+          ],
+          "after": [
+            "We collect nothing else through the form. We do not collect any payment information at this stage."
+          ]
         },
         {
-          "h": "Why we collect it",
-          "p": "[To complete: to tell you about the launch, based on your explicit consent (GDPR Art. 6(1)(a)).]"
+          "h": "Why we use it",
+          "p": [
+            "We use your information only to tell you about Qareeb’s launch and to send you important updates about the app.",
+            "We do not sell or rent your personal data to anyone."
+          ]
+        },
+        {
+          "h": "Where your data is stored",
+          "p": [
+            "Your data is stored with trusted service providers that help us manage form submissions and host this website. They process it on our behalf, under appropriate safeguards, and only for the purposes described in this policy."
+          ]
+        },
+        {
+          "h": "Cookies",
+          "p": ["This website does not use advertising or tracking cookies."]
         },
         {
           "h": "How long we keep it",
-          "p": "[To complete: retention period and deletion process.]"
+          "p": [
+            "We keep your data until you unsubscribe or ask us to delete it, or until the waitlist is no longer needed — whichever comes first. After that, we delete it."
+          ]
         },
         {
           "h": "Your rights",
-          "p": "[To complete: access, rectification, erasure, withdrawing consent, and lodging a complaint with a supervisory authority.]"
+          "p": ["At any time, you can:"],
+          "items": [
+            "Ask for a copy of the data we hold about you",
+            "Ask us to correct it",
+            "Ask us to delete it",
+            "Withdraw your consent to receive emails from us"
+          ],
+          "after": ["To do any of this, email support@qareeb.info. We will reply within 30 days."]
         },
         {
-          "h": "Service providers",
-          "p": "[To complete: list of processors (hosting, database, email) and processing locations.]"
+          "h": "Security",
+          "p": [
+            "We take reasonable technical and organizational measures to protect your data from loss, misuse and unauthorized access. However, no system is 100% secure, so we cannot guarantee absolute security."
+          ]
+        },
+        {
+          "h": "Age",
+          "p": [
+            "Qareeb and its waitlist are intended only for people aged 18 or over. If you are under 18, please do not join the waitlist."
+          ]
+        },
+        {
+          "h": "Changes to this policy",
+          "p": [
+            "We may update this policy from time to time. When we do, we will change the “Last updated” date at the top of this page."
+          ]
         }
       ]
     },
     "terms": {
-      "title": "Terms",
+      "title": "Terms of Use",
       "sections": [
         {
-          "h": "The waitlist",
-          "p": "[To complete: joining the waitlist does not create an account or commit you to anything.]"
+          "h": "Acceptance of these terms",
+          "p": [
+            "By using this website, you agree to these Terms of Use. If you do not agree, please do not use the website."
+          ]
         },
         {
-          "h": "Eligibility",
-          "p": "[To complete: the service is for Syrians aged 18+ living outside Syria.]"
+          "h": "What this website is",
+          "p": [
+            "This website is an informational pre-launch page for Qareeb and a waitlist for people who want to hear about the launch.",
+            "Joining the waitlist does not create an account and does not create any obligation for you or for us. It does not guarantee access to the app, or any particular features, prices or launch date."
+          ]
         },
         {
-          "h": "Communication",
-          "p": "[To complete: how we contact you and how to unsubscribe.]"
+          "h": "Information on this website",
+          "p": [
+            "The information on this website — including illustrative examples such as sample amounts and screens — is for general information only. It may change at any time and is not an offer."
+          ]
         },
         {
-          "h": "Governing law",
-          "p": "[To complete: governing law and jurisdiction.]"
+          "h": "Intellectual property",
+          "p": [
+            "The Qareeb name, logo, design and the content of this website belong to Qareeb. You may not copy, reproduce or use them without our written permission, except as allowed by law."
+          ]
+        },
+        {
+          "h": "Acceptable use",
+          "p": ["When using this website, you agree not to:"],
+          "items": [
+            "Misuse the website or try to disrupt how it works",
+            "Send spam or automated submissions",
+            "Submit fake sign-ups or someone else’s details without their permission"
+          ]
+        },
+        {
+          "h": "Limitation of liability",
+          "p": [
+            "We work to keep this website accurate and available, but we provide it “as is”, without warranties of any kind. To the extent permitted by law, Qareeb is not liable for any loss or damage arising from your use of, or inability to use, this website. Nothing in these terms limits any liability that cannot be limited by law."
+          ]
+        },
+        {
+          "h": "Changes to these terms",
+          "p": [
+            "We may update these terms from time to time. When we do, we will change the “Last updated” date at the top of this page. Continuing to use the website means you accept the updated terms."
+          ]
+        },
+        {
+          "h": "Contact",
+          "p": ["If you have any question about these terms, contact us at support@qareeb.info."]
         }
       ]
-    }
+    },
+    "lastUpdated": "Last updated: October 2026"
   },
   "hero": {
     "eyebrow": "COMING SOON · iOS & ANDROID",

@@ -6,6 +6,7 @@ import { Link } from "@/i18n/navigation";
 import { Logo } from "@/components/brand/Logo";
 import { LocaleToggle } from "@/components/ui/LocaleToggle";
 import { buttonClass } from "@/components/ui/Button";
+import { SectionLink } from "@/components/ui/SectionLink";
 import { SECTION_IDS } from "@/lib/site";
 
 const LINKS = [
@@ -64,8 +65,8 @@ export function Nav() {
           <ul className="flex items-center gap-1">
             {LINKS.map(({ key, id }) => (
               <li key={key}>
-                <Link
-                  href={`/#${id}`}
+                <SectionLink
+                  section={id}
                   aria-current={active === id ? "location" : undefined}
                   className={`relative rounded-pill px-3.5 py-2 text-[15px] font-medium transition-colors hover:text-text ${
                     active === id ? "text-text" : "text-text-2"
@@ -78,7 +79,7 @@ export function Nav() {
                       active === id ? "scale-100 opacity-100" : "scale-0 opacity-0"
                     }`}
                   />
-                </Link>
+                </SectionLink>
               </li>
             ))}
           </ul>
@@ -86,13 +87,13 @@ export function Nav() {
 
         <div className="flex items-center gap-1.5 sm:gap-2">
           <LocaleToggle className="hidden sm:inline-flex" />
-          <Link
-            href={`/#${SECTION_IDS.join}`}
+          <SectionLink
+            section={SECTION_IDS.join}
             className={buttonClass("primary", "md", "max-sm:px-4")}
           >
             <span className="hidden sm:inline">{t("cta")}</span>
             <span className="sm:hidden">{t("ctaShort")}</span>
-          </Link>
+          </SectionLink>
           <button
             type="button"
             className="inline-flex size-10 items-center justify-center rounded-pill border border-border bg-card lg:hidden"
@@ -127,8 +128,8 @@ export function Nav() {
           <ul className="flex flex-col">
             {LINKS.map(({ key, id }) => (
               <li key={key}>
-                <Link
-                  href={`/#${id}`}
+                <SectionLink
+                  section={id}
                   onClick={() => setOpen(false)}
                   aria-current={active === id ? "location" : undefined}
                   className={`flex items-center gap-2 rounded-lg py-3 text-lg font-medium ${
@@ -136,7 +137,7 @@ export function Nav() {
                   }`}
                 >
                   {t(key)}
-                </Link>
+                </SectionLink>
               </li>
             ))}
           </ul>

@@ -327,7 +327,7 @@ export function ConfirmScreen({ syp, pressed = false }: { syp: string; pressed?:
   );
 }
 
-/** Step 3b — success: «وصلت 💚» with a delivery timeline. */
+/** Step 3b — success: «وصلت» under a green check, with a delivery timeline. */
 export function SuccessScreen() {
   const t = useTranslations("how");
   const track = t.raw("phone.track") as string[];

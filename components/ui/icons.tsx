@@ -51,6 +51,14 @@ export const PhoneIcon = (p: IconProps) => (
   </Icon>
 );
 
+export const InstagramIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
+    <circle cx="12" cy="12" r="4" />
+    <path d="M17.2 6.8h.01" strokeWidth={2.5} />
+  </Icon>
+);
+
 /** Internet bill. */
 export const WifiIcon = (p: IconProps) => (
   <Icon {...p}>

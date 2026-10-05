@@ -47,7 +47,7 @@
     ],
     "refund": "If the transfer doesn’t arrive, you get a full refund automatically.",
     "pay": "Confirm & pay",
-    "arrived": "Arrived 💚",
+    "arrived": "Arrived",
     "arrivedSub": "Syriatel credit delivered to Dad.",
     "track": ["Paid", "On its way", "Arrived"],
     "done": "Done",
