@@ -410,3 +410,198 @@
 .PhoneInputCountrySelect:focus-visible {
   outline: none;
 }
+
+/*
+ * Phone mockup (components/phone/PhoneFrame.tsx): an iPhone 15/16 Pro-style
+ * device, its screen proportional to 393×852pt. Set --phone-w (the outer
+ * width) and everything follows, in iOS points (--phone-pt). In a layer so
+ * `[--phone-w:…]` utilities override the default.
+ */
+@layer components {
+  .phone {
+    --phone-w: 368px;
+    --phone-frame: round(var(--phone-w) * 0.012, 1px);
+    --phone-bezel: round(var(--phone-w) * 0.025, 1px);
+    --phone-inset: calc(var(--phone-frame) + var(--phone-bezel));
+    --phone-screen-w: calc(var(--phone-w) - 2 * var(--phone-inset));
+    --phone-screen-h: calc(var(--phone-screen-w) * 852 / 393);
+    --phone-pt: calc(var(--phone-screen-w) / 393);
+    --phone-radius: calc(var(--phone-w) * 0.14);
+    --phone-island-w: calc(var(--phone-screen-w) * 0.32);
+    --phone-island-h: calc(var(--phone-screen-h) * 0.043);
+    --phone-island-top: calc(var(--phone-pt) * 11);
+
+    position: relative;
+    flex-shrink: 0;
+    width: var(--phone-w);
+    height: calc(var(--phone-screen-h) + 2 * var(--phone-inset));
+    padding: var(--phone-frame);
+    border-radius: var(--phone-radius);
+    /* Graphite titanium, a faint highlight on the outer edge, a soft shadow. */
+    background: linear-gradient(135deg, #3a3a3d, #2b2b2e 30%, #353538 52%, #2b2b2e 75%, #3a3a3d);
+    box-shadow:
+      inset 0 0 0 1px rgb(255 255 255 / 0.14),
+      0 calc(var(--phone-w) * 0.012) calc(var(--phone-w) * 0.03) rgb(31 29 27 / 0.16),
+      0 calc(var(--phone-w) * 0.11) calc(var(--phone-w) * 0.22) calc(var(--phone-w) * -0.08)
+        rgb(31 29 27 / 0.42);
+  }
+
+  /* Side buttons: action, volume up and down on the left; side button on the right. */
+  .phone-button {
+    position: absolute;
+    width: calc(var(--phone-w) * 0.009);
+    --r: calc(var(--phone-w) * 0.005);
+  }
+  .phone-button-action,
+  .phone-button-volume-up,
+  .phone-button-volume-down {
+    right: 100%;
+    border-radius: var(--r) 0 0 var(--r);
+    background: linear-gradient(90deg, #3a3a3d, #2b2b2e);
+  }
+  .phone-button-action {
+    top: 18.5%;
+    height: 4%;
+  }
+  .phone-button-volume-up {
+    top: 25.5%;
+    height: 6.5%;
+  }
+  .phone-button-volume-down {
+    top: 33.5%;
+    height: 6.5%;
+  }
+  .phone-button-side {
+    left: 100%;
+    top: 27%;
+    height: 10.5%;
+    border-radius: 0 var(--r) var(--r) 0;
+    background: linear-gradient(90deg, #2b2b2e, #3a3a3d);
+  }
+
+  /* Corners stay concentric: each radius is the outer one minus its inset. */
+  .phone-bezel {
+    height: 100%;
+    padding: var(--phone-bezel);
+    border-radius: calc(var(--phone-radius) - var(--phone-frame));
+    background: #000;
+  }
+
+  .phone-screen {
+    position: relative;
+    isolation: isolate;
+    height: 100%;
+    overflow: hidden;
+    border-radius: calc(var(--phone-radius) - var(--phone-inset));
+    background: var(--bg);
+  }
+
+  /* Glass: a very faint diagonal reflection. */
+  .phone-screen::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      120deg,
+      rgb(255 255 255 / 0.04),
+      rgb(255 255 255 / 0.015) 35%,
+      transparent 55%
+    );
+  }
+
+  /*
+   * The app screens are drawn 342px wide (1pt = 342/393px) and zoomed to the
+   * screen, so they stay crisp at any size. tan(atan2(a, b)) = a / b: the
+   * portable way to divide two lengths.
+   */
+  .phone-ui {
+    position: absolute;
+    top: 0;
+    left: 0;
+    isolation: isolate;
+    width: 342px;
+    height: calc(342px * 852 / 393);
+    zoom: tan(atan2(var(--phone-screen-w), 342px));
+  }
+
+  /* Status bar: time and icons centered on the Dynamic Island, either side of it. */
+  .phone-status {
+    position: absolute;
+    inset: 0 0 auto;
+    display: grid;
+    grid-template-columns: 1fr var(--phone-island-w) 1fr;
+    align-items: center;
+    justify-items: center;
+    height: calc(2 * var(--phone-island-top) + var(--phone-island-h));
+    color: var(--text);
+    font:
+      600 calc(var(--phone-pt) * 17) / 1 -apple-system,
+      "SF Pro Text",
+      "Inter",
+      system-ui,
+      sans-serif;
+    letter-spacing: -0.025em;
+  }
+  .phone-status-icons {
+    grid-column: 3;
+    display: flex;
+    align-items: center;
+    gap: calc(var(--phone-pt) * 5);
+  }
+  .phone-status-icons svg {
+    width: auto;
+    height: calc(var(--phone-pt) * 12);
+  }
+
+  .phone-island {
+    position: absolute;
+    top: var(--phone-island-top);
+    left: 50%;
+    width: var(--phone-island-w);
+    height: var(--phone-island-h);
+    translate: -50% 0;
+    border-radius: 999px;
+    background: #000;
+  }
+  /* Front camera, at the island's right end (physical: it doesn't move in RTL). */
+  .phone-island::after {
+    --cam: calc(var(--phone-pt) * 9);
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: calc((var(--phone-island-h) - var(--cam)) / 2);
+    width: var(--cam);
+    height: var(--cam);
+    translate: 0 -50%;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #34343b, #18181c 65%);
+  }
+
+  .phone-home {
+    position: absolute;
+    bottom: calc(var(--phone-pt) * 8);
+    left: 50%;
+    width: calc(var(--phone-screen-w) * 0.34);
+    height: calc(var(--phone-pt) * 5);
+    translate: -50% 0;
+    border-radius: 999px;
+    background: #000;
+  }
+
+  /*
+   * The continuous iPhone curve where supported; circular radii otherwise. A
+   * squircle hugs its corner more than a circle of the same radius, so the
+   * radius grows ×1.6 to keep the corner as big as the circular 14%.
+   */
+  @supports (corner-shape: squircle) {
+    .phone {
+      --phone-radius: calc(var(--phone-w) * 0.14 * 1.6);
+    }
+    .phone,
+    .phone-bezel,
+    .phone-screen {
+      corner-shape: squircle;
+    }
+  }
+}
