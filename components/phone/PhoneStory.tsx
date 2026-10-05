@@ -37,9 +37,9 @@ function screenFor(progress: number[]): ScreenId {
 
 const stepOf = (screen: ScreenId) => Math.min(2, SCREENS.indexOf(screen));
 
-/** Phone zoom for shorter laptop screens (non-overlapping ranges). */
+/** Smaller phone for shorter laptop screens (non-overlapping ranges; default 368px). */
 const PHONE_FIT =
-  "[@media(max-height:700px)]:[zoom:0.68] [@media(min-height:701px)_and_(max-height:800px)]:[zoom:0.78] [@media(min-height:801px)_and_(max-height:900px)]:[zoom:0.88]";
+  "[@media(max-height:700px)]:[--phone-w:252px] [@media(min-height:701px)_and_(max-height:800px)]:[--phone-w:288px] [@media(min-height:801px)_and_(max-height:900px)]:[--phone-w:324px]";
 
 function ScreenView({ id, syp }: { id: ScreenId; syp: string }) {
   switch (id) {
@@ -196,11 +196,9 @@ function StaticRow({ steps, syp }: { steps: Step[]; syp: string }) {
       {steps.map((step, i) => (
         <div key={step.title} className="flex flex-col gap-8">
           <StepText step={step} i={i} active />
-          <div className="mx-auto mt-auto h-[624px] w-[288px]">
-            <PhoneFrame className="[zoom:0.8]">
-              <ScreenView id={STATIC_SCREENS[i]} syp={syp} />
-            </PhoneFrame>
-          </div>
+          <PhoneFrame className="mx-auto mt-auto [--phone-w:296px]">
+            <ScreenView id={STATIC_SCREENS[i]} syp={syp} />
+          </PhoneFrame>
         </div>
       ))}
     </div>
@@ -220,11 +218,9 @@ function StackedCards({ steps, syp }: { steps: Step[]; syp: string }) {
             <StepText step={step} i={i} active />
           </div>
           {/* Phone peeks out of the card bottom. */}
-          <div className="mx-auto -mb-24 h-[562px] w-[260px] md:mx-0 md:-mb-28">
-            <PhoneFrame className="[zoom:0.72]">
-              <ScreenView id={STATIC_SCREENS[i]} syp={syp} />
-            </PhoneFrame>
-          </div>
+          <PhoneFrame className="mx-auto -mb-24 [--phone-w:266px] md:mx-0 md:-mb-28">
+            <ScreenView id={STATIC_SCREENS[i]} syp={syp} />
+          </PhoneFrame>
         </li>
       ))}
     </ol>

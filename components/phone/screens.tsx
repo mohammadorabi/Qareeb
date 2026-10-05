@@ -3,7 +3,6 @@
 import type { ReactNode } from "react";
 import { motion } from "framer-motion";
 import {
-  BatteryFull,
   CalendarHeart,
   Check,
   ChevronLeft,
@@ -13,11 +12,9 @@ import {
   Lock,
   ReceiptText,
   RotateCcw,
-  Signal,
   Smartphone,
   UserRound,
   Users,
-  Wifi,
   Zap,
   type LucideIcon,
 } from "lucide-react";
@@ -28,34 +25,20 @@ import { NOT_SHOWN } from "@/lib/illustrative";
  * App screens for the phone story, following the SRS UI: 22px side padding,
  * Cairo 14–15px, white cards with 1px --border and 20px radius, bottom tab
  * bar with 4 tabs (active #F2641A, inactive #8A857E). Labels only — no
- * real amounts, rates or fees.
+ * real amounts, rates or fees. Drawn 342px wide (1pt = 342/393px); PhoneFrame
+ * zooms them to its screen and draws the status bar and home indicator on top.
  */
 
 const STROKE = 1.75;
 
-function StatusBar() {
-  const t = useTranslations("how");
-  return (
-    <div className="flex h-[50px] items-end justify-between px-[26px] pb-1.5 text-[13px] font-semibold text-text">
-      <span dir="ltr" className="font-mono">
-        {t("phone.time")}
-      </span>
-      <span className="flex items-center gap-1" dir="ltr">
-        <Signal className="size-3.5" strokeWidth={2} />
-        <Wifi className="size-3.5" strokeWidth={2} />
-        <BatteryFull className="size-4" strokeWidth={2} />
-      </span>
-    </div>
-  );
-}
-
 const TAB_ICONS: LucideIcon[] = [House, History, Users, UserRound];
 
+/** pb: the home indicator's 34pt safe area, so icons and labels sit above it. */
 function TabBar({ active = 0 }: { active?: number }) {
   const t = useTranslations("how");
   const labels = t.raw("phone.tabs") as string[];
   return (
-    <div className="absolute inset-x-0 bottom-0 z-20 flex h-[78px] items-start justify-around border-t border-border bg-card px-3 pt-2.5">
+    <div className="absolute inset-x-0 bottom-0 z-20 flex items-start justify-around border-t border-border bg-card px-3 pt-2.5 pb-[30px]">
       {TAB_ICONS.map((Icon, i) => (
         <span
           key={labels[i]}
@@ -86,10 +69,10 @@ function Header({ title, tag }: { title: string; tag?: string }) {
   );
 }
 
+/** pt: the status bar's 59pt safe area; pb: clears the tab bar. */
 function Screen({ children }: { children: ReactNode }) {
   return (
-    <div className="absolute inset-0 flex flex-col bg-bg">
-      <StatusBar />
+    <div className="absolute inset-0 flex flex-col bg-bg pt-[51px]">
       <div className="flex-1 px-[22px] pb-[92px]">{children}</div>
       <TabBar />
     </div>
