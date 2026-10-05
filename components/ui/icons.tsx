@@ -59,6 +59,14 @@ export const InstagramIcon = (p: IconProps) => (
   </Icon>
 );
 
+/** Payment straight from a bank account. */
+export const BankIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M3.5 9.5 12 4.5l8.5 5" />
+    <path d="M5 10v7.5M9.5 10v7.5M14.5 10v7.5M19 10v7.5M3.5 20h17" />
+  </Icon>
+);
+
 /** Internet bill. */
 export const WifiIcon = (p: IconProps) => (
   <Icon {...p}>

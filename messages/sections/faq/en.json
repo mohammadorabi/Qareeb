@@ -16,7 +16,7 @@
     },
     {
       "q": "How do I pay?",
-      "a": "By card through Stripe, or with Apple Pay and Google Pay. We never store your card number."
+      "a": "By card (Visa or Mastercard), Apple Pay, Google Pay, or directly from your bank account — and you’ll see every detail before you confirm."
     },
     {
       "q": "What if the transfer fails?",
@@ -28,7 +28,7 @@
     },
     {
       "q": "Is my data safe?",
-      "a": "You sign in with a one-time code by WhatsApp or email, and your data is always encrypted. Payments go through Stripe, we don’t store your card details, and we’re GDPR-compliant."
+      "a": "You sign in with a one-time code by WhatsApp or email, and your data is always encrypted. We never store your card details, and we’re GDPR-compliant."
     }
   ]
 }

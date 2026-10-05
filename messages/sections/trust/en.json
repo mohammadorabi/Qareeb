@@ -7,16 +7,24 @@
       "body": "Sign in with a one-time code via WhatsApp or email, and your data is always encrypted."
     },
     {
-      "title": "Secure payments via Stripe",
-      "body": "Pay by card, or with Apple Pay and Google Pay."
+      "title": "Global payment methods",
+      "body": "Pay with Visa, Mastercard, Apple Pay, Google Pay, or directly from your bank account."
     },
     {
-      "title": "We don’t store your card",
-      "body": "Payments go through Stripe; your card number is never saved with us."
+      "title": "We never store your card details",
+      "body": "Your card number is never saved with us, and every payment is protected and encrypted."
     },
     {
       "title": "Your privacy, protected",
       "body": "GDPR-compliant — the EU’s data protection standard."
     }
-  ]
+  ],
+  "payments": {
+    "label": "Accepted payment methods",
+    "visa": "Visa",
+    "mastercard": "Mastercard",
+    "applePay": "Apple Pay",
+    "googlePay": "Google Pay",
+    "bank": "From your bank account"
+  }
 }

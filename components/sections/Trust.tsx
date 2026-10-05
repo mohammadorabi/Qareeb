@@ -1,10 +1,12 @@
 import { getTranslations } from "next-intl/server";
 import { CardIcon, CardOffIcon, LockIcon, ShieldCheckIcon } from "@/components/ui/icons";
+import { PaymentBadges } from "@/components/trust/PaymentBadges";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { SECTION_IDS } from "@/lib/site";
 
-// Order matches messages: super secure · Stripe · card not stored · GDPR.
+// Order matches messages: super secure · global payments · card not stored · GDPR.
 const ICONS = [ShieldCheckIcon, CardIcon, CardOffIcon, LockIcon];
+const PAYMENTS_CARD = 1;
 
 /** #trust: four plain-language trust points. Text only — no company logos. */
 export async function Trust() {
@@ -19,7 +21,7 @@ export async function Trust() {
     >
       <div className="container-site">
         <SectionHeader id="trust-title" eyebrow={t("eyebrow")} title={t("title")} />
-        <ul className="mt-12 grid grid-cols-2 gap-3 sm:gap-4 lg:mt-16 lg:grid-cols-4 lg:gap-5">
+        <ul className="mt-12 grid gap-3 sm:grid-cols-2 sm:gap-4 lg:mt-16 lg:grid-cols-4 lg:gap-5">
           {cards.map((card, i) => {
             const Icon = ICONS[i];
             return (
@@ -37,6 +39,7 @@ export async function Trust() {
                   <p className="mt-2 text-[14.5px] leading-relaxed text-text-2 sm:text-[15.5px]">
                     {card.body}
                   </p>
+                  {i === PAYMENTS_CARD && <PaymentBadges className="mt-4" />}
                 </div>
               </li>
             );
