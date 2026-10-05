@@ -2,7 +2,8 @@ import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { Logo } from "@/components/brand/Logo";
 import { LocaleToggle } from "@/components/ui/LocaleToggle";
-import { CONTACT_EMAIL } from "@/lib/site";
+import { InstagramIcon } from "@/components/ui/icons";
+import { CONTACT_EMAIL, INSTAGRAM } from "@/lib/site";
 
 export async function Footer() {
   const t = await getTranslations("footer");
@@ -37,6 +38,18 @@ export async function Footer() {
                 <span className="text-muted">{t("contact")}: </span>
                 <a href={`mailto:${CONTACT_EMAIL}`} className="font-mono hover:text-text" dir="ltr">
                   {CONTACT_EMAIL}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={INSTAGRAM.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={t("instagramLabel")}
+                  className="inline-flex items-center gap-1.5 hover:text-text"
+                >
+                  <InstagramIcon className="size-[18px]" />
+                  <span dir="ltr">{INSTAGRAM.handle}</span>
                 </a>
               </li>
             </ul>

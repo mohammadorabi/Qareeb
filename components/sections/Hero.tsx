@@ -1,9 +1,10 @@
 import { getTranslations } from "next-intl/server";
 import { DistanceMap } from "@/components/hero/DistanceMap";
 import { HeroGlow } from "@/components/hero/HeroGlow";
+import { SectionLink } from "@/components/ui/SectionLink";
 import { SECTION_IDS } from "@/lib/site";
 
-const CHIPS = ["superSecure", "applePay", "arabicFirst"] as const;
+const CHIPS = ["superSecure", "globalPayments", "arabicFirst"] as const;
 
 export async function Hero() {
   const t = await getTranslations("hero");
@@ -38,8 +39,8 @@ export async function Hero() {
           </p>
 
           {/* Sign-up lives at the end (#join): first, invite them into the story. */}
-          <a
-            href={`#${SECTION_IDS.how}`}
+          <SectionLink
+            section={SECTION_IDS.how}
             className="group mt-7 inline-flex items-center gap-2 self-start py-1 text-[17px] font-semibold text-orange-ink hover:text-orange-dark"
           >
             {t("scrollCue")}
@@ -55,7 +56,7 @@ export async function Hero() {
             >
               <path d="M12 5v14M6 13l6 6 6-6" />
             </svg>
-          </a>
+          </SectionLink>
 
           <ul aria-label={t("chipsLabel")} className="mt-8 flex flex-wrap gap-2">
             {CHIPS.map((key) => (

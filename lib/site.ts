@@ -3,8 +3,12 @@ export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3
   "",
 );
 
-// TODO(owner): replace with the real contact address before launch.
-export const CONTACT_EMAIL = "hello@example.com";
+export const CONTACT_EMAIL = "support@qareeb.info";
+
+export const INSTAGRAM = {
+  handle: "@qareeb.sy",
+  url: "https://www.instagram.com/qareeb.sy/",
+} as const;
 
 /** Section anchors shared by the nav and the page, in page order. */
 export const SECTION_IDS = {

@@ -51,6 +51,22 @@ export const PhoneIcon = (p: IconProps) => (
   </Icon>
 );
 
+export const InstagramIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
+    <circle cx="12" cy="12" r="4" />
+    <path d="M17.2 6.8h.01" strokeWidth={2.5} />
+  </Icon>
+);
+
+/** Payment straight from a bank account. */
+export const BankIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M3.5 9.5 12 4.5l8.5 5" />
+    <path d="M5 10v7.5M9.5 10v7.5M14.5 10v7.5M19 10v7.5M3.5 20h17" />
+  </Icon>
+);
+
 /** Internet bill. */
 export const WifiIcon = (p: IconProps) => (
   <Icon {...p}>

@@ -4,7 +4,7 @@ import { getTranslations } from "next-intl/server";
 import { dirOf, routing } from "@/i18n/routing";
 import { resolveLocale } from "@/i18n/resolveLocale";
 import { fontVariables } from "@/lib/fonts";
-import { SITE_URL } from "@/lib/site";
+import { CONTACT_EMAIL, INSTAGRAM, SITE_URL } from "@/lib/site";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
 import { MotionProvider } from "@/components/layout/MotionProvider";
@@ -50,10 +50,32 @@ export async function generateMetadata({ params }: LayoutProps<"/[locale]">): Pr
 export default async function LocaleLayout({ children, params }: LayoutProps<"/[locale]">) {
   const locale = await resolveLocale(params);
   const t = await getTranslations("common");
+  const tm = await getTranslations("meta");
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Qareeb",
+    alternateName: "قريب",
+    url: `${SITE_URL}/${locale}`,
+    logo: `${SITE_URL}/qareeb-mark.png`,
+    description: tm("description"),
+    email: CONTACT_EMAIL,
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "customer support",
+      email: CONTACT_EMAIL,
+    },
+    sameAs: [INSTAGRAM.url],
+  };
 
   return (
     <html lang={locale} dir={dirOf(locale)} className={fontVariables}>
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
+        />
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:start-4 focus:top-4 focus:z-[60] focus:rounded-btn focus:bg-card focus:px-4 focus:py-2 focus:shadow"
