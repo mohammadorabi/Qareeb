@@ -2,6 +2,10 @@ import { countryNameEn } from "@/lib/countries";
 import { allowRequest } from "@/lib/waitlist/rate-limit";
 import { waitlistSchema, type WaitlistField } from "@/lib/waitlist/schema";
 import { sendToWorkiom } from "@/lib/waitlist/workiom";
+import type { Locale } from "@/i18n/routing";
+
+/** Language names as Workiom receives them. */
+const LANGUAGE_NAMES: Record<Locale, string> = { ar: "Arabic", en: "English", de: "German" };
 
 /** Minimum time between rendering the form and submitting it (bots are faster). */
 const MIN_FILL_MS = 3000;
@@ -17,7 +21,8 @@ function clientIp(request: Request): string {
 
 /** POST /api/waitlist — validates a sign-up and forwards it to Workiom. */
 export async function POST(request: Request) {
-  if (!allowRequest(clientIp(request))) {
+  // Off in development: locally every request shares one IP and would hit the limit fast.
+  if (process.env.NODE_ENV === "production" && !allowRequest(clientIp(request))) {
     return json({ ok: false, error: "rate_limited" }, 429);
   }
 
@@ -52,6 +57,7 @@ export async function POST(request: Request) {
     email: data.email,
     phone: data.phone,
     country: countryNameEn(data.country),
+    language: LANGUAGE_NAMES[data.locale],
   });
   return sent ? success() : json({ ok: false, error: "server" }, 502);
 }

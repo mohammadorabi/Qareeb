@@ -8,6 +8,8 @@ export type WorkiomRecord = {
   phone: string;
   /** English country name, e.g. "Germany". */
   country: string;
+  /** Page language the visitor signed up from, e.g. "German". */
+  language: string;
 };
 
 const TIMEOUT_MS = 8000;
@@ -28,6 +30,7 @@ export async function sendToWorkiom(record: WorkiomRecord): Promise<boolean> {
     email: record.email,
     phone: record.phone,
     country: record.country,
+    language: record.language,
   });
 
   for (let attempt = 1; attempt <= 2; attempt++) {
