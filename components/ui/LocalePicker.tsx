@@ -8,6 +8,8 @@ import { CheckIcon, GlobeIcon } from "@/components/ui/icons";
 
 type Props = {
   className?: string;
+  /** Extra classes for the trigger button (e.g. a taller tap target). */
+  buttonClassName?: string;
   /** Where the card opens, relative to the button (it opens upward in the footer). */
   menuClassName?: string;
 };
@@ -17,7 +19,11 @@ type Props = {
  * the same page and #section in that language, and is written in its own
  * language and script.
  */
-export function LocalePicker({ className, menuClassName = "top-full end-0 mt-2" }: Props) {
+export function LocalePicker({
+  className,
+  buttonClassName,
+  menuClassName = "top-full end-0 mt-2",
+}: Props) {
   const t = useTranslations("locale");
   const locale = useLocale();
   const pathname = usePathname();
@@ -103,7 +109,7 @@ export function LocalePicker({ className, menuClassName = "top-full end-0 mt-2" 
         aria-label={`${t("label")}: ${LANGUAGES[locale].name}`}
         onClick={() => (open ? close() : openMenu(current))}
         onKeyDown={onButtonKeyDown}
-        className="inline-flex h-10 items-center gap-1.5 rounded-pill border border-border bg-card px-3.5 text-sm font-medium text-text transition-colors hover:border-text-2"
+        className={`inline-flex h-10 items-center gap-1.5 rounded-pill border border-border bg-card px-3.5 text-sm font-medium text-text transition-colors hover:border-text-2 ${buttonClassName ?? ""}`}
       >
         <GlobeIcon className="size-[18px] text-text-2" />
         <span className={locale === "ar" ? "text-[15px] leading-none" : "font-en"}>

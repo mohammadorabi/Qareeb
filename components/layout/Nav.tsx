@@ -58,7 +58,8 @@ export function Nav() {
     >
       <div className="container-site flex h-(--nav-h) items-center justify-between gap-4">
         <Link href="/" aria-label={tc("homeLabel")} className="rounded-lg">
-          <Logo locale={locale} />
+          {/* German's longer "Beitreten" needs the wordmark's room on small phones. */}
+          <Logo locale={locale} compact={locale === "de"} />
         </Link>
 
         <nav aria-label={t("label")} className="hidden lg:block">
@@ -85,18 +86,22 @@ export function Nav() {
           </ul>
         </nav>
 
-        <div className="flex items-center gap-1.5 sm:gap-2">
-          <LocalePicker className="hidden sm:block" />
+        <div className="flex items-center gap-1 sm:gap-2">
+          {/* Mobile order: Join · language · menu. Desktop: language · Join. */}
+          <LocalePicker
+            className="max-lg:order-1"
+            buttonClassName="max-lg:h-11 max-sm:gap-1 max-sm:px-3"
+          />
           <SectionLink
             section={SECTION_IDS.join}
-            className={buttonClass("primary", "md", "max-sm:px-4")}
+            className={buttonClass("primary", "md", "max-sm:px-3")}
           >
             <span className="hidden sm:inline">{t("cta")}</span>
             <span className="sm:hidden">{t("ctaShort")}</span>
           </SectionLink>
           <button
             type="button"
-            className="inline-flex size-10 items-center justify-center rounded-pill border border-border bg-card lg:hidden"
+            className="inline-flex size-10 items-center justify-center rounded-pill border border-border bg-card max-lg:order-2 lg:hidden"
             aria-expanded={open}
             aria-controls={menuId}
             aria-label={open ? t("menuClose") : t("menuOpen")}
@@ -141,7 +146,6 @@ export function Nav() {
               </li>
             ))}
           </ul>
-          <LocalePicker className="mt-2 w-fit sm:hidden" menuClassName="top-full start-0 mt-2" />
         </nav>
       </div>
     </header>
