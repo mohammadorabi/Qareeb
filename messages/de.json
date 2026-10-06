@@ -74,7 +74,7 @@
         },
         {
           "h": "Cookies",
-          "p": ["Diese Website verwendet keine Werbe- oder Tracking-Cookies."]
+          "p": ["Diese Website verwendet keine Werbe- oder Tracking-Cookies.", "Wir nutzen Vercel Web Analytics, um Besuche anonym zu zählen. Dabei werden keine Cookies verwendet und keine personenbezogenen Daten wie dein Name, deine E-Mail-Adresse oder deine Telefonnummer erhoben."]
         },
         {
           "h": "Wie lange wir sie speichern",

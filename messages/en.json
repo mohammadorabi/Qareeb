@@ -75,7 +75,7 @@
         },
         {
           "h": "Cookies",
-          "p": ["This website does not use advertising or tracking cookies."]
+          "p": ["This website does not use advertising or tracking cookies.", "We use Vercel Web Analytics to count visits anonymously. It does not use cookies and does not collect personal data such as your name, email address or phone number."]
         },
         {
           "h": "How long we keep it",
