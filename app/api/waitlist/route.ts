@@ -21,7 +21,8 @@ function clientIp(request: Request): string {
 
 /** POST /api/waitlist — validates a sign-up and forwards it to Workiom. */
 export async function POST(request: Request) {
-  if (!allowRequest(clientIp(request))) {
+  // Off in development: locally every request shares one IP and would hit the limit fast.
+  if (process.env.NODE_ENV === "production" && !allowRequest(clientIp(request))) {
     return json({ ok: false, error: "rate_limited" }, 429);
   }
 
