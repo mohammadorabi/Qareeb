@@ -1,13 +1,15 @@
 import type { Locale } from "@/i18n/routing";
 
 /**
- * Number/currency formatting with Western digits in both languages.
+ * Number/currency formatting with Western digits in every language, in the
+ * locale's own style (German: "25.000 SYP", "8,57 €").
  *
  * Call these on the SERVER and pass the resulting strings to client
  * components: Node's and the browser's ICU data can differ slightly, which
  * would cause hydration mismatches if formatting ran during a client render.
  */
-const tag = (locale: Locale) => (locale === "ar" ? "ar-u-nu-latn" : "en");
+const TAGS: Record<Locale, string> = { ar: "ar-u-nu-latn", en: "en", de: "de" };
+const tag = (locale: Locale) => TAGS[locale];
 
 export function formatMoney(value: number, currency: string, locale: Locale): string {
   const whole = currency === "SYP";

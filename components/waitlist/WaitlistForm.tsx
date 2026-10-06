@@ -39,7 +39,7 @@ type Props = {
 /** The waitlist sign-up form (#join): every field at once. */
 export function WaitlistForm({ countries }: Props) {
   const t = useTranslations("waitlist");
-  const locale = useLocale() as "ar" | "en";
+  const locale = useLocale();
   const uid = useId();
   const id = (field: string) => `${uid}-${field}`;
   const errorId = (field: WaitlistField) => `${uid}-${field}-error`;
