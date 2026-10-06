@@ -57,3 +57,7 @@ next-env.d.ts
 /scratchpad/
 /screenshots/
 /qa/
+
+# playwright
+/test-results/
+/playwright-report/
