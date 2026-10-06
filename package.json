@@ -12,7 +12,8 @@
     "typecheck": "next typegen && tsc --noEmit",
     "generate:map": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/generate-map-dots.mts",
     "check:i18n": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/check-messages.mts",
-    "test:mobile": "playwright test"
+    "test:mobile": "playwright test",
+    "screenshots:mobile": "playwright test mobile-screenshots"
   },
   "dependencies": {
     "framer-motion": "^14.0.0",
