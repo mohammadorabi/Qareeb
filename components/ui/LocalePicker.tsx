@@ -112,7 +112,10 @@ export function LocalePicker({
         className={`inline-flex h-10 items-center gap-1.5 rounded-pill border border-border bg-card px-3.5 text-sm font-medium text-text transition-colors hover:border-text-2 ${buttonClassName ?? ""}`}
       >
         <GlobeIcon className="size-[18px] text-text-2" />
-        <span className={locale === "ar" ? "text-[15px] leading-none" : "font-en"}>
+        {/* The Arabic font draws ع low in its box: lift it to the globe's center. */}
+        <span
+          className={locale === "ar" ? "-translate-y-[3px] text-[15px] leading-none" : "font-en"}
+        >
           {LANGUAGES[locale].short}
         </span>
       </button>
