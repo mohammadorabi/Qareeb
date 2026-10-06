@@ -69,10 +69,13 @@ function Header({ title, tag }: { title: string; tag?: string }) {
   );
 }
 
-/** pt: the status bar's 59pt safe area; pb: clears the tab bar. */
+/**
+ * pt: the status bar's 59pt safe area; pb: clears the tab bar. Content taller
+ * than the screen is clipped inside it, like a real phone.
+ */
 function Screen({ children }: { children: ReactNode }) {
   return (
-    <div className="absolute inset-0 flex flex-col bg-bg pt-[51px]">
+    <div className="absolute inset-0 flex flex-col overflow-hidden bg-bg pt-[51px]">
       <div className="flex-1 px-[22px] pb-[92px]">{children}</div>
       <TabBar />
     </div>
