@@ -1,5 +1,6 @@
 import { isValidPhoneNumber, parsePhoneNumber } from "libphonenumber-js";
 import { z } from "zod";
+import { routing } from "@/i18n/routing";
 import { isResidenceCountry } from "@/lib/countries";
 
 /**
@@ -51,7 +52,8 @@ export const waitlistSchema = z.object({
     .refine((v) => isValidPhoneNumber(v), { error: "phone_invalid" })
     .transform((v) => parsePhoneNumber(v).number),
   consent: z.literal(true, { error: "consent_required" }),
-  locale: z.enum(["ar", "en"]),
+  /** Page language (from the URL); missing or unknown → Arabic, the default. */
+  locale: z.enum(routing.locales).catch(routing.defaultLocale),
   /** Honeypot: must stay empty. */
   company: z.string().max(0).optional(),
   /** Ms between rendering the form and submitting it (minimum time-on-page check). */

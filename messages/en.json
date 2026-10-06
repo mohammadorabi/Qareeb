@@ -54,6 +54,7 @@
             "Your email address",
             "Your phone number",
             "Your country of residence",
+            "Your preferred language (detected from the page you used)",
             "Your consent to receive emails from us about the launch"
           ],
           "after": [
