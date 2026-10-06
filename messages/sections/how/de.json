@@ -17,45 +17,101 @@
   ],
   "phone": {
     "time": "9:41",
-    "hello": "Hallo Samer 👋",
-    "services": "Services",
-    "bills": "Rechnungen zahlen",
-    "billsSub": "Telefon, Internet, Strom, Wasser",
-    "transfer": "Aufladen",
-    "transferSub": "Syriatel & MTN",
-    "gifts": "Geschenke",
-    "occasions": "Anlässe",
-    "soon": "Bald",
-    "back": "Zurück",
-    "chooseType": "Wähle das Guthaben",
-    "syriatel": "Syriatel-Guthaben",
-    "mtn": "MTN-Guthaben",
-    "saved": "Gespeicherte Nummern",
-    "chipDad": "Papa – Syriatel",
-    "chipMom": "Mama",
-    "chipNumber": "+963 *** *** 789",
-    "continue": "Weiter",
-    "confirmTitle": "Zahlung bestätigen",
     "example": "Beispiel",
-    "to": "An",
-    "rows": [
-      "Betrag in Syrischen Pfund",
-      "Betrag in deiner Währung",
-      "Wechselkurs & Uhrzeit",
-      "Servicegebühr",
-      "Gesamt"
+    "back": "Zurück",
+    "brand": "qareeb",
+    "avatar": "M",
+    "hello": "Hallo Mohammad 👋",
+    "ask": "Was möchtest du heute bezahlen?",
+    "bills": "Rechnungen zahlen",
+    "billsSub": "Telefon • Internet • Strom • Wasser",
+    "transfer": "Guthaben aufladen",
+    "transferSub": "Syriatel • MTN",
+    "store": "Shop",
+    "storeSub": "Karten & Geschenke",
+    "soon": "Bald",
+    "tabs": [
+      "Dienste",
+      "Anlässe",
+      "Shop",
+      "Konto",
+      "Einstellungen"
     ],
-    "refund": "Kommt die Zahlung nicht an, bekommst du automatisch den vollen Betrag zurück.",
-    "pay": "Bestätigen & bezahlen",
-    "arrived": "Angekommen",
-    "arrivedSub": "Das Syriatel-Guthaben ist bei Papa angekommen.",
-    "track": ["Bezahlt", "Unterwegs", "Angekommen"],
+    "transferTitle": "Guthaben aufladen",
+    "syriatel": "Syriatel",
+    "mtn": "MTN",
+    "recipient": "Nummer des Empfängers",
+    "prefix": "+963",
+    "number": "567 234 0991",
+    "saveLocal": "Nummer auf diesem Handy speichern",
+    "saved": "Gespeicherte Empfänger",
+    "add": "Hinzufügen",
+    "people": [
+      {
+        "name": "Mama",
+        "initial": "M",
+        "number": "+963 988 714 232"
+      },
+      {
+        "name": "Papa",
+        "initial": "P",
+        "number": "+963 933 779 190"
+      },
+      {
+        "name": "Ahmad",
+        "initial": "A",
+        "number": "+963 944 567 812"
+      }
+    ],
+    "chooseAmount": "Betrag wählen",
+    "amounts": [
+      "10.000",
+      "25.000",
+      "50.000"
+    ],
+    "feeLine": "50.000 SYP + 0,40 € Gebühr",
+    "fee": "0,40 €",
+    "total": "Gesamt",
+    "totalValue": "4,40 €",
+    "transferNow": "Jetzt aufladen",
+    "methodTitle": "Zahlungsart",
+    "summaryLabel": "Guthaben-Aufladung · Gesamt",
+    "summaryName": "Syriatel · Mama",
+    "quickPay": "Express-Zahlung",
+    "applePay": "Apple Pay",
+    "googlePay": "Google Pay",
+    "orPay": "oder zahle mit",
+    "visa": "Visa-Karte",
+    "visaTile": "Visa",
+    "default": "Standard",
+    "mastercard": "Mastercard",
+    "bank": "Banküberweisung (SEPA)",
+    "secure": "Sichere, verschlüsselte Zahlung",
+    "payNow": "Jetzt 4,40 € zahlen",
+    "successTitle": "Zahlung erfolgreich",
+    "successSub": "Syriatel-Guthaben an Mama gesendet",
+    "syp": "50.000 SYP",
+    "details": [
+      [
+        "Transaktions-ID",
+        "QRB-820416"
+      ],
+      [
+        "Nummer",
+        "+963 988 714 232"
+      ],
+      [
+        "Datum & Uhrzeit",
+        "13. Juni 2026 · 16:32"
+      ],
+      [
+        "Zahlungsart",
+        "Visa •••• 4291"
+      ]
+    ],
+    "paidTotal": "Bezahlt gesamt",
+    "emailed": "Wir haben dir den Beleg gemailt",
     "done": "Fertig",
-    "tabs": ["Start", "Aktivität", "Gespeichert", "Konto"],
-    "quick": "Schnell bezahlen",
-    "quickDad": "Papa – Syriatel",
-    "quickDadSub": "Syriatel-Guthaben",
-    "quickHome": "Strom zu Hause",
-    "quickHomeSub": "Stromrechnung"
+    "pdf": "PDF-Beleg herunterladen"
   }
 }

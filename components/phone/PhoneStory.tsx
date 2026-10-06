@@ -5,8 +5,8 @@ import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-
 import { useLocale, useTranslations } from "next-intl";
 import { PhoneFrame } from "@/components/phone/PhoneFrame";
 import {
-  ConfirmScreen,
-  ServicesScreen,
+  HomeScreen,
+  MethodScreen,
   SuccessScreen,
   TransferScreen,
 } from "@/components/phone/screens";
@@ -14,8 +14,8 @@ import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
 
 type Step = { title: string; body: string };
 
-/** Screens in story order. Step 3 plays confirm → tap → success. */
-const SCREENS = ["services", "transfer", "confirm", "pressed", "success"] as const;
+/** Screens in story order. Step 3 plays payment method → tap → success. */
+const SCREENS = ["home", "transfer", "method", "pressed", "success"] as const;
 type ScreenId = (typeof SCREENS)[number];
 
 /**
@@ -27,10 +27,10 @@ function screenFor(progress: number[]): ScreenId {
   progress.forEach((p, i) => {
     if (p > 0) active = i;
   });
-  if (active === 0) return "services";
+  if (active === 0) return "home";
   if (active === 1) return "transfer";
   const s = progress[2];
-  if (s < 0.38) return "confirm";
+  if (s < 0.38) return "method";
   if (s < 0.5) return "pressed";
   return "success";
 }
@@ -41,22 +41,32 @@ const stepOf = (screen: ScreenId) => Math.min(2, SCREENS.indexOf(screen));
 const PHONE_FIT =
   "[@media(max-height:700px)]:[--phone-w:252px] [@media(min-height:701px)_and_(max-height:800px)]:[--phone-w:288px] [@media(min-height:801px)_and_(max-height:900px)]:[--phone-w:324px]";
 
-function ScreenView({ id, syp }: { id: ScreenId; syp: string }) {
+function ScreenView({ id }: { id: ScreenId }) {
   switch (id) {
-    case "services":
-      return <ServicesScreen />;
+    case "home":
+      return <HomeScreen />;
     case "transfer":
       return <TransferScreen />;
-    case "confirm":
-      return <ConfirmScreen syp={syp} />;
+    case "method":
+      return <MethodScreen />;
     case "pressed":
-      return <ConfirmScreen syp={syp} pressed />;
+      return <MethodScreen pressed />;
     case "success":
       return <SuccessScreen />;
   }
 }
 
 const num = (i: number) => String(i + 1).padStart(2, "0");
+
+/** The amounts in the phone are illustrative: always labeled next to it. */
+function ExampleTag() {
+  const t = useTranslations("how");
+  return (
+    <span className="eyebrow w-fit rounded-pill border border-border bg-card px-3 py-1">
+      {t("phone.example")}
+    </span>
+  );
+}
 
 /** Step number + title + body; `active` controls emphasis (color, not opacity). */
 function StepText({ step, i, active }: { step: Step; i: number; active: boolean }) {
@@ -122,12 +132,12 @@ function StepBlock({
 }
 
 /** Desktop: steps scroll past a sticky phone (~300vh). */
-function StickyStory({ steps, syp }: { steps: Step[]; syp: string }) {
+function StickyStory({ steps }: { steps: Step[] }) {
   const rtl = useLocale() === "ar";
-  const [screen, setScreen] = useState<ScreenId>("services");
+  const [screen, setScreen] = useState<ScreenId>("home");
   const [direction, setDirection] = useState(1);
   const progress = useRef(steps.map(() => 0));
-  const current = useRef<ScreenId>("services");
+  const current = useRef<ScreenId>("home");
 
   const onProgress = (i: number, p: number) => {
     progress.current[i] = p;
@@ -141,8 +151,8 @@ function StickyStory({ steps, syp }: { steps: Step[]; syp: string }) {
   const active = stepOf(screen);
   // Forward = new screen enters from the reading direction's end side.
   const shift = (dir: number) => dir * (rtl ? -1 : 1) * 56;
-  // The tap is a state of the confirm screen, not a new slide.
-  const slideKey = screen === "pressed" ? "confirm" : screen;
+  // The tap is a state of the payment-method screen, not a new slide.
+  const slideKey = screen === "pressed" ? "method" : screen;
 
   return (
     <div className="container-site hidden grid-cols-[1fr_auto] gap-16 lg:grid">
@@ -159,7 +169,7 @@ function StickyStory({ steps, syp }: { steps: Step[]; syp: string }) {
         ))}
       </ol>
       <div>
-        <div className="sticky top-(--nav-h) flex h-[calc(100svh-var(--nav-h))] items-center">
+        <div className="sticky top-(--nav-h) flex h-[calc(100svh-var(--nav-h))] flex-col items-center justify-center gap-3">
           <PhoneFrame className={PHONE_FIT}>
             <AnimatePresence initial={false} custom={direction}>
               <motion.div
@@ -176,10 +186,11 @@ function StickyStory({ steps, syp }: { steps: Step[]; syp: string }) {
                 exit="exit"
                 transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
               >
-                <ScreenView id={screen} syp={syp} />
+                <ScreenView id={screen} />
               </motion.div>
             </AnimatePresence>
           </PhoneFrame>
+          <ExampleTag />
         </div>
       </div>
     </div>
@@ -187,18 +198,21 @@ function StickyStory({ steps, syp }: { steps: Step[]; syp: string }) {
 }
 
 /** One final-state screen per step (used by the static layouts). */
-const STATIC_SCREENS: ScreenId[] = ["services", "transfer", "success"];
+const STATIC_SCREENS: ScreenId[] = ["home", "transfer", "success"];
 
 /** Desktop with reduced motion: the three screens side by side, static. */
-function StaticRow({ steps, syp }: { steps: Step[]; syp: string }) {
+function StaticRow({ steps }: { steps: Step[] }) {
   return (
     <div className="container-site hidden gap-8 lg:mt-14 lg:grid lg:grid-cols-3">
       {steps.map((step, i) => (
         <div key={step.title} className="flex flex-col gap-8">
           <StepText step={step} i={i} active />
-          <PhoneFrame className="mx-auto mt-auto [--phone-w:296px]">
-            <ScreenView id={STATIC_SCREENS[i]} syp={syp} />
-          </PhoneFrame>
+          <div className="mt-auto flex flex-col items-center gap-3">
+            <PhoneFrame className="[--phone-w:296px]">
+              <ScreenView id={STATIC_SCREENS[i]} />
+            </PhoneFrame>
+            <ExampleTag />
+          </div>
         </div>
       ))}
     </div>
@@ -206,7 +220,7 @@ function StaticRow({ steps, syp }: { steps: Step[]; syp: string }) {
 }
 
 /** Below 1024px: no sticky — each step is a card with its own small phone. */
-function StackedCards({ steps, syp }: { steps: Step[]; syp: string }) {
+function StackedCards({ steps }: { steps: Step[] }) {
   return (
     <ol className="container-site flex flex-col gap-5 lg:hidden">
       {steps.map((step, i) => (
@@ -218,25 +232,27 @@ function StackedCards({ steps, syp }: { steps: Step[]; syp: string }) {
             <StepText step={step} i={i} active />
           </div>
           {/* The whole phone, card grows to fit it. */}
-          <PhoneFrame className="mx-auto [--phone-w:266px] md:mx-0">
-            <ScreenView id={STATIC_SCREENS[i]} syp={syp} />
-          </PhoneFrame>
+          <div className="mx-auto flex flex-col items-center gap-3 md:mx-0">
+            <PhoneFrame className="[--phone-w:266px]">
+              <ScreenView id={STATIC_SCREENS[i]} />
+            </PhoneFrame>
+            <ExampleTag />
+          </div>
         </li>
       ))}
     </ol>
   );
 }
 
-/** `syp`: server-formatted example amount (see lib/illustrative.ts). */
-export function PhoneStory({ syp }: { syp: string }) {
+export function PhoneStory() {
   const t = useTranslations("how");
   const steps = t.raw("steps") as Step[];
   const reduced = usePrefersReducedMotion();
 
   return (
     <>
-      {reduced ? <StaticRow steps={steps} syp={syp} /> : <StickyStory steps={steps} syp={syp} />}
-      <StackedCards steps={steps} syp={syp} />
+      {reduced ? <StaticRow steps={steps} /> : <StickyStory steps={steps} />}
+      <StackedCards steps={steps} />
     </>
   );
 }
