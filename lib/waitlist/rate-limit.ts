@@ -1,13 +1,13 @@
 import "server-only";
 import { createHash } from "node:crypto";
 
-const LIMIT = 5;
+const LIMIT = 100;
 const WINDOW_MS = 60 * 60 * 1000;
 
 // Best effort: per server instance, reset on restart. Keys are hashed IPs.
 const hits = new Map<string, number[]>();
 
-/** Records a request; false once this IP has made more than 5 in the last hour. */
+/** Records a request; false once this IP has made more than 100 in the last hour. */
 export function allowRequest(ip: string, now = Date.now()): boolean {
   const key = createHash("sha256").update(ip).digest("hex");
   const recent = (hits.get(key) ?? []).filter((t) => now - t < WINDOW_MS);
