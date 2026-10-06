@@ -6,6 +6,7 @@ import { Hero } from "@/components/sections/Hero";
 import { HowItWorks } from "@/components/sections/HowItWorks";
 import { Receipt } from "@/components/sections/Receipt";
 import { Services } from "@/components/sections/Services";
+import { Statement } from "@/components/sections/Statement";
 import { Trust } from "@/components/sections/Trust";
 
 export default async function HomePage({ params }: PageProps<"/[locale]">) {
@@ -14,6 +15,7 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
   return (
     <>
       <Hero />
+      <Statement />
       <HowItWorks />
       <Services />
       <Receipt />

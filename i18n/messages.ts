@@ -14,6 +14,8 @@ import receiptAr from "@/messages/sections/receipt/ar.json";
 import receiptEn from "@/messages/sections/receipt/en.json";
 import servicesAr from "@/messages/sections/services/ar.json";
 import servicesEn from "@/messages/sections/services/en.json";
+import statementAr from "@/messages/sections/statement/ar.json";
+import statementEn from "@/messages/sections/statement/en.json";
 import trustAr from "@/messages/sections/trust/ar.json";
 import trustEn from "@/messages/sections/trust/en.json";
 import type { Locale } from "./routing";
@@ -26,6 +28,7 @@ import type { Locale } from "./routing";
  */
 const ar = {
   ...arBase,
+  statement: statementAr,
   problem: problemAr,
   how: howAr,
   services: servicesAr,
@@ -40,6 +43,7 @@ export type Messages = typeof ar;
 
 const en: Messages = {
   ...enBase,
+  statement: statementEn,
   problem: problemEn,
   how: howEn,
   services: servicesEn,
