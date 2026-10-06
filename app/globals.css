@@ -511,7 +511,7 @@
   }
 
   /*
-   * The app screens are drawn 342px wide (1pt = 342/393px) and zoomed to the
+   * The app screens are drawn at iPhone size (393 × 852, 1px = 1pt) and zoomed to the
    * screen, so they stay crisp at any size. tan(atan2(a, b)) = a / b: the
    * portable way to divide two lengths.
    */
@@ -520,9 +520,9 @@
     top: 0;
     left: 0;
     isolation: isolate;
-    width: 342px;
-    height: calc(342px * 852 / 393);
-    zoom: tan(atan2(var(--phone-screen-w), 342px));
+    width: 393px;
+    height: 852px;
+    zoom: tan(atan2(var(--phone-screen-w), 393px));
   }
 
   /* Status bar: time and icons centered on the Dynamic Island, either side of it. */

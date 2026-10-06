@@ -28,9 +28,9 @@ for (const locale of LOCALES) {
         expect(Math.round(p.width)).toBe(266);
         expect(p.height / p.width).toBeGreaterThan(2);
 
-        // Tab bar and home indicator inside the phone's screen.
+        // Tab bar or bottom sheet, and the home indicator, inside the phone screen.
         const screen = (await card.locator(".phone-screen").boundingBox())!;
-        for (const sel of [".phone-home", ".phone-ui .absolute.bottom-0"]) {
+        for (const sel of [".phone-home", ".phone-ui .z-20"]) {
           const b = (await card.locator(sel).first().boundingBox())!;
           expect(b.y + b.height).toBeLessThanOrEqual(screen.y + screen.height + 0.5);
           expect(b.y).toBeGreaterThan(screen.y + screen.height / 2);

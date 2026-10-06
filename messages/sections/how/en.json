@@ -17,45 +17,101 @@
   ],
   "phone": {
     "time": "9:41",
-    "hello": "Hi Samer 👋",
-    "services": "Services",
-    "bills": "Pay bills",
-    "billsSub": "Phone, internet, electricity, water",
-    "transfer": "Top up",
-    "transferSub": "Syriatel & MTN",
-    "gifts": "Gifts",
-    "occasions": "Occasions",
-    "soon": "Soon",
-    "back": "Back",
-    "chooseType": "Choose the credit type",
-    "syriatel": "Syriatel credit",
-    "mtn": "MTN credit",
-    "saved": "Saved numbers",
-    "chipDad": "Dad – Syriatel",
-    "chipMom": "Mum",
-    "chipNumber": "+963 *** *** 789",
-    "continue": "Continue",
-    "confirmTitle": "Confirm payment",
     "example": "Example",
-    "to": "To",
-    "rows": [
-      "Amount in Syrian pounds",
-      "Amount in your currency",
-      "Exchange rate & time",
-      "Service fee",
-      "Total"
+    "back": "Back",
+    "brand": "qareeb",
+    "avatar": "M",
+    "hello": "Hi Mohammad 👋",
+    "ask": "What would you like to pay today?",
+    "bills": "Pay bills",
+    "billsSub": "Phone • Internet • Electricity • Water",
+    "transfer": "Top up",
+    "transferSub": "Syriatel • MTN",
+    "store": "Store",
+    "storeSub": "Cards & gifts",
+    "soon": "Soon",
+    "tabs": [
+      "Services",
+      "Occasions",
+      "Store",
+      "Account",
+      "Settings"
     ],
-    "refund": "If the transfer doesn’t arrive, you get a full refund automatically.",
-    "pay": "Confirm & pay",
-    "arrived": "Arrived",
-    "arrivedSub": "Syriatel credit delivered to Dad.",
-    "track": ["Paid", "On its way", "Arrived"],
+    "transferTitle": "Credit top-up",
+    "syriatel": "Syriatel",
+    "mtn": "MTN",
+    "recipient": "Recipient number",
+    "prefix": "+963",
+    "number": "567 234 0991",
+    "saveLocal": "Save this number on this phone",
+    "saved": "Saved recipients",
+    "add": "Add",
+    "people": [
+      {
+        "name": "Mum",
+        "initial": "M",
+        "number": "+963 988 714 232"
+      },
+      {
+        "name": "Dad",
+        "initial": "D",
+        "number": "+963 933 779 190"
+      },
+      {
+        "name": "Ahmad",
+        "initial": "A",
+        "number": "+963 944 567 812"
+      }
+    ],
+    "chooseAmount": "Choose an amount",
+    "amounts": [
+      "10,000",
+      "25,000",
+      "50,000"
+    ],
+    "feeLine": "SYP 50,000 + €0.40 fee",
+    "fee": "€0.40",
+    "total": "Total",
+    "totalValue": "€4.40",
+    "transferNow": "Top up now",
+    "methodTitle": "Payment method",
+    "summaryLabel": "Credit top-up · Total",
+    "summaryName": "Syriatel · Mum",
+    "quickPay": "Express checkout",
+    "applePay": "Apple Pay",
+    "googlePay": "Google Pay",
+    "orPay": "or pay with",
+    "visa": "Visa card",
+    "visaTile": "Visa",
+    "default": "Default",
+    "mastercard": "Mastercard",
+    "bank": "Bank transfer (SEPA)",
+    "secure": "Secure, encrypted payment",
+    "payNow": "Pay €4.40 now",
+    "successTitle": "Payment successful",
+    "successSub": "Syriatel credit sent to Mum",
+    "syp": "SYP 50,000",
+    "details": [
+      [
+        "Transaction ID",
+        "QRB-820416"
+      ],
+      [
+        "Number",
+        "+963 988 714 232"
+      ],
+      [
+        "Date & time",
+        "13 Jun 2026 · 4:32 PM"
+      ],
+      [
+        "Payment method",
+        "Visa •••• 4291"
+      ]
+    ],
+    "paidTotal": "Total paid",
+    "emailed": "We emailed you the receipt",
     "done": "Done",
-    "tabs": ["Home", "Activity", "Saved", "Account"],
-    "quick": "Quick pay",
-    "quickDad": "Dad – Syriatel",
-    "quickDadSub": "Syriatel credit",
-    "quickHome": "Home electricity",
-    "quickHomeSub": "Electricity bill"
+    "pdf": "Download PDF receipt"
   }
 }
