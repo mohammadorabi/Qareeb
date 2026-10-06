@@ -1,7 +1,7 @@
 import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { Logo } from "@/components/brand/Logo";
-import { LocaleToggle } from "@/components/ui/LocaleToggle";
+import { LocalePicker } from "@/components/ui/LocalePicker";
 import { InstagramIcon } from "@/components/ui/icons";
 import { CONTACT_EMAIL, INSTAGRAM } from "@/lib/site";
 
@@ -54,7 +54,7 @@ export async function Footer() {
               </li>
             </ul>
           </nav>
-          <LocaleToggle />
+          <LocalePicker menuClassName="bottom-full start-0 mb-2 md:start-auto md:end-0" />
         </div>
       </div>
     </footer>

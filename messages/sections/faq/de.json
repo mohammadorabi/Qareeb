@@ -1,0 +1,34 @@
+{
+  "eyebrow": "FAQ",
+  "title": "Fragen, die du vielleicht hast.",
+  "items": [
+    {
+      "q": "Für wen ist qareeb?",
+      "a": "Für alle Syrerinnen und Syrer außerhalb Syriens, die die Rechnungen ihrer Familie bezahlen oder deren Guthaben aufladen möchten. Die App richtet sich an Personen ab 18 Jahren."
+    },
+    {
+      "q": "Aus welchen Ländern kann ich qareeb nutzen?",
+      "a": "qareeb ist für Syrerinnen und Syrer, wo immer sie außerhalb Syriens leben: in Europa, am Golf, in der Türkei, im Libanon, in Jordanien, in Ägypten, in Nordamerika und darüber hinaus."
+    },
+    {
+      "q": "Welche Services gibt es zum Start?",
+      "a": "Telefon-, Internet-, Strom- und Wasserrechnungen sowie Syriatel- und MTN-Guthaben — mit gespeicherten Nummern, damit du eine Zahlung mit einem Tipp wiederholen kannst."
+    },
+    {
+      "q": "Wie bezahle ich?",
+      "a": "Per Karte (Visa oder Mastercard), mit Apple Pay, Google Pay oder direkt von deinem Bankkonto — und du siehst jedes Detail, bevor du bestätigst."
+    },
+    {
+      "q": "Was passiert, wenn eine Zahlung nicht ankommt?",
+      "a": "Kommt eine Zahlung nach dem Bezahlen nicht an, bekommst du automatisch den vollen Betrag zurück."
+    },
+    {
+      "q": "Wann geht es los?",
+      "a": "Bald — melde dich an, dann erfährst du es als Erstes."
+    },
+    {
+      "q": "Sind meine Daten sicher?",
+      "a": "Du meldest dich mit einem Einmalcode per WhatsApp oder E-Mail an, und deine Daten sind immer verschlüsselt. Deine Kartendaten speichern wir nie, und wir sind DSGVO-konform."
+    }
+  ]
+}

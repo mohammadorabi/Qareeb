@@ -4,7 +4,7 @@ import { useEffect, useId, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Logo } from "@/components/brand/Logo";
-import { LocaleToggle } from "@/components/ui/LocaleToggle";
+import { LocalePicker } from "@/components/ui/LocalePicker";
 import { buttonClass } from "@/components/ui/Button";
 import { SectionLink } from "@/components/ui/SectionLink";
 import { SECTION_IDS } from "@/lib/site";
@@ -86,7 +86,7 @@ export function Nav() {
         </nav>
 
         <div className="flex items-center gap-1.5 sm:gap-2">
-          <LocaleToggle className="hidden sm:inline-flex" />
+          <LocalePicker className="hidden sm:block" />
           <SectionLink
             section={SECTION_IDS.join}
             className={buttonClass("primary", "md", "max-sm:px-4")}
@@ -141,7 +141,7 @@ export function Nav() {
               </li>
             ))}
           </ul>
-          <LocaleToggle className="mt-2 sm:hidden" />
+          <LocalePicker className="mt-2 w-fit sm:hidden" menuClassName="top-full start-0 mt-2" />
         </nav>
       </div>
     </header>

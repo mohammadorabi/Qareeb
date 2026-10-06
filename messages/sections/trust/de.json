@@ -1,0 +1,30 @@
+{
+  "eyebrow": "Sicherheit",
+  "title": "Sorgenfrei ab dem ersten Tipp.",
+  "cards": [
+    {
+      "title": "Super sicher",
+      "body": "Du meldest dich mit einem Einmalcode per WhatsApp oder E-Mail an, und deine Daten sind immer verschlüsselt."
+    },
+    {
+      "title": "Weltweite Zahlungsmethoden",
+      "body": "Bezahle mit Visa, Mastercard, Apple Pay, Google Pay oder direkt von deinem Bankkonto."
+    },
+    {
+      "title": "Wir speichern nie deine Kartendaten",
+      "body": "Deine Kartennummer wird bei uns nie gespeichert, und jede Zahlung ist geschützt und verschlüsselt."
+    },
+    {
+      "title": "Deine Privatsphäre ist geschützt",
+      "body": "DSGVO-konform — nach dem Datenschutzstandard der EU."
+    }
+  ],
+  "payments": {
+    "label": "Akzeptierte Zahlungsmethoden",
+    "visa": "Visa",
+    "mastercard": "Mastercard",
+    "applePay": "Apple Pay",
+    "googlePay": "Google Pay",
+    "bank": "Vom Bankkonto"
+  }
+}

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { resolveLocale } from "@/i18n/resolveLocale";
 import { LegalPage } from "@/components/layout/LegalPage";
+import { languageAlternates } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -12,7 +13,7 @@ export async function generateMetadata({
     title: t("terms.title"),
     alternates: {
       canonical: `/${locale}/terms`,
-      languages: { ar: "/ar/terms", en: "/en/terms" },
+      languages: languageAlternates("/terms"),
     },
   };
 }

@@ -3,8 +3,13 @@
 import PhoneInput, { type Country, type Value } from "react-phone-number-input";
 import flags from "react-phone-number-input/flags";
 import ar from "react-phone-number-input/locale/ar.json";
+import de from "react-phone-number-input/locale/de.json";
 import en from "react-phone-number-input/locale/en.json";
+import type { Locale } from "@/i18n/routing";
 import { PhoneIcon } from "@/components/ui/icons";
+
+/** Country names in the code dropdown, in the page language. */
+const LABELS = { ar, en, de } satisfies Record<Locale, unknown>;
 
 /** Shown before a country is chosen, instead of the library's globe + phone. */
 const NoCountryIcon = () => <PhoneIcon className="size-full" />;
@@ -15,7 +20,7 @@ type Props = {
   onChange: (value: string) => void;
   /** Follows the country of residence until the user picks a code by hand. */
   defaultCountry?: string;
-  locale: "ar" | "en";
+  locale: Locale;
   placeholder: string;
   invalid: boolean;
   describedBy?: string;
@@ -44,7 +49,7 @@ export function PhoneField({
       value={value as Value}
       onChange={(v) => onChange(v ?? "")}
       defaultCountry={defaultCountry as Country | undefined}
-      labels={locale === "ar" ? ar : en}
+      labels={LABELS[locale]}
       flags={flags}
       internationalIcon={NoCountryIcon}
       placeholder={placeholder}

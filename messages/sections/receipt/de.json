@@ -1,0 +1,34 @@
+{
+  "eyebrow": "Transparenz",
+  "title": "Alles wissen, bevor du bezahlst.",
+  "paper": {
+    "brand": "qareeb",
+    "heading": "Zahlungsdetails",
+    "example": "Beispiel",
+    "rows": [
+      "Betrag in Syrischen Pfund",
+      "Betrag in deiner Währung",
+      "Wechselkurs + Stand",
+      "Servicegebühr (separat)",
+      "Gesamt"
+    ],
+    "note": "Die echten Werte siehst du in der App, bevor du bezahlst."
+  },
+  "love": "Mit Liebe — aus {city}",
+  "cities": ["Berlin", "Dubai", "Istanbul", "Toronto", "Riad"],
+  "points": [
+    {
+      "title": "Jedes Detail, bevor du bezahlst",
+      "body": "Der Betrag in Pfund und in deiner Währung, die Gebühr separat ausgewiesen — bevor du bestätigst."
+    },
+    {
+      "title": "Der Kurs, mit Zeitstempel",
+      "body": "Du siehst den Kurs und wann er aktualisiert wurde — so weißt du genau, was du bezahlst."
+    },
+    {
+      "title": "Automatisch alles zurück, wenn es nicht ankommt",
+      "body": "Geht nach der Zahlung etwas schief, bekommst du den vollen Betrag zurück — ohne nachfragen zu müssen."
+    }
+  ],
+  "join": "Auf die Warteliste"
+}

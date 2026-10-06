@@ -4,6 +4,7 @@ import { getTranslations } from "next-intl/server";
 import { dirOf, routing } from "@/i18n/routing";
 import { resolveLocale } from "@/i18n/resolveLocale";
 import { fontVariables } from "@/lib/fonts";
+import { languageAlternates, OG_LOCALE } from "@/lib/seo";
 import { CONTACT_EMAIL, INSTAGRAM, SITE_URL } from "@/lib/site";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
@@ -29,14 +30,15 @@ export async function generateMetadata({ params }: LayoutProps<"/[locale]">): Pr
     description: t("description"),
     alternates: {
       canonical: `/${locale}`,
-      languages: { ar: "/ar", en: "/en", "x-default": "/ar" },
+      languages: languageAlternates(""),
     },
     openGraph: {
       type: "website",
       siteName: t("siteName"),
       title: t("title"),
       description: t("description"),
-      locale: locale === "ar" ? "ar_SY" : "en_GB",
+      locale: OG_LOCALE[locale],
+      alternateLocale: routing.locales.filter((l) => l !== locale).map((l) => OG_LOCALE[l]),
       url: `/${locale}`,
     },
     twitter: {
@@ -52,21 +54,35 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
   const t = await getTranslations("common");
   const tm = await getTranslations("meta");
 
+  const organizationId = `${SITE_URL}/#organization`;
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "Qareeb",
-    alternateName: "قريب",
-    url: `${SITE_URL}/${locale}`,
-    logo: `${SITE_URL}/qareeb-mark.png`,
-    description: tm("description"),
-    email: CONTACT_EMAIL,
-    contactPoint: {
-      "@type": "ContactPoint",
-      contactType: "customer support",
-      email: CONTACT_EMAIL,
-    },
-    sameAs: [INSTAGRAM.url],
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": organizationId,
+        name: "Qareeb",
+        alternateName: "قريب",
+        url: `${SITE_URL}/${locale}`,
+        logo: `${SITE_URL}/qareeb-mark.png`,
+        description: tm("description"),
+        email: CONTACT_EMAIL,
+        contactPoint: {
+          "@type": "ContactPoint",
+          contactType: "customer support",
+          email: CONTACT_EMAIL,
+        },
+        sameAs: [INSTAGRAM.url],
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${SITE_URL}/${locale}#website`,
+        name: "Qareeb",
+        url: `${SITE_URL}/${locale}`,
+        inLanguage: locale,
+        publisher: { "@id": organizationId },
+      },
+    ],
   };
 
   return (

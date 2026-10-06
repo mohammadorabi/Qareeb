@@ -1,0 +1,43 @@
+{
+  "eyebrow": "Services",
+  "title": "Alles, was sie brauchen, an einem Ort.",
+  "lead": "Egal, wo auf der Welt du gerade bist.",
+  "bills": "Rechnungen zahlen",
+  "transfer": "Guthaben aufladen",
+  "locked": "Bald verfügbar",
+  "soon": "Bald",
+  "tiles": {
+    "phone": {
+      "name": "Telefon",
+      "line": "Die Festnetzrechnung — ganz ohne Laufereien."
+    },
+    "internet": {
+      "name": "Internet",
+      "line": "Damit sie online bleiben — und ihr in Kontakt."
+    },
+    "electricity": {
+      "name": "Strom",
+      "line": "Die Stromrechnung, bezahlt aus der Ferne."
+    },
+    "water": {
+      "name": "Wasser",
+      "line": "Die Wasserrechnung — ohne aus dem Haus zu gehen."
+    },
+    "syriatel": {
+      "name": "Syriatel-Guthaben",
+      "line": "Kommt sofort oder innerhalb weniger Minuten an."
+    },
+    "mtn": {
+      "name": "MTN-Guthaben",
+      "line": "Kommt sofort oder innerhalb weniger Minuten an."
+    },
+    "gifts": {
+      "name": "Geschenke",
+      "line": "Blumen, Süßes und Geschenke für deine Familie."
+    },
+    "occasions": {
+      "name": "Anlässe",
+      "line": "Erinnerungen an Eid und Familienfeste."
+    }
+  }
+}
