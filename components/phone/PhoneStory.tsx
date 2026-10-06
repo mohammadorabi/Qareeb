@@ -212,13 +212,13 @@ function StackedCards({ steps, syp }: { steps: Step[]; syp: string }) {
       {steps.map((step, i) => (
         <li
           key={step.title}
-          className="flex flex-col gap-7 overflow-hidden rounded-card border border-border bg-card px-5 pt-7 md:flex-row md:items-center md:px-10"
+          className="flex flex-col gap-7 rounded-card border border-border bg-card px-5 pt-7 pb-6 md:flex-row md:items-center md:px-10"
         >
           <div className="md:flex-1">
             <StepText step={step} i={i} active />
           </div>
-          {/* Phone peeks out of the card bottom. */}
-          <PhoneFrame className="mx-auto -mb-24 [--phone-w:266px] md:mx-0 md:-mb-28">
+          {/* The whole phone, card grows to fit it. */}
+          <PhoneFrame className="mx-auto [--phone-w:266px] md:mx-0">
             <ScreenView id={STATIC_SCREENS[i]} syp={syp} />
           </PhoneFrame>
         </li>
