@@ -1,7 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { ProblemLines } from "@/components/problem/ProblemLines";
 
-/** Empathy opener of #how-it-works: three lines that warm up on scroll. */
+/** Empathy opener of #how-it-works: short lines that warm up on scroll. */
 export async function Problem() {
   const t = await getTranslations("problem");
 

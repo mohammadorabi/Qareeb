@@ -40,7 +40,7 @@ export async function Hero() {
 
           {/* Sign-up lives at the end (#join): first, invite them into the story. */}
           <SectionLink
-            section={SECTION_IDS.how}
+            section={SECTION_IDS.why}
             className="group mt-7 inline-flex items-center gap-2 self-start py-1 text-[17px] font-semibold text-orange-ink hover:text-orange-dark"
           >
             {t("scrollCue")}

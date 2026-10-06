@@ -12,6 +12,7 @@ export const INSTAGRAM = {
 
 /** Section anchors shared by the nav and the page, in page order. */
 export const SECTION_IDS = {
+  why: "why",
   how: "how-it-works",
   services: "services",
   transparency: "transparency",
