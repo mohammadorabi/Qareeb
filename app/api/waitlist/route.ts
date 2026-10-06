@@ -5,7 +5,7 @@ import { sendToWorkiom } from "@/lib/waitlist/workiom";
 import type { Locale } from "@/i18n/routing";
 
 /** Language names as Workiom receives them. */
-const LANGUAGE_NAMES: Record<Locale, string> = { ar: "Arabic", en: "English" };
+const LANGUAGE_NAMES: Record<Locale, string> = { ar: "Arabic", en: "English", de: "German" };
 
 /** Minimum time between rendering the form and submitting it (bots are faster). */
 const MIN_FILL_MS = 3000;
