@@ -22,7 +22,7 @@ for (const locale of LOCALES) {
         langButton(page),
         menuButton(page),
       ];
-      const boxes = [];
+      const boxes: { x: number; y: number; width: number; height: number }[] = [];
       for (const item of items) {
         await expect(item).toBeVisible();
         boxes.push((await item.boundingBox())!);
