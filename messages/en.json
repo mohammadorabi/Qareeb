@@ -22,8 +22,7 @@
     "menuClose": "Close menu"
   },
   "locale": {
-    "switchTo": "العربية",
-    "switchLabel": "التبديل إلى العربية"
+    "label": "Language"
   },
   "footer": {
     "tagline": "Far from them… still Qareeb.",

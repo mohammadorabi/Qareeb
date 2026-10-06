@@ -22,8 +22,7 @@
     "menuClose": "أغلق القائمة"
   },
   "locale": {
-    "switchTo": "English",
-    "switchLabel": "Switch to English"
+    "label": "اللغة"
   },
   "footer": {
     "tagline": "بعيد عنهم… بس قريب.",

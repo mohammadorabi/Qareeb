@@ -1,0 +1,61 @@
+{
+  "eyebrow": "So funktioniert’s",
+  "title": "Drei Schritte, und es ist da.",
+  "steps": [
+    {
+      "title": "Wähle den Service",
+      "body": "Rechnung oder Guthaben — alles an einem Ort, egal wo du gerade bist."
+    },
+    {
+      "title": "Wähle deine Liebsten",
+      "body": "Die Nummern deiner Familie sind gespeichert — beim nächsten Mal reicht ein Tipp."
+    },
+    {
+      "title": "Bezahle und sieh, wie es ankommt",
+      "body": "Du siehst jedes Detail, bevor du bezahlst, und weißt sofort, wenn es angekommen ist."
+    }
+  ],
+  "phone": {
+    "time": "9:41",
+    "hello": "Hallo Samer 👋",
+    "services": "Services",
+    "bills": "Rechnungen zahlen",
+    "billsSub": "Telefon, Internet, Strom, Wasser",
+    "transfer": "Aufladen",
+    "transferSub": "Syriatel & MTN",
+    "gifts": "Geschenke",
+    "occasions": "Anlässe",
+    "soon": "Bald",
+    "back": "Zurück",
+    "chooseType": "Wähle das Guthaben",
+    "syriatel": "Syriatel-Guthaben",
+    "mtn": "MTN-Guthaben",
+    "saved": "Gespeicherte Nummern",
+    "chipDad": "Papa – Syriatel",
+    "chipMom": "Mama",
+    "chipNumber": "+963 *** *** 789",
+    "continue": "Weiter",
+    "confirmTitle": "Zahlung bestätigen",
+    "example": "Beispiel",
+    "to": "An",
+    "rows": [
+      "Betrag in Syrischen Pfund",
+      "Betrag in deiner Währung",
+      "Wechselkurs & Uhrzeit",
+      "Servicegebühr",
+      "Gesamt"
+    ],
+    "refund": "Kommt die Zahlung nicht an, bekommst du automatisch den vollen Betrag zurück.",
+    "pay": "Bestätigen & bezahlen",
+    "arrived": "Angekommen",
+    "arrivedSub": "Das Syriatel-Guthaben ist bei Papa angekommen.",
+    "track": ["Bezahlt", "Unterwegs", "Angekommen"],
+    "done": "Fertig",
+    "tabs": ["Start", "Aktivität", "Gespeichert", "Konto"],
+    "quick": "Schnell bezahlen",
+    "quickDad": "Papa – Syriatel",
+    "quickDadSub": "Syriatel-Guthaben",
+    "quickHome": "Strom zu Hause",
+    "quickHomeSub": "Stromrechnung"
+  }
+}
