@@ -35,16 +35,20 @@ export function LogoMark({ className, title }: LogoMarkProps) {
 type LogoProps = {
   locale: string;
   className?: string;
+  /** Hide the wordmark on very narrow screens (the mark stays). */
+  compact?: boolean;
 };
 
 /** Mark + bilingual wordmark ("qareeb · قريب"), primary script first. */
-export function Logo({ locale, className }: LogoProps) {
+export function Logo({ locale, className, compact }: LogoProps) {
   const primary = locale === "ar" ? "قريب" : "qareeb";
   const secondary = locale === "ar" ? "qareeb" : "قريب";
   return (
     <span className={`inline-flex items-center gap-2.5 ${className ?? ""}`}>
       <LogoMark className="h-8 w-auto shrink-0" />
-      <span className="flex items-baseline gap-1.5 leading-none">
+      <span
+        className={`flex items-baseline gap-1.5 leading-none ${compact ? "max-[399px]:hidden" : ""}`}
+      >
         <span className="text-[22px] font-bold tracking-tight text-text">{primary}</span>
         <span className="hidden font-mono text-[11px] text-muted sm:inline" aria-hidden="true">
           · {secondary}
