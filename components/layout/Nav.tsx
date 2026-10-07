@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useId, useState } from "react";
+import { flushSync } from "react-dom";
 import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Logo } from "@/components/brand/Logo";
@@ -135,7 +136,9 @@ export function Nav() {
               <li key={key}>
                 <SectionLink
                   section={id}
-                  onClick={() => setOpen(false)}
+                  // Collapse the menu before SectionLink scrolls, or the
+                  // target is measured with the open menu's height above it.
+                  onClick={() => flushSync(() => setOpen(false))}
                   aria-current={active === id ? "location" : undefined}
                   className={`flex items-center gap-2 rounded-lg py-3 text-lg font-medium ${
                     active === id ? "text-text" : "text-text-2"
