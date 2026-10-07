@@ -5,6 +5,10 @@ import { useLocale, useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import { dirOf, LANGUAGES, routing } from "@/i18n/routing";
 import { CheckIcon, GlobeIcon } from "@/components/ui/icons";
+import {
+  currentSection,
+  rememberSectionForLocaleSwitch,
+} from "@/components/layout/LocaleSwitchScroll";
 
 type Props = {
   className?: string;
@@ -16,8 +20,9 @@ type Props = {
 
 /**
  * Language picker: a menu button (WAI-ARIA APG pattern). Each option links to
- * the same page and #section in that language, and is written in its own
- * language and script.
+ * the same page in that language, plus the #section being read unless the
+ * reader is still at the top, and is written in its own language and script.
+ * Scrolling on arrival is done by <LocaleSwitchScroll>, not by Next.
  */
 export function LocalePicker({
   className,
@@ -29,8 +34,8 @@ export function LocalePicker({
   const pathname = usePathname();
   const menuId = useId();
   const [open, setOpen] = useState(false);
-  // The section in view when the menu opened (the hash only exists client-side).
-  const [hash, setHash] = useState("");
+  // The section being read when the menu opened ("" at the top).
+  const [section, setSection] = useState("");
   const rootRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const itemRefs = useRef<(HTMLAnchorElement | null)[]>([]);
@@ -40,7 +45,7 @@ export function LocalePicker({
   const last = routing.locales.length - 1;
 
   function openMenu(focusIndex: number) {
-    setHash(window.location.hash);
+    setSection(currentSection());
     focusOnOpen.current = focusIndex;
     setOpen(true);
   }
@@ -139,11 +144,13 @@ export function LocalePicker({
                 role="menuitemradio"
                 aria-checked={selected}
                 tabIndex={-1}
-                href={{ pathname, hash }}
+                href={section ? { pathname, hash: section } : pathname}
                 locale={l}
+                scroll={false}
                 hrefLang={l}
                 onClick={(e: MouseEvent<HTMLAnchorElement>) => {
                   if (selected) e.preventDefault();
+                  else rememberSectionForLocaleSwitch(section);
                   close(selected);
                 }}
                 className="flex items-center justify-between gap-6 rounded-[10px] px-3 py-2.5 text-[15px] font-medium text-text outline-none hover:bg-bg focus-visible:bg-bg focus-visible:outline-2 focus-visible:-outline-offset-2"

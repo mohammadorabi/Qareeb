@@ -10,6 +10,7 @@ import { CONTACT_EMAIL, FACEBOOK, INSTAGRAM, SITE_URL } from "@/lib/site";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
 import { MotionProvider } from "@/components/layout/MotionProvider";
+import { LocaleSwitchScroll } from "@/components/layout/LocaleSwitchScroll";
 import "../globals.css";
 
 export function generateStaticParams() {
@@ -104,6 +105,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
             <Nav />
             <main id="main">{children}</main>
             <Footer />
+            <LocaleSwitchScroll />
           </MotionProvider>
         </NextIntlClientProvider>
         <Analytics />
