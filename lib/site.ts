@@ -10,6 +10,10 @@ export const INSTAGRAM = {
   url: "https://www.instagram.com/qareeb.sy/",
 } as const;
 
+export const FACEBOOK = {
+  url: "https://www.facebook.com/share/19SF7nzK4j/",
+} as const;
+
 /** Section anchors shared by the nav and the page, in page order. */
 export const SECTION_IDS = {
   why: "why",

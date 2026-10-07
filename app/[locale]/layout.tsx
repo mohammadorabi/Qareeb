@@ -6,7 +6,7 @@ import { dirOf, routing } from "@/i18n/routing";
 import { resolveLocale } from "@/i18n/resolveLocale";
 import { fontVariables } from "@/lib/fonts";
 import { languageAlternates, OG_LOCALE } from "@/lib/seo";
-import { CONTACT_EMAIL, INSTAGRAM, SITE_URL } from "@/lib/site";
+import { CONTACT_EMAIL, FACEBOOK, INSTAGRAM, SITE_URL } from "@/lib/site";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
 import { MotionProvider } from "@/components/layout/MotionProvider";
@@ -73,7 +73,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
           contactType: "customer support",
           email: CONTACT_EMAIL,
         },
-        sameAs: [INSTAGRAM.url],
+        sameAs: [INSTAGRAM.url, FACEBOOK.url],
       },
       {
         "@type": "WebSite",

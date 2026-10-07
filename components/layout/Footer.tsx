@@ -2,8 +2,8 @@ import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { Logo } from "@/components/brand/Logo";
 import { LocalePicker } from "@/components/ui/LocalePicker";
-import { InstagramIcon } from "@/components/ui/icons";
-import { CONTACT_EMAIL, INSTAGRAM } from "@/lib/site";
+import { FacebookIcon, InstagramIcon } from "@/components/ui/icons";
+import { CONTACT_EMAIL, FACEBOOK, INSTAGRAM } from "@/lib/site";
 
 export async function Footer() {
   const t = await getTranslations("footer");
@@ -40,7 +40,7 @@ export async function Footer() {
                   {CONTACT_EMAIL}
                 </a>
               </li>
-              <li>
+              <li className="flex flex-wrap items-center gap-x-4 gap-y-2">
                 <a
                   href={INSTAGRAM.url}
                   target="_blank"
@@ -50,6 +50,16 @@ export async function Footer() {
                 >
                   <InstagramIcon className="size-[18px]" />
                   <span dir="ltr">{INSTAGRAM.handle}</span>
+                </a>
+                <a
+                  href={FACEBOOK.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={t("facebookLabel")}
+                  className="inline-flex items-center gap-1.5 hover:text-text"
+                >
+                  <FacebookIcon className="size-[18px]" />
+                  <span dir="ltr">Facebook</span>
                 </a>
               </li>
             </ul>

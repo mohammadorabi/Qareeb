@@ -59,6 +59,12 @@ export const InstagramIcon = (p: IconProps) => (
   </Icon>
 );
 
+export const FacebookIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M15.5 4.5h-2a3.5 3.5 0 0 0-3.5 3.5v12M7.5 11h7" />
+  </Icon>
+);
+
 /** Payment straight from a bank account. */
 export const BankIcon = (p: IconProps) => (
   <Icon {...p}>
