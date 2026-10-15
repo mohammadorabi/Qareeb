@@ -1,13 +1,13 @@
 {
   "meta": {
-    "title": "qareeb — Weit weg… und doch Qareeb",
-    "description": "Bezahle die Rechnungen deiner Familie in Syrien und lade ihr Guthaben auf — von überall auf der Welt, mit einem Tipp. Jetzt auf die Warteliste.",
+    "title": "Weit weg… und doch Qareeb",
+    "description": "Bezahle die Rechnungen deiner Familie in Syrien und lade ihr Guthaben auf. Von überall auf der Welt, mit einem Tipp. Jetzt auf die Warteliste.",
     "siteName": "qareeb · قريب"
   },
   "common": {
     "skipToContent": "Zum Inhalt springen",
     "brand": "qareeb",
-    "homeLabel": "qareeb — Startseite",
+    "homeLabel": "Startseite von qareeb",
     "comingSoon": "Bald verfügbar"
   },
   "nav": {
@@ -32,7 +32,8 @@
     "contact": "Kontakt",
     "legalNav": "Rechtliches",
     "instagramLabel": "Qareeb auf Instagram",
-    "facebookLabel": "Qareeb auf Facebook"
+    "facebookLabel": "Qareeb auf Facebook",
+    "whatsappLabel": "Schreib uns auf WhatsApp"
   },
   "legal": {
     "back": "Zurück zur Startseite",
@@ -42,8 +43,8 @@
         {
           "h": "Wer wir sind",
           "p": [
-            "Qareeb (قريب) ist eine Mobile-App, die bald startet. Mit ihr können Syrerinnen und Syrer im Ausland Rechnungen bezahlen und Mobilfunkguthaben für ihre Familie in Syrien aufladen. Diese Website ist die Vorstellungsseite von Qareeb vor dem Start und unsere Warteliste.",
-            "Wenn du Fragen zu dieser Datenschutzerklärung oder zu deinen Daten hast, schreib uns an support@qareeb.info."
+            "Qareeb (قريب) ist eine neue Mobile-App, die bald startet. Mit ihr können Syrerinnen und Syrer im Ausland Rechnungen bezahlen und Handyguthaben für ihre Familie in Syrien aufladen. Diese Website stellt Qareeb vor dem Start vor. Hier findest du auch unsere Warteliste.",
+            "Wenn du Fragen zu dieser Datenschutzerklärung oder zu deinen Daten hast, schreib uns an support@qareeb.info oder auf WhatsApp unter +963 988 955 664."
           ]
         },
         {
@@ -54,6 +55,7 @@
             "Deine E-Mail-Adresse",
             "Deine Telefonnummer",
             "Dein Wohnsitzland",
+            "Deine bevorzugte Sprache (wir erkennen sie an der Seite, die du genutzt hast)",
             "Deine Einwilligung, E-Mails von uns zum Start zu erhalten"
           ],
           "after": [
@@ -63,14 +65,14 @@
         {
           "h": "Wofür wir sie nutzen",
           "p": [
-            "Wir nutzen deine Daten ausschließlich, um dich über den Start von Qareeb zu informieren und dir wichtige Neuigkeiten zur App zu schicken.",
+            "Wir nutzen deine Daten nur, um dir zu sagen, wann Qareeb startet, und um dir wichtige Neuigkeiten zur App zu schicken.",
             "Wir verkaufen oder vermieten deine personenbezogenen Daten an niemanden."
           ]
         },
         {
           "h": "Wo deine Daten gespeichert werden",
           "p": [
-            "Deine Daten werden bei vertrauenswürdigen Dienstleistern gespeichert, die uns bei der Verwaltung der Formulareingaben und beim Hosting dieser Website unterstützen. Sie verarbeiten die Daten in unserem Auftrag, mit angemessenen Schutzmaßnahmen und nur für die in dieser Erklärung beschriebenen Zwecke."
+            "Wir speichern deine Daten bei vertrauenswürdigen Dienstleistern. Sie helfen uns, die Formulardaten zu verwalten und diese Website zu hosten. Sie verarbeiten die Daten in unserem Auftrag, mit angemessenem Schutz und nur für die Zwecke in dieser Erklärung."
           ]
         },
         {
@@ -80,7 +82,7 @@
         {
           "h": "Wie lange wir sie speichern",
           "p": [
-            "Wir speichern deine Daten, bis du dich abmeldest oder uns bittest, sie zu löschen, oder bis die Warteliste nicht mehr benötigt wird — je nachdem, was zuerst eintritt. Danach löschen wir sie."
+            "Wir speichern deine Daten, bis du dich abmeldest, uns bittest, sie zu löschen, oder wir die Warteliste nicht mehr brauchen. Es zählt, was zuerst passiert. Danach löschen wir sie."
           ]
         },
         {
@@ -99,13 +101,13 @@
         {
           "h": "Sicherheit",
           "p": [
-            "Wir treffen angemessene technische und organisatorische Maßnahmen, um deine Daten vor Verlust, Missbrauch und unbefugtem Zugriff zu schützen. Kein System ist jedoch zu 100\u00a0% sicher, daher können wir keine absolute Sicherheit garantieren."
+            "Wir treffen angemessene technische und organisatorische Maßnahmen, um deine Daten vor Verlust, Missbrauch und unbefugtem Zugriff zu schützen. Aber kein System ist zu 100\u00a0% sicher. Deshalb können wir keine vollständige Sicherheit garantieren."
           ]
         },
         {
           "h": "Alter",
           "p": [
-            "Qareeb und die Warteliste richten sich ausschließlich an Personen ab 18 Jahren. Wenn du jünger als 18 bist, setz dich bitte nicht auf die Warteliste."
+            "Qareeb und die Warteliste sind nur für Personen ab 18 Jahren. Wenn du jünger als 18 bist, setz dich bitte nicht auf die Warteliste."
           ]
         },
         {
@@ -128,20 +130,20 @@
         {
           "h": "Was diese Website ist",
           "p": [
-            "Diese Website ist eine Informationsseite zu Qareeb vor dem Start und eine Warteliste für alle, die vom Start erfahren möchten.",
-            "Die Anmeldung zur Warteliste legt kein Konto an und begründet keine Verpflichtungen — weder für dich noch für uns. Sie garantiert weder den Zugang zur App noch bestimmte Funktionen, Preise oder einen bestimmten Starttermin."
+            "Diese Website stellt Qareeb vor dem Start vor. Sie hat auch eine Warteliste für alle, die vom Start erfahren möchten.",
+            "Die Anmeldung zur Warteliste legt kein Konto an. Sie verpflichtet weder dich noch uns zu etwas. Sie garantiert weder den Zugang zur App noch bestimmte Funktionen, Preise oder einen bestimmten Starttermin."
           ]
         },
         {
           "h": "Informationen auf dieser Website",
           "p": [
-            "Die Informationen auf dieser Website — einschließlich veranschaulichender Beispiele wie Beispielbeträge und Bildschirmansichten — dienen nur der allgemeinen Information. Sie können sich jederzeit ändern und stellen kein Angebot dar."
+            "Die Informationen auf dieser Website dienen nur der allgemeinen Information. Das gilt auch für Beispiele wie Beispielbeträge und Bildschirmansichten. Sie können sich jederzeit ändern und sind kein Angebot."
           ]
         },
         {
           "h": "Geistiges Eigentum",
           "p": [
-            "Der Name Qareeb, das Logo, das Design und die Inhalte dieser Website gehören Qareeb. Du darfst sie ohne unsere schriftliche Erlaubnis nicht kopieren, vervielfältigen oder verwenden, soweit das Gesetz dies nicht ausdrücklich gestattet."
+            "Der Name Qareeb, das Logo, das Design und die Inhalte dieser Website gehören Qareeb. Ohne unsere schriftliche Erlaubnis darfst du sie nicht kopieren, vervielfältigen oder verwenden, außer das Gesetz erlaubt es."
           ]
         },
         {
@@ -156,7 +158,7 @@
         {
           "h": "Haftungsbeschränkung",
           "p": [
-            "Wir bemühen uns, diese Website korrekt und erreichbar zu halten, stellen sie aber ohne Gewähr und ohne jegliche Garantie bereit. Soweit gesetzlich zulässig, haftet Qareeb nicht für Verluste oder Schäden, die aus der Nutzung oder der Unmöglichkeit der Nutzung dieser Website entstehen. Nichts in diesen Bedingungen schränkt eine Haftung ein, die gesetzlich nicht beschränkt werden kann."
+            "Wir bemühen uns, diese Website korrekt und erreichbar zu halten. Wir stellen sie aber ohne Gewähr und ohne Garantie bereit. Soweit gesetzlich zulässig, haftet Qareeb nicht für Verluste oder Schäden, die entstehen, weil du die Website nutzt oder nicht nutzen kannst. Nichts in diesen Bedingungen schränkt eine Haftung ein, die gesetzlich nicht beschränkt werden kann."
           ]
         },
         {
@@ -167,7 +169,7 @@
         },
         {
           "h": "Kontakt",
-          "p": ["Wenn du Fragen zu diesen Bedingungen hast, schreib uns an support@qareeb.info."]
+          "p": ["Wenn du Fragen zu diesen Bedingungen hast, schreib uns an support@qareeb.info oder auf WhatsApp unter +963 988 955 664."]
         }
       ]
     },
@@ -177,17 +179,17 @@
     "eyebrow": "BALD VERFÜGBAR · iOS & ANDROID",
     "titleLead": "Weit weg… und doch",
     "titleAccent": "Qareeb",
-    "subtitle": "Bezahle die Rechnungen deiner Familie in Syrien und lade ihr Guthaben auf — von überall auf der Welt, mit einem Tipp. Ein Geschenk von Herzen, nicht nur eine Überweisung.",
+    "subtitle": "Bezahle die Rechnungen deiner Familie in Syrien und lade ihr Guthaben auf. Von überall auf der Welt, mit einem Tipp. Ein Geschenk von Herzen, nicht nur eine Überweisung.",
     "chipsLabel": "Warum qareeb",
     "chips": {
       "superSecure": "Super sicher",
       "globalPayments": "Weltweit bezahlen",
-      "arabicFirst": "Für Arabisch gemacht"
+      "inArabic": "Auf Arabisch"
     },
     "scrollCue": "Entdecke die Geschichte"
   },
   "map": {
-    "label": "Illustration: ein Globus mit Syrien in der Mitte; ein orangefarbener Bogen führt von einer Stadt im Ausland zu einer Stadt in Syrien.",
+    "label": "Illustration: ein Globus mit Syrien in der Mitte und eine orange Linie von einer Stadt im Ausland zu einer Stadt in Syrien.",
     "arrived": "Angekommen",
     "services": {
       "syriatelCredit": "Syriatel-Guthaben",

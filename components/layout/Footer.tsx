@@ -2,8 +2,8 @@ import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { Logo } from "@/components/brand/Logo";
 import { LocalePicker } from "@/components/ui/LocalePicker";
-import { FacebookIcon, InstagramIcon } from "@/components/ui/icons";
-import { CONTACT_EMAIL, FACEBOOK, INSTAGRAM } from "@/lib/site";
+import { FacebookIcon, InstagramIcon, WhatsAppIcon } from "@/components/ui/icons";
+import { CONTACT_EMAIL, FACEBOOK, INSTAGRAM, WHATSAPP } from "@/lib/site";
 
 export async function Footer() {
   const t = await getTranslations("footer");
@@ -60,6 +60,16 @@ export async function Footer() {
                 >
                   <FacebookIcon className="size-[18px]" />
                   <span dir="ltr">Facebook</span>
+                </a>
+                <a
+                  href={WHATSAPP.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={t("whatsappLabel")}
+                  className="inline-flex items-center gap-1.5 hover:text-text"
+                >
+                  <WhatsAppIcon className="size-[18px]" />
+                  <span dir="ltr">{WHATSAPP.handle}</span>
                 </a>
               </li>
             </ul>

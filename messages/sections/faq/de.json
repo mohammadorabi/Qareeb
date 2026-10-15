@@ -12,11 +12,11 @@
     },
     {
       "q": "Welche Services gibt es zum Start?",
-      "a": "Telefon-, Internet-, Strom- und Wasserrechnungen sowie Syriatel- und MTN-Guthaben — mit gespeicherten Nummern, damit du eine Zahlung mit einem Tipp wiederholen kannst."
+      "a": "Telefon-, Internet-, Strom- und Wasserrechnungen sowie Syriatel- und MTN-Guthaben. Die Nummern deiner Familie bleiben gespeichert. So kannst du eine Zahlung mit einem Tipp wiederholen."
     },
     {
       "q": "Wie bezahle ich?",
-      "a": "Per Karte (Visa oder Mastercard), mit Apple Pay, Google Pay oder direkt von deinem Bankkonto — und du siehst jedes Detail, bevor du bestätigst."
+      "a": "Per Karte (Visa oder Mastercard), mit Apple Pay, Google Pay oder direkt von deinem Bankkonto. Du siehst jedes Detail, bevor du bestätigst."
     },
     {
       "q": "Was passiert, wenn eine Zahlung nicht ankommt?",
@@ -24,11 +24,11 @@
     },
     {
       "q": "Wann geht es los?",
-      "a": "Bald — melde dich an, dann erfährst du es als Erstes."
+      "a": "Bald. Melde dich an, dann erfährst du es als Erstes."
     },
     {
       "q": "Sind meine Daten sicher?",
-      "a": "Du meldest dich mit einem Einmalcode per WhatsApp oder E-Mail an, und deine Daten sind immer verschlüsselt. Deine Kartendaten speichern wir nie, und wir sind DSGVO-konform."
+      "a": "Du meldest dich mit einem Einmalcode per WhatsApp oder E-Mail an, und deine Daten sind immer verschlüsselt. Deine Kartendaten speichern wir nie, und wir halten uns an die DSGVO."
     }
   ]
 }

@@ -12,11 +12,11 @@
     },
     {
       "q": "Which services are available at launch?",
-      "a": "Phone, internet, electricity and water bills, plus Syriatel and MTN credit — with saved numbers so you can repeat a payment in one tap."
+      "a": "Phone, internet, electricity and water bills, plus Syriatel and MTN credit. Your family’s numbers stay saved, so you can repeat a payment in one tap."
     },
     {
       "q": "How do I pay?",
-      "a": "By card (Visa or Mastercard), Apple Pay, Google Pay, or directly from your bank account — and you’ll see every detail before you confirm."
+      "a": "By card (Visa or Mastercard), Apple Pay, Google Pay, or straight from your bank account. You’ll see every detail before you confirm."
     },
     {
       "q": "What if the transfer fails?",
@@ -24,11 +24,11 @@
     },
     {
       "q": "When does it launch?",
-      "a": "Soon — sign up to be the first to know."
+      "a": "Soon. Sign up to be the first to know."
     },
     {
       "q": "Is my data safe?",
-      "a": "You sign in with a one-time code by WhatsApp or email, and your data is always encrypted. We never store your card details, and we’re GDPR-compliant."
+      "a": "You sign in with a one-time code by WhatsApp or email, and your data is always encrypted. We never store your card details, and we follow GDPR."
     }
   ]
 }

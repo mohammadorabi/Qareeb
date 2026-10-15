@@ -14,6 +14,15 @@ export const FACEBOOK = {
   url: "https://www.facebook.com/share/19SF7nzK4j/",
 } as const;
 
+export const WHATSAPP = {
+  handle: "@qareeb.963",
+  /** As written on the page (always LTR, even in Arabic). */
+  number: "+963 988 955 664",
+  /** E.164, for structured data. */
+  tel: "+963988955664",
+  url: "https://wa.me/963988955664",
+} as const;
+
 /** Section anchors shared by the nav and the page, in page order. */
 export const SECTION_IDS = {
   why: "why",

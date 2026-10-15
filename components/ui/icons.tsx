@@ -65,6 +65,14 @@ export const FacebookIcon = (p: IconProps) => (
   </Icon>
 );
 
+/** Line WhatsApp mark: a round speech bubble with a handset inside. */
+export const WhatsAppIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M4.5 19.5 5.6 15.9A8 8 0 1 1 8.4 18.6Z" />
+    <path d="M9.4 8.6c-.4 2.6 2.4 5.6 5.1 5.9l1-1.1-1.6-.9-.7.6c-1-.5-1.9-1.4-2.4-2.4l.6-.7-.9-1.6Z" />
+  </Icon>
+);
+
 /** Payment straight from a bank account. */
 export const BankIcon = (p: IconProps) => (
   <Icon {...p}>

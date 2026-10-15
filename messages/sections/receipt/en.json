@@ -14,20 +14,20 @@
     ],
     "note": "Real values appear in the app before you pay."
   },
-  "love": "With love — from {city}",
+  "love": "With love from {city}",
   "cities": ["Berlin", "Dubai", "Istanbul", "Toronto", "Riyadh"],
   "points": [
     {
       "title": "Every detail before you pay",
-      "body": "The amount in pounds and in your currency, with the fee shown separately — before you confirm."
+      "body": "Before you confirm, see the amount in pounds and in your currency, with the fee shown on its own."
     },
     {
       "title": "The rate, with its timestamp",
       "body": "See the rate and when it was updated, so you know exactly what you’re paying."
     },
     {
-      "title": "Automatic full refund if it doesn’t arrive",
-      "body": "If something goes wrong after you pay, you get all of it back — no need to ask."
+      "title": "Your money back in full if it doesn’t arrive",
+      "body": "If something goes wrong after you pay, you get it all back automatically. No need to ask."
     }
   ],
   "join": "Join the waitlist"

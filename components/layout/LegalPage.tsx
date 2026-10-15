@@ -1,27 +1,33 @@
 import { Fragment } from "react";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { CONTACT_EMAIL } from "@/lib/site";
+import { CONTACT_EMAIL, WHATSAPP } from "@/lib/site";
 
 type Section = { h: string; p: string[]; items?: string[]; after?: string[] };
 
-/** Plain text with the contact email turned into a mailto link. */
-function WithEmail({ text }: { text: string }) {
-  const parts = text.split(CONTACT_EMAIL);
-  return parts.map((part, i) => (
-    <Fragment key={i}>
-      {part}
-      {i < parts.length - 1 && (
-        <a
-          href={`mailto:${CONTACT_EMAIL}`}
-          dir="ltr"
-          className="font-medium text-orange-ink underline decoration-orange/30 underline-offset-4 hover:decoration-orange-ink"
-        >
-          {CONTACT_EMAIL}
-        </a>
-      )}
-    </Fragment>
-  ));
+const LINK =
+  "font-medium text-orange-ink underline decoration-orange/30 underline-offset-4 hover:decoration-orange-ink";
+
+const escape = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+const CONTACTS = new RegExp(`(${escape(CONTACT_EMAIL)}|${escape(WHATSAPP.number)})`);
+
+/** Plain text with the contact email and WhatsApp number turned into links. */
+function WithContacts({ text }: { text: string }) {
+  return text.split(CONTACTS).map((part, i) =>
+    part === CONTACT_EMAIL ? (
+      <a key={i} href={`mailto:${CONTACT_EMAIL}`} dir="ltr" className={LINK}>
+        {CONTACT_EMAIL}
+      </a>
+    ) : part === WHATSAPP.number ? (
+      <a key={i} href={WHATSAPP.url} target="_blank" rel="noopener noreferrer" className={LINK}>
+        <bdi dir="ltr" className="whitespace-nowrap">
+          {WHATSAPP.number}
+        </bdi>
+      </a>
+    ) : (
+      <Fragment key={i}>{part}</Fragment>
+    ),
+  );
 }
 
 export async function LegalPage({ kind }: { kind: "privacy" | "terms" }) {
@@ -53,7 +59,7 @@ export async function LegalPage({ kind }: { kind: "privacy" | "terms" }) {
             <div className="mt-3 flex max-w-[68ch] flex-col gap-3 text-[16.5px] leading-[1.8] text-text-2">
               {s.p.map((p) => (
                 <p key={p}>
-                  <WithEmail text={p} />
+                  <WithContacts text={p} />
                 </p>
               ))}
               {s.items && (
@@ -71,7 +77,7 @@ export async function LegalPage({ kind }: { kind: "privacy" | "terms" }) {
               )}
               {s.after?.map((p) => (
                 <p key={p}>
-                  <WithEmail text={p} />
+                  <WithContacts text={p} />
                 </p>
               ))}
             </div>
