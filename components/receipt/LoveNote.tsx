@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 
 /**
- * «مع حبّي — من …» in handwriting. The city changes each time the receipt
+ * «مع حبّي من …» in handwriting. The city changes each time the receipt
  * re-enters the viewport (Berlin first, so server and client agree).
  */
 export function LoveNote({ template, cities }: { template: string; cities: string[] }) {

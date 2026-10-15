@@ -14,20 +14,20 @@
     ],
     "note": "Die echten Werte siehst du in der App, bevor du bezahlst."
   },
-  "love": "Mit Liebe — aus {city}",
+  "love": "Mit Liebe aus {city}",
   "cities": ["Berlin", "Dubai", "Istanbul", "Toronto", "Riad"],
   "points": [
     {
       "title": "Jedes Detail, bevor du bezahlst",
-      "body": "Der Betrag in Pfund und in deiner Währung, die Gebühr separat ausgewiesen — bevor du bestätigst."
+      "body": "Bevor du bestätigst, siehst du den Betrag in Pfund und in deiner Währung. Die Gebühr steht separat."
     },
     {
       "title": "Der Kurs, mit Zeitstempel",
-      "body": "Du siehst den Kurs und wann er aktualisiert wurde — so weißt du genau, was du bezahlst."
+      "body": "Du siehst den Kurs und wann er aktualisiert wurde. So weißt du genau, was du bezahlst."
     },
     {
-      "title": "Automatisch alles zurück, wenn es nicht ankommt",
-      "body": "Geht nach der Zahlung etwas schief, bekommst du den vollen Betrag zurück — ohne nachfragen zu müssen."
+      "title": "Dein Geld komplett zurück, wenn es nicht ankommt",
+      "body": "Geht nach der Zahlung etwas schief, bekommst du den vollen Betrag automatisch zurück. Du musst nicht nachfragen."
     }
   ],
   "join": "Auf die Warteliste"

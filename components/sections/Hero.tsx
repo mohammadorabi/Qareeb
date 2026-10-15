@@ -4,7 +4,7 @@ import { HeroGlow } from "@/components/hero/HeroGlow";
 import { SectionLink } from "@/components/ui/SectionLink";
 import { SECTION_IDS } from "@/lib/site";
 
-const CHIPS = ["superSecure", "globalPayments", "arabicFirst"] as const;
+const CHIPS = ["superSecure", "globalPayments", "inArabic"] as const;
 
 export async function Hero() {
   const t = await getTranslations("hero");

@@ -1,13 +1,13 @@
 {
   "meta": {
-    "title": "qareeb — Far from them… still Qareeb",
+    "title": "Far from them… still Qareeb",
     "description": "Pay your family’s bills in Syria and top up their phones from anywhere in the world, in one tap. Join the waitlist.",
     "siteName": "qareeb · قريب"
   },
   "common": {
     "skipToContent": "Skip to content",
     "brand": "qareeb",
-    "homeLabel": "qareeb — home",
+    "homeLabel": "qareeb home",
     "comingSoon": "Coming soon"
   },
   "nav": {
@@ -43,7 +43,7 @@
         {
           "h": "Who we are",
           "p": [
-            "Qareeb (قريب) is an upcoming mobile app that will let Syrians abroad pay bills and top up mobile balances for their family in Syria. This website is Qareeb’s pre-launch page and waitlist.",
+            "Qareeb (قريب) is a new mobile app, coming soon. It will let Syrians abroad pay bills and top up phone credit for their family in Syria. This website tells you about Qareeb before launch and has our waitlist.",
             "If you have any question about this policy or your data, contact us at support@qareeb.info or on WhatsApp at +963 988 955 664."
           ]
         },
@@ -72,7 +72,7 @@
         {
           "h": "Where your data is stored",
           "p": [
-            "Your data is stored with trusted service providers that help us manage form submissions and host this website. They process it on our behalf, under appropriate safeguards, and only for the purposes described in this policy."
+            "We store your data with trusted service providers. They help us manage the form and host this website. They handle your data for us, with proper safeguards, and only for the purposes in this policy."
           ]
         },
         {
@@ -82,7 +82,7 @@
         {
           "h": "How long we keep it",
           "p": [
-            "We keep your data until you unsubscribe or ask us to delete it, or until the waitlist is no longer needed — whichever comes first. After that, we delete it."
+            "We keep your data until the first of these happens: you unsubscribe, you ask us to delete it, or we no longer need the waitlist. Then we delete it."
           ]
         },
         {
@@ -99,13 +99,13 @@
         {
           "h": "Security",
           "p": [
-            "We take reasonable technical and organizational measures to protect your data from loss, misuse and unauthorized access. However, no system is 100% secure, so we cannot guarantee absolute security."
+            "We take reasonable technical and organizational steps to protect your data from loss, misuse and access without permission. But no system is 100% secure, so we cannot guarantee complete security."
           ]
         },
         {
           "h": "Age",
           "p": [
-            "Qareeb and its waitlist are intended only for people aged 18 or over. If you are under 18, please do not join the waitlist."
+            "Qareeb and its waitlist are only for people aged 18 or over. If you are under 18, please do not join the waitlist."
           ]
         },
         {
@@ -128,14 +128,14 @@
         {
           "h": "What this website is",
           "p": [
-            "This website is an informational pre-launch page for Qareeb and a waitlist for people who want to hear about the launch.",
-            "Joining the waitlist does not create an account and does not create any obligation for you or for us. It does not guarantee access to the app, or any particular features, prices or launch date."
+            "This website tells you about Qareeb before it launches. It also has a waitlist for people who want to hear about the launch.",
+            "Joining the waitlist does not create an account. It does not create any obligation for you or for us. It does not guarantee access to the app, or any particular features, prices or launch date."
           ]
         },
         {
           "h": "Information on this website",
           "p": [
-            "The information on this website — including illustrative examples such as sample amounts and screens — is for general information only. It may change at any time and is not an offer."
+            "The information on this website is for general information only. This includes examples, such as sample amounts and screens. It may change at any time and is not an offer."
           ]
         },
         {
@@ -156,13 +156,13 @@
         {
           "h": "Limitation of liability",
           "p": [
-            "We work to keep this website accurate and available, but we provide it “as is”, without warranties of any kind. To the extent permitted by law, Qareeb is not liable for any loss or damage arising from your use of, or inability to use, this website. Nothing in these terms limits any liability that cannot be limited by law."
+            "We try to keep this website accurate and available, but we provide it “as is”, without any warranties. As far as the law allows, Qareeb is not liable for any loss or damage from using this website, or from not being able to use it. Nothing in these terms limits any liability that the law does not allow us to limit."
           ]
         },
         {
           "h": "Changes to these terms",
           "p": [
-            "We may update these terms from time to time. When we do, we will change the “Last updated” date at the top of this page. Continuing to use the website means you accept the updated terms."
+            "We may update these terms from time to time. When we do, we will change the “Last updated” date at the top of this page. If you keep using the website after that, you accept the updated terms."
           ]
         },
         {
@@ -177,17 +177,17 @@
     "eyebrow": "COMING SOON · iOS & ANDROID",
     "titleLead": "Far from them… still",
     "titleAccent": "Qareeb",
-    "subtitle": "Pay your family’s bills in Syria and top up their phones from anywhere in the world, in one tap — a gift from the heart, not just a transaction.",
+    "subtitle": "Pay your family’s bills in Syria and top up their phones from anywhere in the world, in one tap. A gift from the heart, not just a transaction.",
     "chipsLabel": "Why qareeb",
     "chips": {
       "superSecure": "Super secure",
       "globalPayments": "Global payments",
-      "arabicFirst": "Arabic-first"
+      "inArabic": "In Arabic"
     },
     "scrollCue": "Discover the story"
   },
   "map": {
-    "label": "Illustration: a globe with Syria at its center; an orange arc travels from a city abroad to a city in Syria.",
+    "label": "Illustration: a globe with Syria in the middle, and an orange line from a city abroad to a city in Syria.",
     "arrived": "Arrived",
     "services": {
       "syriatelCredit": "Syriatel credit",
@@ -203,7 +203,7 @@
     "emailPlaceholder": "you@example.com",
     "submit": "Join the waitlist",
     "submitting": "Sending…",
-    "consent": "I agree to receive emails from qareeb about the launch, per the <privacy>Privacy Policy</privacy>.",
+    "consent": "I agree to get emails from qareeb about the launch, as explained in the <privacy>Privacy Policy</privacy>.",
     "note": "No spam. Unsubscribe any time.",
     "success": "You're on the list! We'll tell you the moment Qareeb launches.",
     "retry": "Try again",
@@ -217,7 +217,7 @@
       "name_required": "Enter your full name.",
       "name_full": "Enter your first and last name.",
       "name_invalid": "Use Arabic or English letters only.",
-      "name_too_long": "Keep your name under 80 characters.",
+      "name_too_long": "Use 80 characters or fewer.",
       "country_required": "Choose your country of residence.",
       "phone_required": "Enter your phone number.",
       "phone_invalid": "Enter a valid phone number"

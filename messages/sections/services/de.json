@@ -9,11 +9,11 @@
   "tiles": {
     "phone": {
       "name": "Telefon",
-      "line": "Die Festnetzrechnung — ganz ohne Laufereien."
+      "line": "Die Festnetzrechnung ohne Laufereien."
     },
     "internet": {
       "name": "Internet",
-      "line": "Damit sie online bleiben — und ihr in Kontakt."
+      "line": "Damit sie online bleiben und ihr in Kontakt bleibt."
     },
     "electricity": {
       "name": "Strom",
@@ -21,7 +21,7 @@
     },
     "water": {
       "name": "Wasser",
-      "line": "Die Wasserrechnung — ohne aus dem Haus zu gehen."
+      "line": "Die Wasserrechnung, ohne aus dem Haus zu gehen."
     },
     "syriatel": {
       "name": "Syriatel-Guthaben",
