@@ -32,7 +32,8 @@
     "contact": "Contact",
     "legalNav": "Legal",
     "instagramLabel": "Qareeb on Instagram",
-    "facebookLabel": "Qareeb on Facebook"
+    "facebookLabel": "Qareeb on Facebook",
+    "whatsappLabel": "Chat with us on WhatsApp"
   },
   "legal": {
     "back": "Back to home",
@@ -43,7 +44,7 @@
           "h": "Who we are",
           "p": [
             "Qareeb (قريب) is an upcoming mobile app that will let Syrians abroad pay bills and top up mobile balances for their family in Syria. This website is Qareeb’s pre-launch page and waitlist.",
-            "If you have any question about this policy or your data, contact us at support@qareeb.info."
+            "If you have any question about this policy or your data, contact us at support@qareeb.info or on WhatsApp at +963 988 955 664."
           ]
         },
         {
@@ -166,7 +167,7 @@
         },
         {
           "h": "Contact",
-          "p": ["If you have any question about these terms, contact us at support@qareeb.info."]
+          "p": ["If you have any question about these terms, contact us at support@qareeb.info or on WhatsApp at +963 988 955 664."]
         }
       ]
     },

@@ -6,7 +6,7 @@ import { dirOf, routing } from "@/i18n/routing";
 import { resolveLocale } from "@/i18n/resolveLocale";
 import { fontVariables } from "@/lib/fonts";
 import { languageAlternates, OG_LOCALE } from "@/lib/seo";
-import { CONTACT_EMAIL, FACEBOOK, INSTAGRAM, SITE_URL } from "@/lib/site";
+import { CONTACT_EMAIL, FACEBOOK, INSTAGRAM, SITE_URL, WHATSAPP } from "@/lib/site";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
 import { MotionProvider } from "@/components/layout/MotionProvider";
@@ -69,11 +69,19 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
         logo: `${SITE_URL}/qareeb-mark.png`,
         description: tm("description"),
         email: CONTACT_EMAIL,
-        contactPoint: {
-          "@type": "ContactPoint",
-          contactType: "customer support",
-          email: CONTACT_EMAIL,
-        },
+        contactPoint: [
+          {
+            "@type": "ContactPoint",
+            contactType: "customer support",
+            email: CONTACT_EMAIL,
+          },
+          {
+            "@type": "ContactPoint",
+            contactType: "customer support",
+            telephone: WHATSAPP.tel,
+            url: WHATSAPP.url,
+          },
+        ],
         sameAs: [INSTAGRAM.url, FACEBOOK.url],
       },
       {

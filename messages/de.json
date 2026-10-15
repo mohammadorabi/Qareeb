@@ -32,7 +32,8 @@
     "contact": "Kontakt",
     "legalNav": "Rechtliches",
     "instagramLabel": "Qareeb auf Instagram",
-    "facebookLabel": "Qareeb auf Facebook"
+    "facebookLabel": "Qareeb auf Facebook",
+    "whatsappLabel": "Schreib uns auf WhatsApp"
   },
   "legal": {
     "back": "Zurück zur Startseite",
@@ -43,7 +44,7 @@
           "h": "Wer wir sind",
           "p": [
             "Qareeb (قريب) ist eine Mobile-App, die bald startet. Mit ihr können Syrerinnen und Syrer im Ausland Rechnungen bezahlen und Mobilfunkguthaben für ihre Familie in Syrien aufladen. Diese Website ist die Vorstellungsseite von Qareeb vor dem Start und unsere Warteliste.",
-            "Wenn du Fragen zu dieser Datenschutzerklärung oder zu deinen Daten hast, schreib uns an support@qareeb.info."
+            "Wenn du Fragen zu dieser Datenschutzerklärung oder zu deinen Daten hast, schreib uns an support@qareeb.info oder auf WhatsApp unter +963 988 955 664."
           ]
         },
         {
@@ -167,7 +168,7 @@
         },
         {
           "h": "Kontakt",
-          "p": ["Wenn du Fragen zu diesen Bedingungen hast, schreib uns an support@qareeb.info."]
+          "p": ["Wenn du Fragen zu diesen Bedingungen hast, schreib uns an support@qareeb.info oder auf WhatsApp unter +963 988 955 664."]
         }
       ]
     },
